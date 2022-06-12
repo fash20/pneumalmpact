@@ -104,7 +104,6 @@ const Payment = () => {
                 />
                 <TextInputField
                   inputHeight={50}
-                  isInvalid ={paymentDetails.expirationYear === 0 ? true: false}
                   type= "number"
                   placeholder="YY"
                   label={`-`}
@@ -123,7 +122,6 @@ const Payment = () => {
               onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                 onchange(event, "cvc")
               }
-              validationMessage="This field is required"
             />
           </div>
           <Button
