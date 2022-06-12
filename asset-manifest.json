@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/pneumalmpact/static/css/main.1febe028.css",
+    "main.js": "/pneumalmpact/static/js/main.e7f0b35c.js",
+    "static/js/787.ea9893fe.chunk.js": "/pneumalmpact/static/js/787.ea9893fe.chunk.js",
+    "static/media/ZCOOLXiaoWei-Regular.ttf": "/pneumalmpact/static/media/ZCOOLXiaoWei-Regular.94e5f3e17ec2184f303d.ttf",
+    "static/media/Inter-Medium.ttf": "/pneumalmpact/static/media/Inter-Medium.4ebf1acf62f447ea2f0d.ttf",
+    "static/media/Poppins-Black.ttf": "/pneumalmpact/static/media/Poppins-Black.d8b850b920a5ef49d752.ttf",
+    "static/media/auth-side-image.svg": "/pneumalmpact/static/media/auth-side-image.958b28ce13750315d6b002d12b9f4c3e.svg",
+    "static/media/pneumaImpact-logo.svg": "/pneumalmpact/static/media/pneumaImpact-logo.1bb0c18501900e3ac770a9dce0f05cf4.svg",
+    "index.html": "/pneumalmpact/index.html",
+    "main.1febe028.css.map": "/pneumalmpact/static/css/main.1febe028.css.map",
+    "main.e7f0b35c.js.map": "/pneumalmpact/static/js/main.e7f0b35c.js.map",
+    "787.ea9893fe.chunk.js.map": "/pneumalmpact/static/js/787.ea9893fe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1febe028.css",
+    "static/js/main.e7f0b35c.js"
+  ]
+}
