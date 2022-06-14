@@ -1,5 +1,6 @@
 import { Button, Link } from "evergreen-ui";
 import React from "react";
+// import { Link } from "react-router-dom";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import "../styles/General.css";
 import { useScreenSize } from "../utils/useScreenSize";
@@ -34,7 +35,7 @@ const Navbar = () => {
         className="flex gap-4"
         style={{ display: "flex", alignItems: "flex-end", textAlign: "center" }}
       >
-        <Button appearance="loginButton1">Login</Button>
+       <Link href='/login'>  <Button appearance="loginButton1" >Login</Button> </Link>
         <Button appearance="loginButton2">Sing Up</Button>
       </div>
     </div>

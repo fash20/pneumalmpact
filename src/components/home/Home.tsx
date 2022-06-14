@@ -1,8 +1,12 @@
+import { Heading } from 'evergreen-ui'
 import React from 'react'
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        <Heading>Home</Heading>
+    </div>
   )
 }
 

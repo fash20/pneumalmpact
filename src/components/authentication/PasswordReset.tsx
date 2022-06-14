@@ -1,8 +1,11 @@
 import { Button, Heading, TextInputField } from 'evergreen-ui'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../assets/images/pneumaImpact-logo.svg';
 
 const PasswordReset = () => {
+
+  const [email, setEmail] = useState("");
+  
   return (
     <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
     <div className="flex justify-center">
@@ -18,8 +21,9 @@ const PasswordReset = () => {
           inputHeight={50}
           label="Email"
           placeholder={"Email"}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>)=> setEmail(event.target.value)}
         />
-        <Button appearance="primary">Done</Button>
+        <Button appearance="primary" onClick={()=>alert(email)}>Done</Button>
       </div>
       <div className="flex flex-row justify-between">
         <Heading>Create an Account</Heading>

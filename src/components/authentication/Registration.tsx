@@ -1,10 +1,17 @@
 import { Button, Heading, TextInputField } from 'evergreen-ui'
-import React from 'react'
+import React, { useState } from 'react'
 import googleIcon from '../assets/images/icon-google.svg';
 import facebookIcon from '../assets/images/icon-facebook.svg';
 import logo from '../assets/images/pneumaImpact-logo.svg';
 
 const Registration = () => {
+  const [paymentDetails, setPaymentDetails] = useState({
+    email: "",
+    cardNumber: 0,
+    expirationMonth: 0,
+    expirationYear: 0,
+    cvc: 0,
+  });
   return (
     <div className="grid grid-cols-1 mx-3 my-3  gap-y-14 ">
       <div className="flex justify-center">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import sideImage from "../assets/images/auth-side-image.svg";
 import Payment from "../payment/Payment";
 // import Login from './Login'
@@ -10,24 +10,24 @@ import { useScreenSize } from "../utils/useScreenSize";
 // import Verification from './Verification'
 // import Registration from './Registration'
 
-const AuthContainer = () => {
+interface Prop{
+  children: ReactNode
+}
+
+const AuthContainer:React.FC<Prop> = (props) => {
   const [screenSize, isScreenSmall] = useScreenSize();
   return (
     <div className={`grid ${isScreenSmall? 'grid-cols-1' :'grid-cols-2'} align-middle `}>
       {
         !isScreenSmall &&
-        <div className="flex justify-center py-20 px-1.5 side-img ">
+        <div className="flex justify-center px-1.5 side-img ">
           <img src={sideImage} alt="side" />
         </div>
       }
-      <div className="py-20">
-        {/* <Login/> */}
-        {/* <Registration /> */}
-        {/* <PersonalInfo /> */}
-        {/* <AdditionalInfo /> */}
-        <Payment />
-        {/* <PasswordReset /> */}
-        {/* <Verification /> */}
+      <div className="">
+        {
+          props.children
+        }
       </div>
     </div>
   );
