@@ -13,7 +13,7 @@ function App() {
     <ThemeProvider value={uiTheme}>
       <div className="flex flex-col">
         <Navbar />
-        <div className="py-16">
+        <div className="py-16 ">
           <Router />
         </div>
       </div>

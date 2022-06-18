@@ -46,3 +46,27 @@ body {
   -webkit-backdrop-filter: blur(2em);
   backdrop-filter: blur(2em);
 }
+@font-face {
+  font-family: poppins;
+  src: url(../assets/fonts/Poppins/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: inter;
+  src: url(../assets/fonts/Inter/static/Inter-Medium.ttf);
+}
+.nav-link{
+  font-family: poppins ;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 25px;
+  color: #252641
+}
+.nav-link:hover{
+  color: #252641;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.inter{
+  font-family: inter;
+}

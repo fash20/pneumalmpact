@@ -25,10 +25,10 @@ const Navbar = () => {
             justifyContent: "space-evenly",
           }}
         >
-          <Link>Home</Link>
-          <Link>careers</Link>
-          <Link>Blogs</Link>
-          <Link>About us</Link>
+          <Link className="nav-link">Home</Link>
+          <Link className="nav-link">careers</Link>
+          <Link className="nav-link">Blogs</Link>
+          <Link className="nav-link">About us</Link>
         </div>
       )}
       <div

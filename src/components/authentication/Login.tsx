@@ -4,6 +4,7 @@ import googleIcon from '../assets/images/icon-google.svg';
 import facebookIcon from '../assets/images/icon-facebook.svg';
 import logo from '../assets/images/pneumaImpact-logo.svg';
 import { Link } from "react-router-dom";
+import { useScreenSize } from "../utils/useScreenSize";
 
 const Login = () => {
 
@@ -11,6 +12,8 @@ const Login = () => {
     email:"",
     password:""
   });
+
+  const [screenSize, isScreenSmall] = useScreenSize();
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -39,13 +42,13 @@ const Login = () => {
         <img src={logo} className="object-contain h-20 w-20 " alt='Pneumalmpact' />
       </div>
       <div className='flex justify-around '>
-        <Button className=" gap-x-1 " appearance="loginIconButton">
-            <img src= {googleIcon} alt="googleIcon" />
-            Login with Google
+        <Button className='gap-x-1' appearance="loginIconButton">
+            <img src= {googleIcon} alt="googleIcon" className={`${!isScreenSmall? '': `drop-shadow-xl` }`} />
+            { !isScreenSmall && ` Login with Google` }
         </Button>
         <Button className=" gap-x-1 "  appearance="loginIconButton">
             <img src={facebookIcon} alt="facebookIcon" />
-            Login with Google
+            { !isScreenSmall && ` Login with Facebook` }
         </Button>
       </div>
       <div className="text-center">
@@ -56,6 +59,7 @@ const Login = () => {
           <TextInputField
             inputHeight={50}
             label="Email"
+            className="font-"
             placeholder={"Email"}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onchange(event, "email")
@@ -73,7 +77,7 @@ const Login = () => {
           <Button appearance="primary"  onClick={() => alert(JSON.stringify(userCred))}>Login</Button>
         </div>
         <div className="flex flex-row justify-between">
-          <Link to="/">Create an Account</Link>
+          <Link to="/signup">Create an Account</Link>
           <Heading>Forget Password?</Heading>
         </div>
       </div>
