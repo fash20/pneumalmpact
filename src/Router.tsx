@@ -12,9 +12,9 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="pneumalmpact/" element={<Home />} />
         <Route
-          path="/login"
+          path="pneumalmpact/login"
           element={
             <AuthContainer>
               <Login />
@@ -22,7 +22,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/passwordreset"
+          path="pneumalmpact/passwordreset"
           element={
             <AuthContainer>
               <PasswordReset />
@@ -30,7 +30,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/personalinfo"
+          path="pneumalmpact/personalinfo"
           element={
             <AuthContainer>
               <PersonalInfo />
@@ -38,7 +38,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/signup"
+          path="pneumalmpact/signup"
           element={
             <AuthContainer>
               <Registration/>
@@ -46,7 +46,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/verification"
+          path="pneumalmpact/verification"
           element={
             <AuthContainer>
               <Verification/>
@@ -54,7 +54,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/additionalinfo"
+          path="pneumalmpact/additionalinfo"
           element={
             <AuthContainer>
               <AdditionalInfo/>
@@ -62,7 +62,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/personalinfo"
+          path="pneumalmpact/personalinfo"
           element={
             <AuthContainer>
               <PersonalInfo/>
