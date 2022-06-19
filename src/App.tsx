@@ -11,9 +11,9 @@ function App() {
   const screenSize = useScreenSize();
   return (
     <ThemeProvider value={uiTheme}>
-      <div className="flex flex-col">
+      <div className="flex flex-col side-img" style={{position: "relative"}}>
         <Navbar />
-        <div className="py-16 ">
+        <div className="">
           <Router />
         </div>
       </div>

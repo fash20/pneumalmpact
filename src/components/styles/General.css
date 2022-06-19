@@ -21,6 +21,9 @@ body {
 .side-img {
   background: linear-gradient(135deg, rgba(78, 117, 119, 0.1) 0%, rgba(101, 213, 252, 0.1) 100%, rgba(35, 68, 91, 0.1) 100%);
 }
+.pos-relative{
+  position: relative;
+}
 
 .slct-cntr {
   height: 80px;
@@ -38,35 +41,190 @@ body {
   font-size: 20px;
 }
 
+/* .navbar{
+  position: static;
+  top:0; 
+} */
 .navbar-bg {
-  position: absolute;
+  /* position: absolute; */
+  position: sticky;
   top: 0;
+  z-index: 300;
   width: 100%;
-  background-color: rgba(255, 255, 255, .5);
+  /* background-color: rgba(255, 255, 255, .5); */
   -webkit-backdrop-filter: blur(2em);
-  backdrop-filter: blur(2em);
+  backdrop-filter: blur(10px);
+
 }
+
 @font-face {
   font-family: poppins;
   src: url(../assets/fonts/Poppins/Poppins-Medium.ttf);
 }
+
 @font-face {
   font-family: inter;
   src: url(../assets/fonts/Inter/static/Inter-Medium.ttf);
 }
-.nav-link{
-  font-family: poppins ;
+@font-face {
+  font-family: zcool;
+  src: url(../assets/fonts/ZCOOL_XiaoWei/ZCOOLXiaoWei-Regular.ttf);
+}
+
+.nav-link {
+  font-family: poppins;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 25px;
   color: #252641
 }
-.nav-link:hover{
+
+.nav-link:hover {
   color: #252641;
   text-decoration: underline;
   cursor: pointer;
 }
-.inter{
+
+.inter {
   font-family: inter;
+}
+.poppins{
+  font-family: poppins;
+}
+.stats {
+  padding: 10px;
+  font-family: poppins;
+}
+
+.about-pneuma{
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: #615F5F
+}
+.stat-vaule {
+  font-size: 20px;
+  color: #575757;
+}
+
+.stat-title {
+  font-size: 13px;
+  color: #828282
+}
+
+.veclipse{
+  position: relative;
+  left: 72%;
+  bottom: -30%;
+
+}
+.heclipse{
+  position: absolute;
+  top: 0px;
+  right: 50%;
+
+}
+.woman-image{
+  position: relative ;
+  top: -30%;
+  right: -23%;
+}
+
+.step-title-blue{
+  font-family: poppins;
+  font-weight: 600;
+  font-size: 40px;
+  color: #2F327D;
+}
+
+.step-title-red{
+  font-family: poppins;
+  font-weight: 700;
+  font-size: 40px;
+  color: #FF5364;
+}
+.step-title-blue1{
+  font-family: poppins;
+  font-weight: 700;
+  font-size: 30px;
+  color: #2F327D;
+}
+
+.step-title-red1{
+  font-family: poppins;
+  font-weight: 600;
+  font-size: 30px;
+  color: #FF5364;
+}
+
+.step-detail{
+  font-family: zcool;
+  color: #696984;
+  font-size: 20px;
+  line-height: 30px;
+  
+}
+.hiw-sub{
+  font-family: zcool;
+  color: #696984;
+  font-size: 20px;
+  line-height: 36px;
+  
+}
+
+
+.fnt40{
+  font-size: 40;
+}
+.test-1{
+  font-size: 60px;
+}
+.test-dim{
+  width: 750px;
+}
+.fnt25{
+  font-size: 25px;
+}
+.fnt16{
+  font-size: 16px;
+}
+.line-ht30{
+  line-height: 30px;
+}
+.sub-form{
+  background-color: #fff;
+  border-radius: 45px;
+  width:600px ;
+  display: inline-flex;
+}
+
+.sub-button{
+  color:#fff;
+  background-color: #2F327D;
+  font-size: 13px;
+  font-family: poppins;
+  height: 50px;
+  padding: 0px;
+  width: 100px;
+  border-radius: 45px;
+  margin: 0 10px ;
+}
+.sub-input{
+  font-family: poppins;
+  font-size: 13px;
+  height: 50px;
+  width: 90%;
+  border-radius: 45px;
+  padding-left: 20px;
+  font-weight: 300;
+  color: #575757;
+  line-height: 30px;
+  letter-spacing: 1px;
+}
+.sub-input:active{
+  outline: none;
+}
+.sub-input:focus{
+  outline: none;
 }

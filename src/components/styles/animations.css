@@ -1,0 +1,52 @@
+#form-back{
+
+    animation: form 4s ease-in-out infinite alternate;
+}
+
+#form-front{
+    animation: form 4s ease-in-out infinite alternate-reverse ;
+}
+#gears{
+    animation: form 4s ease-in-out infinite alternate-reverse  ;
+}
+
+#man{
+    animation: person 3s ease-in-out infinite alternate;
+}
+#woman{
+    animation: person 3s ease-in-out infinite alternate-reverse;
+}
+#comment-1, #comment-3{
+    animation: comment 2s ease-in-out infinite alternate;
+}
+#comment-2{
+    animation: comment 2s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes form {
+    from{
+        transform: rotateX(0deg);
+    }
+    to{
+        transform: rotateX(25deg);
+    }
+}
+
+@keyframes person {
+    from{
+        transform: translate(0);
+    }
+    to{
+        transform: translate(-20px);
+    }
+    
+}
+@keyframes comment {
+    from{
+        transform: translate(0);
+    }
+    to{
+        transform: translateY(-15px);
+    }
+    
+}

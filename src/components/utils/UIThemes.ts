@@ -23,6 +23,25 @@ export const uiTheme = mergeTheme(defaultTheme, {
               boxShadow: '0 0 0 2px #2F327D',
             },
           },
+          secondary: {
+            color: 'white',
+            paddingX: 12,
+            paddingY: 8,
+            borderRadius: 50,
+            height: 50,
+            fontSize: 18,
+            fontWeight:'600',
+            backgroundColor: '#FF5364',
+            _hover: {
+              backgroundColor: '#FF5344',
+            },
+            _active: {
+              backgroundColor: '#FF5364',
+            },
+            _focus: {
+              boxShadow: '0 0 0 2px #2F327D',
+            },
+          },
           loginButton1: {
             color: '#6C6C6C',
             paddingX: 12,
