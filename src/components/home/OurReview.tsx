@@ -4,8 +4,8 @@ import numberOne from '../assets/images/01.svg'
 
 const OurReview = () => {
   return (
-    <div className='grid mb-28 gap-y-5'>
-        <div className="text-center mb-10">
+    <div className='grid gap-y-5'>
+        <div className="text-center">
           <span className="step-title-blue">What our </span>
           <span className="step-title-red">Students </span>
           <span className="step-title-blue">say</span>

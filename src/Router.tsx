@@ -12,7 +12,7 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="pneumalmpact/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="pneumalmpact/login"
           element={
