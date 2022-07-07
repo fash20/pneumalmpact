@@ -1,5 +1,5 @@
 .frontpage{
-  background-image: url('../assets/images/frontpagebg.svg');
+  /* background-image: url('../assets/images/frontpagebg.svg'); */
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -236,18 +236,26 @@
     
   }
  }
-@media (min-width: 640px) {
-  .svg-anim{
-
+@media (min-width: 820px) {
+  .frontpage{
+    background-image: none;
+    /* background-color: #2F327D; */
   }
+  
  }
 @media (min-width: 1024px) {
-  .svg-anim{
-    height: '40';
+  .frontpage{
+    background-image: url('../assets/images/frontpagebg.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
   }
+  
  }
-@media (min-width: 640px) {
-  .svg-anim{
-
+@media (min-width: 1240px) {
+  .frontpage{
+    background-image: url('../assets/images/frontpagebg.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
   }
+  
  }
