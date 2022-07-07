@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/pneumalmpact/static/css/main.00e959cb.css",
+    "main.css": "/pneumalmpact/static/css/main.c4ab0f4f.css",
     "main.js": "/pneumalmpact/static/js/main.49ffb8e8.js",
     "static/js/787.ea9893fe.chunk.js": "/pneumalmpact/static/js/787.ea9893fe.chunk.js",
     "static/media/ZCOOLXiaoWei-Regular.ttf": "/pneumalmpact/static/media/ZCOOLXiaoWei-Regular.94e5f3e17ec2184f303d.ttf",
@@ -29,12 +29,12 @@
     "static/media/icon-facebook.svg": "/pneumalmpact/static/media/icon-facebook.94a3ae563cea40fef0902940fe2e32ed.svg",
     "index.html": "/pneumalmpact/index.html",
     "static/media/frontpagebg.svg": "/pneumalmpact/static/media/frontpagebg.88f174f74de03c41e1c3.svg",
-    "main.00e959cb.css.map": "/pneumalmpact/static/css/main.00e959cb.css.map",
+    "main.c4ab0f4f.css.map": "/pneumalmpact/static/css/main.c4ab0f4f.css.map",
     "main.49ffb8e8.js.map": "/pneumalmpact/static/js/main.49ffb8e8.js.map",
     "787.ea9893fe.chunk.js.map": "/pneumalmpact/static/js/787.ea9893fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.00e959cb.css",
+    "static/css/main.c4ab0f4f.css",
     "static/js/main.49ffb8e8.js"
   ]
 }
