@@ -20,7 +20,7 @@ function App() {
             {/* <UserNav /> */}
             <div className="">
               {/* <SideNav /> */}
-              {/* <Router /> */}
+              <Router />
             </div>
           </div>
         </BrowserRouter>
