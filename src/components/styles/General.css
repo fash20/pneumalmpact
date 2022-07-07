@@ -1,24 +1,10 @@
-@font-face {
-
-  font-family: inter;
-  src: url("../assets/fonts/Inter/static/Inter-Medium.ttf");
+.frontpage{
+  background-image: url('../assets/images/frontpagebg.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-@font-face {
-  font-family: zcool;
-  src: url("../assets/fonts/ZCOOL_XiaoWei/ZCOOLXiaoWei-Regular.ttf");
-}
-
-@font-face {
-  font-family: poppins;
-  src: url("../assets/fonts/Poppins/Poppins-Black.ttf");
-}
-
-body {
-  font-family: thisSpecialFont;
-}
-
-.side-img {
+.bg-grdnt {
   background: linear-gradient(135deg, rgba(78, 117, 119, 0.1) 0%, rgba(101, 213, 252, 0.1) 100%, rgba(35, 68, 91, 0.1) 100%);
 }
 .pos-relative{
@@ -47,7 +33,7 @@ body {
 } */
 .navbar-bg {
   /* position: absolute; */
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 300;
   width: 100%;
@@ -73,11 +59,11 @@ body {
 
 .nav-link {
   font-family: poppins;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 25px;
-  color: #252641
+  color: #252641;
 }
 
 .nav-link:hover {
@@ -228,3 +214,40 @@ body {
 .sub-input:focus{
   outline: none;
 }
+.chord{
+
+}
+
+.quick-info{
+  /* height: 339px; */
+  background-image: url("../assets/images/courseinfo.svg") ;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* width: auto */
+}
+.btn-prm{
+  background-color: #2F327D;
+  font-family: inter;
+  border-radius: 40px;
+}
+
+@media (min-width: 640px) {
+  .svg-anim{
+    
+  }
+ }
+@media (min-width: 640px) {
+  .svg-anim{
+
+  }
+ }
+@media (min-width: 1024px) {
+  .svg-anim{
+    height: '40';
+  }
+ }
+@media (min-width: 640px) {
+  .svg-anim{
+
+  }
+ }

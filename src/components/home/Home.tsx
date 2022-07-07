@@ -6,9 +6,12 @@ import RateUs from "./RateUs";
 import Subscription from "./Subscription";
 import FrontPage from "./FrontPage";
 
+
+// sm:px-5 md:px-10 lg:px-28 
+
 const Home = () => {
   return (
-    <div className=" ">
+    <div className="grid grid-cols-1 gap-36">
       <FrontPage />
       <OurFeature />
       <FAQ />

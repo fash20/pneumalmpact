@@ -2,22 +2,22 @@ import { IconButton, majorScale, PlusIcon } from "evergreen-ui";
 import React, { useState } from "react";
 
 const FAQ = () => {
+  
   return (
-    <div className="">
+    <div className="flex flex-col bg-grdnt gap-20 p-10">
       <div className="text-center " style={{}}>
-        <div>
           <span className="step-title-blue">Frequently </span>
           <span className="step-title-red">Asked </span>
           <span className="step-title-blue">Question </span>
-        </div>
       </div>
-      <div className="flex flex-row justify-center gap-5">
-        <div className="grid gap-5">
+      <div className="flex sm:flex-col lg:flex-row gap-8 justify-center lg:gap-y-36 ">
+        <div className="flex flex-col gap-5">
           <Questions />
           <Questions />
           <Questions />
         </div>
-        <div className="grid gap-5">
+        <div className="flex flex-col gap-5">
+          <Questions />
           <Questions />
           <Questions />
           <Questions />
@@ -33,10 +33,10 @@ const Questions = () => {
   const [showDetails, setShowDetails] = useState(false);
   return (
     <div
-      className="flex first-letter:drop-shadow-2xl bg-white p-10 rounded-lg "
+      className="flex first-letter drop-shadow-xl bg-white p-10 rounded-2xl sm:w-[400px] md: w-[400px] lg:w-[500px] "
       // style={{ width: "600px"  }}
     >
-      <div className="flex grow flex-col gap-y-5">
+      <div className="flex grow flex-col gap-y-5  ">
         <span
           className="font-smSans font-bold text-xl"
           style={{ color: "#170F49" }}

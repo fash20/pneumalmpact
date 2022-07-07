@@ -1,22 +1,30 @@
-import { ThemeProvider } from "evergreen-ui";
+import { ThemeProvider } from "@material-ui/core";
 import React from "react";
+import { Provider } from "react-redux";
 import "./App.css";
-import AuthContainer from "./components/authentication/AuthContainer";
 import Navbar from "./components/nav/Navbar";
-import { uiTheme } from "./components/utils/UIThemes";
-import { useScreenSize } from "./components/utils/useScreenSize";
+import { theme } from "./components/utils/UIThemes";
 import { Router } from "./Router";
+import store from "./components/utils/store";
+import UserNav from "./components/nav/UserNav";
+import SideNav from "./components/nav/SideNav";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const screenSize = useScreenSize();
   return (
-    <ThemeProvider value={uiTheme}>
-      <div className="flex flex-col side-img" style={{position: "relative"}}>
-        <Navbar />
-        <div className="">
-          <Router />
-        </div>
-      </div>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="relative flex flex-col">
+            <Navbar />
+            {/* <UserNav /> */}
+            <div className="">
+              {/* <SideNav /> */}
+              <Router />
+            </div>
+          </div>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   );
 }

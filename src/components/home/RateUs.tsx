@@ -3,7 +3,7 @@ import React from "react";
 
 const RateUs = () => {
   return (
-    <div className="grid grid-cols-2 mx-24 gap-x-20">
+    <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-x-20 bg-grdnt">
       <div>
         <div className="mb-28">
           <div>
@@ -30,7 +30,7 @@ export default RateUs;
 
 const FeedbackForm = () => {
   return (
-    <div className="grid grid-cols-1 gap-5 p-10 bg-white rounded-xl " style={{border:"2px solid #EEE"}}>
+    <div className="grid grid-cols-1 gap-5 p-10 bg-white rounded-xl m-10 " style={{border:"2px solid #EEE"}}>
       <TextInputField label="Name" inputHeight={50} />
       <TextInputField label="Email" inputHeight={50} />
       <Pane>

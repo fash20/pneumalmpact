@@ -22,6 +22,10 @@
 #comment-2{
     animation: comment 2s ease-in-out infinite alternate-reverse;
 }
+#slide-left{
+    animation: comments 2s ease-in-out infinite alternate-reverse;
+}
+
 
 @keyframes form {
     from{
@@ -50,3 +54,5 @@
     }
     
 }
+
+

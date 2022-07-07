@@ -6,10 +6,11 @@ const Training = () => {
     <div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="462"
-      height="281"
+      width="588"
+      height="588"
       fill="none"
       viewBox="0 0 462 281"
+      className='sm:w-[244px] sm:h-[244px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]'
     >
       <g id="OBJECTS">
         <g id="Group" fill="#F4DCD3" opacity="0.8">

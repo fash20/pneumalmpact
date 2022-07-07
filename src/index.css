@@ -7,6 +7,10 @@
     src: url( ./components//assets/fonts/Inter/static/Inter-Medium.ttf );
 }
 @font-face {
+    font-family: interlight;
+    src: url( ./components//assets/fonts/Inter/static/Inter-Light.ttf );
+}
+@font-face {
     font-family: poppins;
     src: url( ./components/assets/fonts/Poppins/Poppins-Regular.ttf);
 }
@@ -18,6 +22,7 @@
     font-family: z-cool;
     src: url( ./components/assets/fonts/ZCOOL_XiaoWei/ZCOOLXiaoWei-Regular.ttf);
 }
+
 
 @layer base{
     html {
