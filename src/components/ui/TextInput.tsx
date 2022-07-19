@@ -1,16 +1,21 @@
 import { InputLabel, TextField } from '@material-ui/core'
 import React, { useId } from 'react'
 
-interface Prop{
+interface Prop {
     label?: string
+    ContainerClassName?: string
+    TextFieldClassName?: string
+    type?: string
+    onChange? (): any
+
 } 
 
-const TextInput = ({label}: Prop) => {
+const TextInput = ({label, ContainerClassName, TextFieldClassName, type, onChange}: Prop)=> {
   const id = useId();
   return (
-    <div className='grid grid-cols-1 gap-2 m-2'>
+    <div className={`grid grid-cols-1 gap-2 m-2`+ContainerClassName} >
     <InputLabel className='' htmlFor={label+id}>{label}</InputLabel>
-    <TextField style={{borderRadius:'12px'}} variant='outlined' placeholder={label} id={label+id} />
+    <TextField  type = {type || 'text'} className={TextFieldClassName} style={{borderRadius:'12px'}} variant='outlined' placeholder={label} id={label+id} />
 </div>
   )
 }

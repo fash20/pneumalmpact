@@ -28,12 +28,16 @@ module.exports = {
       "grayMarginColor":'#DBDBDB',
       "lightBlue":'#E9EAFF',
       "PrimaryGray":'#7F7F7F',
-      "discountRed":'#EA4B48'
+      "gray":"#C1C1C1",
+      "discountRed":'#EA4B48',
+      "aboutBlue": "#F2F4F8",
+      "bgWhite": "##E5E5E5"
     },
     fontFamily:{
       inter:["inter"],
       poppins:["poppins"],
-      smSans:["sm-sans"],
+      dmSans:["dm-sans"],
+      dmSansr:["dm-sansr"],
       zcool:["z-cool"],
       interlight:["interlight"]
     },

@@ -4,22 +4,31 @@ import boy from "../assets/images/boy.svg";
 import { Avatar, Button, IconButton } from "@material-ui/core";
 import profileImage from "../assets/images/profileimage.png";
 import clocksvg from "../assets/images/clock.svg";
-import {FolderOutlined, MoreVert, LocationOnOutlined, Check } from "@material-ui/icons";
-import percentage from '../assets/images/percentage.svg'
+import {
+  FolderOutlined,
+  MoreVert,
+  LocationOnOutlined,
+  Check,
+} from "@material-ui/icons";
+import percentage from "../assets/images/percentage.svg";
+import SideNav from "../nav/SideNav";
 
 const Library = () => {
   return (
-    <div className="mt-40">
-      <div className="grid grid-flow-row-dense grid-cols-3 gap-10 justify-center pl-36 pr-10">
-        <QuickInfo />
-        <UserCard />
-        <ItemsCard image={clocksvg} />
-        <ItemsCard image={clocksvg} />
-        <ItemsCard image={clocksvg} />
-      </div>
-      <div className="flex gap-10  pl-36 mt-10 " >
-        <UserFiles />
-        <UserActivities />
+    <div className="flex space-x-6">
+      <SideNav />
+      <div className="mt-24">
+        <div className="grid grid-flow-row-dense grid-cols-3 gap-10 justify-center p-10 ">
+          <QuickInfo />
+          <UserCard />
+          <ItemsCard image={clocksvg} />
+          <ItemsCard image={clocksvg} />
+          <ItemsCard image={clocksvg} />
+        </div>
+        <div className="flex gap-10  pl-36 mt-10 ">
+          <UserFiles />
+          <UserActivities />
+        </div>
       </div>
     </div>
   );
@@ -62,8 +71,8 @@ const QuickInfo = () => {
             }}
             variant="outlined"
           >
-             <Check /> 
-             {`  Following`}
+            <Check />
+            {`  Following`}
           </Button>
         </div>
       </div>
@@ -120,7 +129,6 @@ const ItemsCard = ({ image }: IItemCardProps) => {
         <h2 className="font-inter  text-2xl">Courses</h2>
         <div className=" text-center">
           <IconButton>
-            
             <MoreVert />
           </IconButton>
         </div>
@@ -146,15 +154,16 @@ const UserFiles = () => {
 };
 
 const File = () => {
-  return <div className="grid grid-cols-4 items-center gap-5 text-center justify-center p-10">
-
-    <FolderOutlined />
-    <h3>File Name</h3>
-    <div className=" bg-lightBlue p-5 rounded-lg text-PrimaryGray">4:00</div>
-    <div>
-      <img src = {percentage} />
+  return (
+    <div className="grid grid-cols-4 items-center gap-5 text-center justify-center p-10">
+      <FolderOutlined />
+      <h3>File Name</h3>
+      <div className=" bg-lightBlue p-5 rounded-lg text-PrimaryGray">4:00</div>
+      <div>
+        <img src={percentage} />
+      </div>
     </div>
-  </div>;
+  );
 };
 
 const UserActivities = () => {
@@ -178,7 +187,7 @@ const UserActivities = () => {
 const Activity = () => {
   return (
     <div className=" flex gap-2 py-1 px-4 rounded-xl border-[1px] border-grayMarginColor items-center">
-      <Avatar src={boy} className='bg-lightBlue' />
+      <Avatar src={boy} className="bg-lightBlue" />
       <h3 className="font-inter ">Recent Activity 1</h3>
     </div>
   );

@@ -2,10 +2,13 @@ import {TextDropdownButton } from "evergreen-ui";
 import React from "react";
 import courseimg from "../assets/images/courseimg.svg";
 import { Avatar } from "@material-ui/core";
+import SideNav from "../nav/SideNav";
 
 const Collection = () => {
   return (
-    <div className="mt-40  grid grid-cols-1 gap-8">
+    <div className="flex space-x-6">
+      <SideNav />
+      <div className="mt-24 grid grid-cols-1 gap-8">
       <div className='flex justify-between'>
         <h3 className="font-interlight text-PrimaryGray text-md "> All My courses</h3>
 
@@ -27,7 +30,7 @@ const Collection = () => {
         <Course />
         <Course />
         <Course />
-
+      </div>
       </div>
     </div>
   );

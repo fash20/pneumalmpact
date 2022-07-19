@@ -15,8 +15,12 @@
     src: url( ./components/assets/fonts/Poppins/Poppins-Regular.ttf);
 }
 @font-face {
-    font-family: sm-sans;
+    font-family: dm-sans;
     src: url( ./components/assets/fonts/DM_Sans/DMSans-Medium.ttf);
+}
+@font-face {
+    font-family: dm-sansr;
+    src: url( ./components/assets/fonts/DM_Sans/DMSans-Regular.ttf);
 }
 @font-face {
     font-family: z-cool;

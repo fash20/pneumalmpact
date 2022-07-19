@@ -7,18 +7,21 @@ import PersonalInfo from "./components/authentication/PersonalInfo";
 import Registration from "./components/authentication/Registration";
 import Verification from "./components/authentication/Verification";
 import Home from "./components/home/Home";
+import About from "./components/pages/About";
+import Blog from "./components/pages/Blog";
 import Audit from "./components/user/Audit";
 import Collection from "./components/user/Collection";
 import Course from "./components/user/Course";
+import Explore from "./components/user/Explore";
 import Dashboard from "./components/user/Library";
 import Settings from "./components/user/Settings";
 
 export const Router = () => {
   return (
       <Routes>
-        <Route path="/pneumalmpact" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route
-          path="/pneumalmpact/login"
+          path="/login"
           element={
             <AuthContainer>
               <Login />
@@ -26,13 +29,13 @@ export const Router = () => {
           }
         />
         <Route
-          path="/pneumalmpact/settings"
+          path="/settings"
           element={
             <Settings />
           }
         />
         <Route
-          path="/pneumalmpact/passwordreset"
+          path="/passwordreset"
           element={
             <AuthContainer>
               <PasswordReset />
@@ -40,7 +43,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/pneumalmpact/personalinfo"
+          path="/personalinfo"
           element={
             <AuthContainer>
               <PersonalInfo />
@@ -48,7 +51,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/pneumalmpact/signup"
+          path="/signup"
           element={
             <AuthContainer>
               <Registration/>
@@ -56,7 +59,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/pneumalmpact/verification"
+          path="/verification"
           element={
             <AuthContainer>
               <Verification/>
@@ -64,7 +67,7 @@ export const Router = () => {
           }
         />
         <Route
-          path="/pneumalmpact/additionalinfo"
+          path="/additionalinfo"
           element={
             <AuthContainer>
               <AdditionalInfo/>
@@ -98,9 +101,27 @@ export const Router = () => {
           }
         />
         <Route
-          path="/Audit"
+          path="/audit"
           element={
             <Audit />
+          }
+        />
+        <Route
+          path="/explore"
+          element={
+            <Explore />
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <Blog />
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <About />
           }
         />
       </Routes>

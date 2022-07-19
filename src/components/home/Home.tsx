@@ -13,11 +13,11 @@ const Home = () => {
   return (
     <div className="grid grid-cols-1 gap-36">
       <FrontPage />
-      {/* <OurFeature />
+      <OurFeature />
       <FAQ />
       <OurReview />
       <RateUs />
-      <Subscription /> */}
+      <Subscription />
     </div>
   );
 };

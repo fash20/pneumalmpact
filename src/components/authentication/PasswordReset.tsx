@@ -1,10 +1,13 @@
 import { Button, Heading, TextInputField } from 'evergreen-ui'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../assets/images/pneumaImpact-logo.svg';
 
 const PasswordReset = () => {
 
   const [email, setEmail] = useState("");
+  useEffect(() => {
+    document.title= 'Pneumalmpact - Reset Password';
+  }, []);
   
   return (
     <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">

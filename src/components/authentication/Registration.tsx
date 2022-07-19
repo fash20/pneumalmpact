@@ -5,10 +5,22 @@ import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearMessage } from "../utils/message";
 import { AppDispatch } from "../utils/store";
 import { register } from "../utils/authSlice";
+import { validateEmail } from "../utils/validator";
+import toast, { Toaster } from "react-hot-toast";
+import { registerUser } from "../store/userAction";
+
+
+interface User{
+  loading: boolean;
+  userInfo: undefined;
+  userToken: string;
+  error: string;
+  success: boolean;
+};
 
 const Registration = () => {
   const [userCred, setUserCred] = useState({
@@ -17,15 +29,21 @@ const Registration = () => {
   });
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
-  const [loading, setLoading] = useState(Boolean);
+  const {loading, userInfo, error, success } = useSelector (
+    (state: {user: {loading:boolean,userInfo:{}, error: string, success:boolean }})=> state.user
+  )
+  // const [loading, setLoading] = useState();
   const [screenSize, isScreenSmall] = useScreenSize();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(clearMessage());
+      if (success ) navigate('/verify')
+      console.log(success)
+      // if (userInfo) navigate('/user/dashboard')
+      console.log(userInfo)
 
-  },[dispatch]);
+  },[navigate, userInfo, success]);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -47,19 +65,19 @@ const Registration = () => {
   };
 
   const handleRegistration = () => {
-    setLoading(true);
-    dispatch(register(userCred))
-      .unwrap()
-      .then((data) => {
-        navigate("/login")
-      })
-      .catch((e) => {
-        setLoading(false);
-      });
+    const validationResult = validateEmail(userCred.email)
+
+   if (validationResult != null )
+   return
+   else
+    dispatch(registerUser(userCred))
   };
 
   return (
     <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
+      {
+        <Toaster />
+      }
       <div className="flex justify-center">
         <img
           src={logo}
@@ -115,9 +133,15 @@ const Registration = () => {
           <Button
             appearance="primary"
             onClick={() => {
-              if (password === password1 && password!=="") {
+              if (password === '' || password1 === ''){
+                toast.error("Password can't be empty string")
+              }
+             else if (password === password1 && password!=="") {
                 setUserCred({ ...userCred, password });
                 handleRegistration();
+              }
+              else{
+                toast.error('Password Missmatch')
               }
             }}
           >

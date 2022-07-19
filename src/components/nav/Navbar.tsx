@@ -15,7 +15,7 @@ const Navbar = () => {
       }`}
     >
       <a href="/">
-        <div className="flex justify-center items-center gap-4 ">
+        <div className="flex justify-center items-center gap-4 space-x-4 ">
           <img className="w-10 h-10" src={logo} alt="logo" />
           <label className=" font-zcool text-2xl">Pneumalmpact</label>
         </div>
@@ -27,7 +27,7 @@ const Navbar = () => {
           <Link to='/about' className="nav-link">About us</Link>
         </div>
       )}
-      <div className="flex justify-center gap-4 w-full">
+      <div className="flex justify-center gap-4 space-x-4 w-full">
         <Button color="secondary" variant="contained" style={BrandButtonStyle}  className="sm:w-fit lg:w-[120px]"  href="/login">Log In</Button>
         <Button color='primary' variant="contained" style={BrandButtonStyle}  className="sm:w-fit lg:w-[120px]" href="/signup">Sign Up</Button>
       </div>

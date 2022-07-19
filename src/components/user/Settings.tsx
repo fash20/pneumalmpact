@@ -1,23 +1,15 @@
 import { Button } from "@material-ui/core";
 import React from "react";
+import SideNav from "../nav/SideNav";
 import TextInput from "../ui/TextInput";
 import SettingSVG from "./SettingSVG";
 
 const Settings = () => {
   return (
-    <div className="grid grid-cols-1 mt-20 relative w-full">
+    <div className="flex ">
+      <SideNav />
+    <div className="grid grid-cols-1 mt-24 relative w-full">
       <SettingSVG />
-      {/* 
-      <div>
-        <div className="h-40 w-40  border-4 rounded-full absolute top-[10%]"></div>
-        <div>
-          <h1 className="font-inter text-3xl">Mobina Mirbagheri</h1>
-          <h2 className="font-inter text-xl">
-            Your account is ready, You can now apply for advice
-          </h2>
-        </div>
-      </div> 
-      */}
       <div className="flex gap-5 p-8 ">
         <div className="grid grid-cols-1 w-100">
           <div
@@ -42,6 +34,7 @@ const Settings = () => {
           <SettingsForm />
         </div>
       </div>
+    </div>
     </div>
   );
 };

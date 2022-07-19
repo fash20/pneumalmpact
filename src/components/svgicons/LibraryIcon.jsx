@@ -9,9 +9,9 @@ function Icon() {
       fill="none"
       viewBox="0 0 28 28"
     >
-      <path fill="#2F327D" d="M8.16 1.844V8.1 1.845z"></path>
+      <path fill="" d="M8.16 1.844V8.1 1.845z"></path>
       <path
-        stroke="#2F327D"
+        stroke="#9B9B9B"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"

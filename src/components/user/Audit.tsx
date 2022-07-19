@@ -1,97 +1,150 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import { pink } from "@material-ui/core/colors";
+import React, { useState } from "react";
 import TextInput from "../ui/TextInput";
 import SettingSVG from "./SettingSVG";
+import Radio from "@mui/material/Radio";
+import { BrandButtonStyle } from "../utils/UIThemes";
+import SideNav from "../nav/SideNav";
 
 const Audit = () => {
   return (
-    <div className="grid grid-cols-1 mt-20 relative w-full">
+    <div className="flex ">
+      <SideNav />
+    <div className="grid grid-cols-1 mt-24 relative w-full">
       <SettingSVG />
-      {/* 
-      <div>
-        <div className="h-40 w-40  border-4 rounded-full absolute top-[10%]"></div>
-        <div>
-          <h1 className="font-inter text-3xl">Mobina Mirbagheri</h1>
-          <h2 className="font-inter text-xl">
-            Your account is ready, You can now apply for advice
-          </h2>
-        </div>
-      </div> 
-      */}
       <div className="flex gap-5 p-8 ">
         <div className="grid grid-cols-1 w-100">
-          <div
-            className="h-44 w-44 border-8 rounded-full border-primaryTextColor  absolute bg-neutral-900 top-[5%] sm:left-[36%] md:left-[5%]"
-          >
-             
-          </div>
-          <Options />
-        </div>
-
-        <div className="flex flex-col sm:mt-20 md:mt-0 text-left w-full justify-center items-center">
-          <div className="flex flex-col w-full items-start">
-            <h1 className="font-inter text-3xl text-primaryTextColor">Mobina Mirbagheri</h1>
-            <h2 className="font-inter text-xl text-primaryTextColor">
-              Your account is ready, You can now apply for advice
-            </h2>
-            <div className="w-full font-inter flex justify-between my-10 mx-5">
-              <h2 className="text-2xl text-fadeWhite">Edit Profile</h2>
-              <h3 className="text-fadeWhite">Last Updated</h3>
-            </div>
-          </div>
-          <SettingsForm />
+          <div className="h-44 w-44 border-8 rounded-full border-primaryTextColor  absolute bg-neutral-900 top-[5%] sm:left-[36%] md:left-[5%]"></div>
         </div>
       </div>
+      <div className="flex space-x-5 ">
+        <AuditRadioGroup />
+        <BusinessNameForm />
+      </div>
+    </div>
     </div>
   );
 };
 
 export default Audit;
 
-const Options = () => {
+const AuditRadioGroup = () => {
+  const [selectedValue, setSelectedValue] = useState("a");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
   return (
-    <div className=" sm:hidden md:flex flex-col gap-5 border-r-2 border-r-fadeWhite h-72 md: 1/4  px-10 mt-36">
-      <Button className='font-inter bg-textgray' style={{background:'blue', textAlign: "left" }}> Edit Profile</Button>
-      <Button> Notification </Button>
-      <Button> Choose Plan</Button>
-      <Button> Password & Security</Button>
+    <div className="w-[400px] p-9 border-[1px] border-grayMarginColor rounded-sm ">
+      <div className="flex flex-col space-y-4 ">
+        <div className="aud-rad-bdr relative  h-16">
+          <Radio
+            checked={selectedValue === "a"}
+            onChange={handleChange}
+            value="a"
+            name="radio-buttons"
+            inputProps={{ "aria-label": "A" }}
+            className="absolute top-[-18px] left-[-22px] "
+            sx={{
+              color: "#DBDBDB",
+              "&.Mui-checked": {
+                color: "#2F327D",
+              },
+            }}
+          />
+          <div className="absolute top-[-9px] pl-5">
+            <h3>Business Name</h3>
+            <h3>Your business name</h3>
+          </div>
+        </div>
+        <div className=" aud-rad-bdr relative  h-16">
+          <Radio
+            checked={selectedValue === "b"}
+            onChange={handleChange}
+            value="b"
+            name="radio-buttons"
+            inputProps={{ "aria-label": "B" }}
+            className="absolute top-[-18px] left-[-22px] "
+            sx={{
+              color: "#DBDBDB",
+              "&.Mui-checked": {
+                color: "#2F327D",
+              },
+            }}
+          />
+          <div className="absolute top-[-9px] pl-5">
+            <h3>Business Name</h3>
+            <h3>Your business name</h3>
+          </div>
+        </div>
+        <div className="aud-rad-bdr relative  h-16">
+          <Radio
+            checked={selectedValue === "c"}
+            onChange={handleChange}
+            value="c"
+            name="radio-buttons"
+            inputProps={{ "aria-label": "C" }}
+            className="absolute top-[-18px] left-[-22px] "
+            sx={{
+              color: "#DBDBDB",
+              "&.Mui-checked": {
+                color: "#2F327D",
+              },
+            }}
+          />
+          <div className="absolute top-[-9px] pl-5">
+            <h3>Business Name</h3>
+            <h3>Your business name</h3>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-const SettingsForm = () => {
+const BusinessNameForm = () => {
   return (
-    <div className="grid grid-cols-1 justify-center gap-5 items-center pt-10 sm:w-[80%] md:w-[60%]">
-      <div className="grid grid-cols-1">
-        <h3 className="font-inter text-base text-fadeWhite my-4">Personal</h3>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2">
-          <TextInput label="First Name" />
-          <TextInput label="Surname Name" />
-        </div>
+    <div className="flex flex-col space-y-10 border-[1px] border-grayMarginColor p-9 w-full justify-center ">
+      <span>
+        <h3>Business Name</h3>
+        <h4>Your Business should be unique to what you are into</h4>
+      </span>
+      <TextInput label={"Business Name"} />
+      <div className="flex justify-center items-center w-[full]">
+        <Button variant="contained" color="primary" style={BrandButtonStyle} className="w-[50%]">
+        Next
+      </Button>
       </div>
-      <div className="grid gap-3">
-        <TextInput label="National Code" />
-        <TextInput label="Education Level" />
-      </div>
-      <div>
-        <h3 className="font-inter text-base text-fadeWhite my-8">Contact</h3>
-        <TextInput label="Email" />
-        <TextInput label="Phone number" />
-        <TextInput label="Country" />
-        <TextInput label="City" />
-      </div>
-
-      <Button
-        style={{
-          borderRadius: 40,
-          height: 50,
-          backgroundColor: "#2F327D",
-          color: "#fff",
-        }}
-      >
-        Done
+      
+    </div>
+  );
+};
+const BusinessPlanForm = () => {
+  return (
+    <div className="flex flex-col space-y-10 border-[1px] border-grayMarginColor p-9 w-full">
+      <span>
+        <h3>Business Name</h3>
+        <h4>Your Business should be unique to what you are into</h4>
+      </span>
+      <TextInput label={"Business Name"} />
+      <Button variant="contained" color="primary" className="w-[50%]" style={BrandButtonStyle}>
+        Next
       </Button>
     </div>
   );
 };
-
+const IDForm = () => {
+  return (
+    <div className="flex flex-col space-y-10 border-[1px] border-grayMarginColor p-9 w-full">
+      <span>
+        <h3>Business Name</h3>
+        <h4>Your Business should be unique to what you are into</h4>
+      </span>
+      <TextInput label={"Business Name"} />
+      <Button variant="contained" color="primary" className="w-[50%]" style={BrandButtonStyle}>
+        Next
+      </Button>
+    </div>
+  );
+};

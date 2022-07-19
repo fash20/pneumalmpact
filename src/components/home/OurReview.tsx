@@ -29,7 +29,7 @@ export default OurReview;
 
 const StudentReview = () => {
   return (
-    <div className="bg-white p-10 text-center rounded-lg  drop-shadow-2xl sm:w-full sm:mx-5 md:w-[600px]">
+    <div className="relative bg-white p-10 text-center rounded-lg  drop-shadow-2xl sm:w-full sm:mx-5 md:w-[600px]">
       <div className="absolute h-[100px] left-16 ">
         <img style={{ maxHeight: "100%",}} src={numberOne} />
       </div>

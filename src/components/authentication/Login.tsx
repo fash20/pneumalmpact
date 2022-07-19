@@ -1,4 +1,4 @@
-import { Alert, Heading, TextInputField } from "evergreen-ui";
+import {Heading, TextInputField } from "evergreen-ui";
 import React, { useState, useEffect } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
 import facebookIcon from "../assets/images/icon-facebook.svg";
@@ -13,19 +13,26 @@ import { AppDispatch } from "../utils/store";
 import toast, { Toaster } from "react-hot-toast";
 import { Button, IconButton } from "@material-ui/core";
 import { BrandButtonStyle } from "../utils/UIThemes";
+import { validateEmail } from "../utils/validator";
+// import TextInput from "../ui/TextInput";
+// import axios from "axios";
 
 const Login = () => {
+
   const [userCred, setUserCred] = useState({
     email: "",
     password: "",
   });
+
   const [loading, setLoading] = useState(false);
   const { isLoggedIn } = useSelector(
     (state: { auth: { isLoggedIn: boolean } }) => state.auth
   );
+
   const { message } = useSelector(
     (state: { message: { message: string } }) => state.message
   );
+
   const [screenSize, isScreenSmall] = useScreenSize();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -33,6 +40,7 @@ const Login = () => {
   const notifyFailure = () => toast.error(message);
 
   useEffect(() => {
+    document.title= 'Pneumalmpact - Login';
     dispatch(clearMessage());
   }, [dispatch, message]);
 
@@ -40,6 +48,8 @@ const Login = () => {
     username: "",
     password: "",
   };
+
+
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
     input: string
@@ -60,6 +70,11 @@ const Login = () => {
   };
 
   const handleLogin = () => {
+   const validationResult = validateEmail(userCred.email)
+
+   if (validationResult != null )
+   return
+   else
     setLoading(true);
 
     dispatch(login(userCred))
@@ -74,8 +89,22 @@ const Login = () => {
       });
   };
 
+
+  // function validateEmail(value: string) {
+  //   let error;
+  //   if (!value) {
+  //     error = 'Email Required';
+  //   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+  //     error = 'Invalid email address';
+  //   }
+
+  //   toast.error(error);
+  //   return error
+  // }
+
+
   return (
-    <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
+    <div className="grid grid-cols-1 mx-10 my-10 gap-y-14">
       <div className="flex justify-center">
         <img
           src={logo}
@@ -84,34 +113,36 @@ const Login = () => {
         />
       </div>
       {<Toaster />}
-      {isScreenSmall && <div className="flex justify-around ">
-        
-        <IconButton className="gap-x-1" >
-          <img
-            src={googleIcon}
-            alt="googleIcon"
-            className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
-          />
-        </IconButton>
-        <IconButton className=" gap-x-1 " >
-          <img src={facebookIcon} alt="facebookIcon" />
-        </IconButton>
-      </div>}
-      {!isScreenSmall && <div className="flex justify-around ">
-        
-        <Button className="gap-x-1" >
-          <img
-            src={googleIcon}
-            alt="googleIcon"
-            className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
-          />
-           Login with Google
-        </Button>
-        <Button className=" gap-x-1 " >
-          <img src={facebookIcon} alt="facebookIcon" />
-          Login with Facebook
-        </Button>
-      </div>}
+      {isScreenSmall && (
+        <div className="flex justify-around ">
+          <IconButton className="gap-x-1">
+            <img
+              src={googleIcon}
+              alt="googleIcon"
+              className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
+            />
+          </IconButton>
+          <IconButton className=" gap-x-1 ">
+            <img src={facebookIcon} alt="facebookIcon" />
+          </IconButton>
+        </div>
+      )}
+      {!isScreenSmall && (
+        <div className="flex justify-around ">
+          <Button className="gap-x-1">
+            <img
+              src={googleIcon}
+              alt="googleIcon"
+              className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
+            />
+            Login with Google
+          </Button>
+          <Button className=" gap-x-1 ">
+            <img src={facebookIcon} alt="facebookIcon" />
+            Login with Facebook
+          </Button>
+        </div>
+      )}
       <div className="text-center">
         <Heading size={800}>OR</Heading>
       </div>
@@ -120,7 +151,7 @@ const Login = () => {
           <TextInputField
             inputHeight={50}
             label="Email"
-            className="font-"
+            className=""
             placeholder={"Email"}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onchange(event, "email")
@@ -135,11 +166,12 @@ const Login = () => {
               onchange(event, "password")
             }
           />
+
           <Button
             color="primary"
             variant="contained"
             // onClick={() => alert(JSON.stringify(userCred))}
-            style={BrandButtonStyle} 
+            style={BrandButtonStyle}
             onClick={() => handleLogin()}
           >
             Login

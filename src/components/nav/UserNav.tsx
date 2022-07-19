@@ -14,7 +14,7 @@ const UserNav = () => {
   const [screenSize, isScreenSmall] = useScreenSize();
   return (
     <div
-      className={`h-20 top-0 blur-1 flex sm:gap-10  lg:gap-20 w-[100%] navbar-bg items-center ${
+      className={`h-20 top-0 blur-1 flex sm:space-x-10  lg:gap-20 w-[100%] navbar-bg items-center ${
         isScreenSmall ? "grid-cols-2" : "grid-cols-3"
       }`}
     >

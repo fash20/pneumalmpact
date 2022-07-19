@@ -17,14 +17,14 @@ interface Prop{
 const AuthContainer:React.FC<Prop> = (props) => {
   const [screenSize, isScreenSmall] = useScreenSize();
   return (
-    <div className={`grid bg-grdnt ${isScreenSmall? 'grid-cols-1' :'grid-cols-2'} align-middle pt-20`}>
+    <div className={`grid  ${isScreenSmall? 'grid-cols-1' :'grid-cols-2'} align-middle bg-grdnt bg-bgWhite`}>
       {
         !isScreenSmall &&
-        <div className="flex justify-center px-1.5 side-img ">
+        <div className="flex justify-center  px-1.5 side-img pt-20 pb-10 ">
           <img src={sideImage} alt="side" />
         </div>
       }
-      <div className="">
+      <div className=" bg-white pt-20 pb-10">
         {
           props.children
         }

@@ -20,12 +20,57 @@
     animation: comment 2s ease-in-out infinite alternate;
 }
 #comment-2{
-    animation: comment 2s ease-in-out infinite alternate-reverse;
+    animation: comment 4s ease-in-out infinite alternate-reverse;
 }
 #slide-left{
-    animation: comments 2s ease-in-out infinite alternate-reverse;
+    animation: comments 4s ease-in-out infinite alternate-reverse;
 }
 
+
+#diagonal-one{
+    position: relative;
+    animation: diagonalOne .5s linear 4 alternate;
+}
+#diagonal-two{
+    position: relative;
+    animation: diagonalTwo .5s linear 4 alternate;
+}
+
+
+@keyframes diagonalOne {
+    0% {
+        transform: translateX(10000px) translateY(10000px)
+    }
+    25% {
+        transform: translateX(-20px) translateY(20px)
+    }
+    50%{
+        transform: translateX(-70px) translateY(70px)
+    }
+    75%{
+        transform: translateX(-20px) translateY(20px)
+    }
+    100%{
+        transform: translateX(0px) translateY(0px)
+    }
+}
+@keyframes diagonalTwo {
+    0% {
+        transform: translateX(10000px) translateY(10000px)
+    }
+    25% {
+        transform: translateX(20px) translateY(-20px)
+    }
+    50%{
+        transform: translateX(70px) translateY(-70px)
+    }
+    75%{
+        transform: translateX(20px) translateY(-20px)
+    }
+    100%{
+        transform: translateX(0px) translateY(0px)
+    }
+}
 
 @keyframes form {
     from{
