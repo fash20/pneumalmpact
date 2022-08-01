@@ -21,7 +21,7 @@ import Settings from "./components/user/Settings";
 export const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/pneumalmpact" element={<Home />} />
       <Route
         path="/login"
         element={
@@ -30,7 +30,7 @@ export const Router = () => {
           </AuthContainer>
         }
       />
-      <Route path="/settings" element={<UserNav> <Settings /></UserNav> } />
+      <Route path="/pneumalmpact/settings" element={<UserNav> <Settings /></UserNav> } />
       <Route
         path="/passwordreset"
         element={
@@ -40,7 +40,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/personalinfo"
+        path="/pneumalmpact/personalinfo"
         element={
           <AuthContainer>
             <PersonalInfo />
@@ -48,7 +48,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/signup"
+        path="/pneumalmpact/signup"
         element={
           <AuthContainer>
             <Registration />
@@ -56,7 +56,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/verification"
+        path="/pneumalmpact/verification"
         element={
           <AuthContainer>
             <Verification />
@@ -64,7 +64,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/additionalinfo"
+        path="/pneumalmpact/additionalinfo"
         element={
           <AuthContainer>
             <AdditionalInfo />
@@ -72,7 +72,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/personalinfo"
+        path="/pneumalmpact/personalinfo"
         element={
           <AuthContainer>
             <PersonalInfo />
@@ -80,7 +80,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/user/dashboard"
+        path="/pneumalmpact/user/dashboard"
         element={
           <UserNav>
             <Dashboard />
@@ -88,7 +88,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/course"
+        path="/pneumalmpact/course"
         element={
           <UserNav>
             <Course />
@@ -96,7 +96,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/library"
+        path="/pneumalmpact/library"
         element={
           <UserNav>
             <Collection />
@@ -104,7 +104,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/audit"
+        path="/pneumalmpact/audit"
         element={
           <UserNav>
             <Audit />
@@ -112,16 +112,16 @@ export const Router = () => {
         }
       />
       <Route
-        path="/explore"
+        path="/pneumalmpact/explore"
         element={
           <UserNav>
             <Explore />
           </UserNav>
         }
       />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/about" element={<About />} />
-      <Route path="*" element={<PageNotFound />} />
+      <Route path="/pneumalmpact/blog" element={<Blog />} />
+      <Route path="/pneumalmpact/about" element={<About />} />
+      <Route path="/pneumalmpact/*" element={<PageNotFound />} />
     </Routes>
   );
 };
