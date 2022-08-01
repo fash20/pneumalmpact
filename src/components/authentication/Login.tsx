@@ -1,54 +1,32 @@
-import {Heading, TextInputField } from "evergreen-ui";
+import { Heading, TextInputField } from "evergreen-ui";
 import React, { useState, useEffect } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
 import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import { Link } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
-import { login } from "../utils/authSlice";
-import { clearMessage } from "../utils/message";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../utils/store";
-import toast, { Toaster } from "react-hot-toast";
-import { Button, IconButton } from "@material-ui/core";
+import { Button, Checkbox, FormControlLabel, IconButton, TextField } from "@mui/material";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { validateEmail } from "../utils/validator";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../store/userAction";
+import { AppDispatch } from "../store/store";
+import toast, { Toaster } from "react-hot-toast";
 // import TextInput from "../ui/TextInput";
 // import axios from "axios";
 
 const Login = () => {
-
   const [userCred, setUserCred] = useState({
     email: "",
     password: "",
   });
-
-  const [loading, setLoading] = useState(false);
-  const { isLoggedIn } = useSelector(
-    (state: { auth: { isLoggedIn: boolean } }) => state.auth
-  );
-
-  const { message } = useSelector(
-    (state: { message: { message: string } }) => state.message
-  );
-
-  const [screenSize, isScreenSmall] = useScreenSize();
+  const { loading, error } = useSelector((state: { user: any }) => state.user);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
-  const notifySuccess = () => toast.success(message);
-  const notifyFailure = () => toast.error(message);
+  const [screenSize, isScreenSmall] = useScreenSize();
 
   useEffect(() => {
-    document.title= 'Pneumalmpact - Login';
-    dispatch(clearMessage());
-  }, [dispatch, message]);
-
-  const initialValues = {
-    username: "",
-    password: "",
-  };
-
+    document.title = "Pneumalmpact - Login";
+  }, []);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -70,41 +48,22 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-   const validationResult = validateEmail(userCred.email)
+    const validationResult = validateEmail(userCred.email);
 
-   if (validationResult != null )
-   return
-   else
-    setLoading(true);
-
-    dispatch(login(userCred))
-      .unwrap()
-      .then((data) => {
-        navigate("/");
-        notifySuccess();
-      })
-      .catch((e) => {
-        setLoading(false);
-        notifyFailure();
-      });
+    //  if (validationResult !== null )
+    //  return
+    //   else{
+    dispatch(loginUser(userCred));
+    // }
   };
 
-
-  // function validateEmail(value: string) {
-  //   let error;
-  //   if (!value) {
-  //     error = 'Email Required';
-  //   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-  //     error = 'Invalid email address';
-  //   }
-
-  //   toast.error(error);
-  //   return error
-  // }
-
-
   return (
-    <div className="grid grid-cols-1 mx-10 my-10 gap-y-14">
+    <div className="grid grid-cols-1 mx-5 mb:mx-5 md:mx-10 my-10 gap-y-14">
+      <Toaster
+        toastOptions={{
+          className: "toaster",
+        }}
+      />
       <div className="flex justify-center">
         <img
           src={logo}
@@ -122,14 +81,18 @@ const Login = () => {
               className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
             />
           </IconButton>
-          <IconButton className=" gap-x-1 ">
-            <img src={facebookIcon} alt="facebookIcon" />
+          <IconButton className="flex gap-x-1 ">
+            <img
+              src={facebookIcon}
+              alt="facebookIcon"
+              className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
+            />
           </IconButton>
         </div>
       )}
       {!isScreenSmall && (
         <div className="flex justify-around ">
-          <Button className="gap-x-1">
+          <Button className="gap-x-1" variant='outlined'>
             <img
               src={googleIcon}
               alt="googleIcon"
@@ -137,7 +100,7 @@ const Login = () => {
             />
             Login with Google
           </Button>
-          <Button className=" gap-x-1 ">
+          <Button className=" gap-x-1 " variant='outlined'>
             <img src={facebookIcon} alt="facebookIcon" />
             Login with Facebook
           </Button>
@@ -147,9 +110,8 @@ const Login = () => {
         <Heading size={800}>OR</Heading>
       </div>
       <div className="grid grid-cols-1 gap-y-10">
-        <div className="grid grid-cols-1 gap-x-4">
-          <TextInputField
-            inputHeight={50}
+        <div className="grid grid-cols-1 gap-y-8 sm:gap-y-8 md:gap-y-10 lg:gap-y-12">
+          <TextField
             label="Email"
             className=""
             placeholder={"Email"}
@@ -157,8 +119,7 @@ const Login = () => {
               onchange(event, "email")
             }
           />
-          <TextInputField
-            inputHeight={50}
+          <TextField
             label="Password"
             placeholder="*****"
             type="password"
@@ -166,20 +127,13 @@ const Login = () => {
               onchange(event, "password")
             }
           />
-
-          <Button
-            color="primary"
-            variant="contained"
-            // onClick={() => alert(JSON.stringify(userCred))}
-            style={BrandButtonStyle}
-            onClick={() => handleLogin()}
-          >
+          <Button variant="pneumaBlue" onClick={() => handleLogin()}>
             Login
           </Button>
         </div>
-        <div className="flex flex-row justify-between">
-          <Link to="/signup">Create an Account</Link>
-          <Link to="/forgotpassword">Forget Password?</Link>
+        <div className="flex justify-between text-left">
+          <Link to="/signup" className="font-inter text-[13px] md:text-[15px] text-primaryTextColor hover:underline">Create an Account</Link>
+          <Link to="/passwordreset" className="font-inter text-[13px] md:text-[15px]" >Forget Password?</Link>
         </div>
       </div>
     </div>

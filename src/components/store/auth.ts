@@ -17,7 +17,7 @@ const register = (email:string, password: string) => {
   return axios.post(API_URL + "register", {
     email,
     password,
-  }, config);
+  }, config)
 };
 
 
@@ -26,9 +26,10 @@ const login = (email: string, password: string) => {
     .post(API_URL + "login", {
       email,
       password,
-    })
+    }, config)
     .then((response) => {
       if (response.data) {
+        console.log(response)
         const user ={
           user:response.data.user.email,
           token: response.data.token

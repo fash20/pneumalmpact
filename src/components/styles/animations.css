@@ -26,36 +26,49 @@
     animation: comments 4s ease-in-out infinite alternate-reverse;
 }
 
+#Vector_128, #Vector_147, #Vector_127,#Group-4,#Vector_148{
+
+    animation: transaction 3s ease-in-out infinite alternate;
+}
+
 
 #diagonal-one{
     position: relative;
-    animation: diagonalOne .5s linear 4 alternate;
+    animation: diagonalOne 1s linear 1 ;
 }
 #diagonal-two{
     position: relative;
-    animation: diagonalTwo .5s linear 4 alternate;
+    animation: diagonalTwo 1s linear 1 ;
+}
+#target-container{
+    position: relative;
+    animation: translatedown 1s linear 1 ;
+}
+#man-options{
+    position: relative;
+    animation: translateup 1s linear 1  ;
+}
+
+@keyframes transaction {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 
 @keyframes diagonalOne {
-    0% {
-        transform: translateX(10000px) translateY(10000px)
+    from{
+        transform: translate(100%);
     }
-    25% {
-        transform: translateX(-20px) translateY(20px)
-    }
-    50%{
-        transform: translateX(-70px) translateY(70px)
-    }
-    75%{
-        transform: translateX(-20px) translateY(20px)
-    }
-    100%{
-        transform: translateX(0px) translateY(0px)
+    to{
+        transform: translate(0%);
     }
 }
 @keyframes diagonalTwo {
-    0% {
+    /* 0% {
         transform: translateX(10000px) translateY(10000px)
     }
     25% {
@@ -69,6 +82,13 @@
     }
     100%{
         transform: translateX(0px) translateY(0px)
+    } */
+
+    from{
+        transform: translate(-100%);
+    }
+    to{
+        transform: translate(0%);
     }
 }
 
@@ -79,6 +99,26 @@
     to{
         transform: rotateX(25deg);
     }
+}
+@keyframes translatedown {
+
+    from{
+        transform: translateY(-50%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+    
+}
+@keyframes translateup {
+
+    from{
+        transform: translateY(50%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+    
 }
 
 @keyframes person {
@@ -98,6 +138,46 @@
         transform: translateY(-15px);
     }
     
+}
+
+
+.c-animation-1{
+
+    animation:  carousel 1.5s 1 linear;
+}
+.c-animation-2{
+
+    animation:  carousel2 1.5s 1 linear;
+}
+.c-animation-3{
+
+    animation:  carousel3 .5s 1 linear;
+}
+
+@keyframes carousel {
+    from{
+        transform: translateY(50%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+
+@keyframes carousel2 {
+    0%{
+        opacity: 0.1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes carousel3 {
+    0%{
+        transform: rotateY(180deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+    }
 }
 
 

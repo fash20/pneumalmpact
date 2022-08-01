@@ -25,7 +25,7 @@ const Stats: React.FC<Stats> = (props) => {
           suffix="+"
           className="sm:text-xl md:text-2xl lg:text-3xl"
       />
-        <span className="sm:text-sm md:text-md lg:text-xl">{title}</span>
+        <span className="text-md md:text-lg lg:text-xl">{title}</span>
       </div>
   );
 };

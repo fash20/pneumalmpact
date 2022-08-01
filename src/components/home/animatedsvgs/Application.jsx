@@ -8,7 +8,7 @@ const Application = () => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 589 588"
-      className='sm:w-[244px] sm:h-[244px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]'
+      className='w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]'
     >
       <g id="490542-PHBWI9-386">
         <g id="OBJECTS">

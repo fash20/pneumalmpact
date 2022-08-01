@@ -9,8 +9,6 @@ import SideNav from "../nav/SideNav";
 
 const Audit = () => {
   return (
-    <div className="flex ">
-      <SideNav />
     <div className="grid grid-cols-1 mt-24 relative w-full">
       <SettingSVG />
       <div className="flex gap-5 p-8 ">
@@ -22,7 +20,6 @@ const Audit = () => {
         <AuditRadioGroup />
         <BusinessNameForm />
       </div>
-    </div>
     </div>
   );
 };

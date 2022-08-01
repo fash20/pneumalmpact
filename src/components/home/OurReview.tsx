@@ -13,8 +13,13 @@ const OurReview = () => {
           <span className="step-title-red">Students </span>
           <span className="step-title-blue">say</span>
         </div>
-        <div className="flex justify-center ">
-          <StudentReview />
+        <div className="flex relative justify-center  ">
+          <StudentReview  />
+          {/* <StudentReview className="absolute -z-10 top-3 lg:w-[750px] lg:left-[15px] " />
+          <StudentReview className="absolute -z-20 top-6 lg:w-[710px] lg:left-[20px] " /> */}
+          {/* <StudentReview className="absolute -z-20 top-10 md:w-[580px] right-5 " /> */}
+
+
         </div>
         <div className="flex gap-x-3 justify-center ">
           <IconButton icon={ArrowLeftIcon} />
@@ -27,10 +32,15 @@ const OurReview = () => {
 
 export default OurReview;
 
-const StudentReview = () => {
+interface StudentReviewProps {
+ className?:string
+}
+
+const StudentReview = ({className}:StudentReviewProps) => {
   return (
-    <div className="relative bg-white p-10 text-center rounded-lg  drop-shadow-2xl sm:w-full sm:mx-5 md:w-[600px]">
-      <div className="absolute h-[100px] left-16 ">
+    <div className={`${className}`}>
+    <div className={`studentReviwCard box-content relative bg-white p-10 text-center rounded-lg  sm:w-full sm:mx-5 md:w-[750px] ${className}`}>
+      <div className="relative md:absolute h-[100px] md:left-16 ">
         <img style={{ maxHeight: "100%",}} src={numberOne} />
       </div>
       <div className="flex flex-col items-center justify-center gap-y-5 mt-[5px]">
@@ -43,6 +53,7 @@ const StudentReview = () => {
           unpleasant yet melancholy but end appearance. And excellence
           partiality estimating terminated day everything.
         </p>
+      </div>
       </div>
     </div>
   );

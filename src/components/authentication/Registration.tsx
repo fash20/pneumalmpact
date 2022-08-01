@@ -1,17 +1,18 @@
-import { Button, Heading, TextInputField } from "evergreen-ui";
+import { Heading, TextInputField } from "evergreen-ui";
 import React, { useEffect, useState } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
 import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMessage } from "../utils/message";
-import { AppDispatch } from "../utils/store";
-import { register } from "../utils/authSlice";
+import { AppDispatch } from "../store/store";
 import { validateEmail } from "../utils/validator";
 import toast, { Toaster } from "react-hot-toast";
 import { registerUser } from "../store/userAction";
+import { Button, Checkbox, FormControlLabel, IconButton, TextField} from "@mui/material";
+import TextInput from '../ui/TextInput'
+
 
 
 interface User{
@@ -39,9 +40,6 @@ const Registration = () => {
 
   useEffect(() => {
       if (success ) navigate('/verify')
-      console.log(success)
-      // if (userInfo) navigate('/user/dashboard')
-      console.log(userInfo)
 
   },[navigate, userInfo, success]);
 
@@ -65,19 +63,21 @@ const Registration = () => {
   };
 
   const handleRegistration = () => {
-    const validationResult = validateEmail(userCred.email)
-
-   if (validationResult != null )
-   return
-   else
+  //   const validationResult = validateEmail(userCred.email)
+  //  if (validationResult !== null )
+  //  return
+  //  else
     dispatch(registerUser(userCred))
   };
-
   return (
-    <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
+    <div className="grid grid-cols-1 mx-5 mb:mx-5 md:mx-10 my-10 gap-y-14 ">
       {
-        <Toaster />
+        <Toaster toastOptions={{
+          className:'toaster'
+        }} />
+  
       }
+     
       <div className="flex justify-center">
         <img
           src={logo}
@@ -85,35 +85,56 @@ const Registration = () => {
           alt="Pneumalmpact"
         />
       </div>
-      <div className="flex justify-around ">
-        <Button className="gap-x-1" appearance="loginIconButton">
-          <img
-            src={googleIcon}
-            alt="googleIcon"
-            className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
-          />
-          {!isScreenSmall && ` Login with Google`}
-        </Button>
-        <Button className=" gap-x-1 " appearance="loginIconButton">
-          <img src={facebookIcon} alt="facebookIcon" />
-          {!isScreenSmall && ` Login with Facebook`}
-        </Button>
+      <div className="flex  ">
+      {isScreenSmall && (
+        <div className="flex justify-around w-full ">
+          <IconButton className="gap-x-1">
+            <img
+              src={googleIcon}
+              alt="googleIcon"
+              className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
+            />
+          </IconButton>
+          <IconButton className="flex gap-x-1 ">
+            <img
+              src={facebookIcon}
+              alt="facebookIcon"
+              className={`${!isScreenSmall ? " w-[15px]" : `drop-shadow-xl`}`}
+            />
+          </IconButton>
+        </div>
+      )}
+      {!isScreenSmall && (
+        <div className="flex justify-around w-full ">
+          <Button className="gap-x-1" variant='outlined'>
+            <img
+              src={googleIcon}
+              alt="googleIcon"
+              className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
+            />
+            Register with Google
+          </Button>
+          <Button className=" gap-x-1 " variant='outlined'>
+            <img src={facebookIcon} alt="facebookIcon" />
+            Register with Facebook
+          </Button>
+        </div>
+      )}
       </div>
       <div className="text-center">
         <Heading size={800}>OR</Heading>
+        
       </div>
       <div className="grid grid-cols-1 gap-y-4">
-        <div className="grid grid-cols-1 gap-x-4">
-          <TextInputField
-            inputHeight={50}
+        <div className="grid grid-cols-1 gap-y-8 sm:gap-y-8 md:gap-y-10 lg:gap-y-12 ">
+          <TextField
             label="Email"
             placeholder={"Email"}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onchange(event, "email")
             }
           />
-          <TextInputField
-            inputHeight={50}
+          <TextField
             label="Password"
             placeholder="*****"
             type="password"
@@ -121,8 +142,7 @@ const Registration = () => {
               onchange(event, "password")
             }
           />
-          <TextInputField
-            inputHeight={50}
+          <TextField
             label="Confrim Password"
             placeholder="*****"
             type="password"
@@ -130,8 +150,15 @@ const Registration = () => {
               onchange(event, "password1")
             }
           />
+          <div className='flex justify-between items-center'>
+            <div className="flex justify-center items-center">
+            <Checkbox defaultChecked />
+            <Link to="/termsandconditions" className="font-inter text-[13px] md:text-[15px] text-primaryTextColor hover:underline" >Accept All</Link>
+            </div>
+          <Link to="/passwordreset" className="font-inter text-[13px] md:text-[15px]" >Forget Password?</Link>
+          </div>
           <Button
-            appearance="primary"
+            variant = 'pneumaBlue'
             onClick={() => {
               if (password === '' || password1 === ''){
                 toast.error("Password can't be empty string")
@@ -141,17 +168,14 @@ const Registration = () => {
                 handleRegistration();
               }
               else{
-                toast.error('Password Missmatch')
+                toast.error('Password Inconsistent')
               }
             }}
           >
             Next
           </Button>
         </div>
-        <div className="flex flex-row justify-between">
-          <Link to="/login">Have an account? Login</Link>
-          <Heading>Forget Password?</Heading>
-        </div>
+          <span className="font-inter text-[13px] md:text-[15px] text-center">Have an Account?   <Link to="/login" className="text-primaryTextColor hover:underline">Login</Link> </span>
       </div>
     </div>
   );

@@ -1,40 +1,51 @@
-import { Button, Heading, TextInputField } from 'evergreen-ui'
-import React, { useEffect, useState } from 'react'
-import logo from '../assets/images/pneumaImpact-logo.svg';
+import { TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import logo from "../assets/images/pneumaImpact-logo.svg";
+import { Link } from "react-router-dom";
 
 const PasswordReset = () => {
-
   const [email, setEmail] = useState("");
   useEffect(() => {
-    document.title= 'Pneumalmpact - Reset Password';
+    document.title = "Pneumalmpact - Reset Password";
   }, []);
-  
+
   return (
     <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
-    <div className="flex justify-center">
-      <img src={logo} className="object-contain h-20 w-20 " alt='Pneumalmpact' />
-    </div>
-    <div className="text-center">
-      <Heading size={800} >Forgot Password</Heading>
-      <Heading> </Heading>
-    </div>
-    <div className="grid grid-cols-1 gap-y-10">
-      <div className="grid grid-cols-1 gap-x-4">
-        <TextInputField
-          inputHeight={50}
-          label="Email"
-          placeholder={"Email"}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>)=> setEmail(event.target.value)}
+      <div className="flex justify-center">
+        <img
+          src={logo}
+          className="object-contain h-20 w-20 "
+          alt="Pneumalmpact"
         />
-        <Button appearance="primary" onClick={()=>alert(email)}>Done</Button>
       </div>
-      <div className="flex flex-row justify-between">
-        <Heading>Create an Account</Heading>
-        <Heading>Forget Password?</Heading>
+      <div className="text-center">
+        <h2 className="font-inter text-gray2 text-lg md:text-2xl">
+          Forgot Password
+        </h2>
+      </div>
+      <div className="grid grid-cols-1 gap-y-4">
+        <div className="grid grid-cols-1 gap-y-8 sm:gap-y-8 md:gap-y-10 lg:gap-y-12">
+          <TextField
+            label="Email"
+            placeholder={"Email"}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(event.target.value)
+            }
+          />
+          <Button variant="pneumaBlue" onClick={() => alert("hello")}>
+            Login
+          </Button>
+        </div>
+        <span className="font-inter text-[13px] md:text-[15px] text-center">
+          Have an Account? {" "}
+          <Link to="/login" className="text-primaryTextColor hover:underline">
+             Login
+          </Link>
+        </span>
       </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default PasswordReset
+export default PasswordReset;

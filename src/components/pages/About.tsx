@@ -10,26 +10,29 @@ const About = () => {
   }, []);
   return (
     <div className="flex flex-col pt-28 bg-aboutBlue ">
-      <div className="flex justify-center sm:flex-col sm:space-y-5 lg:flex-row lg:space-x-10 h-fit py-20  px-20">
-        <div className="h-100 w-[526px]">
+      <div className="flex justify-center flex-col sm:space-y-5 lg:flex-row lg:space-x-10 h-fit py-20 px-5  px-10 lg:px-20">
+        <div className="h-100 w-[300px] md:w-[400px] lg:w-[526px]">
           <img src={bioImg} />
         </div>
         <Bio />
       </div>
       <div className="flex flex-col space-y-5 bg-white px-20 py-40">
-        <div className="flex justify-center items-center space-x-5">
+        <span>
+          <h2 className=" text-xl md:text-2xl lg:text-3xl font-bold text-center">Our Service</h2>
+        </span>
+        <div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-x-5 md:space-y-0">
           <CustomCard children="" />
           <CustomCard children="" />
           <CustomCard children="" />
           <CustomCard children="" />
         </div>
-        <div className="flex justify-center items-center   space-x-5">
+        <div className="flex flex-col md:flex-row justify-center items-center sspace-y-5 md:space-x-5 md:space-y-0">
           <CustomCard children="" />
           <CustomCard children="" />
           <CustomCard children="" />
         </div>
       </div>
-      <div className="bg-white px-20 py-40">
+      <div className="bg-white lg:10 lg:px-20 py-40">
          <ReachUsForm />
       </div>
 
@@ -72,12 +75,12 @@ interface CustomCardProps {
 
 const CustomCard = ({ children }: CustomCardProps) => {
   return (
-    <div className="flex flex-col justify-center space-y-10 items-center w-80 bg-lightBlue text-primaryTextColor hover:text-white hover:bg-primaryTextColor max-w-[268px] h-[152px] rounded-lg">
+    <div className="flex flex-col justify-center space-y-10 items-center w-80 bg-lightBlue text-primaryTextColor hover:text-white hover:bg-primaryTextColor max-w-[300px] lg:max-w-[268px] h-[152px] rounded-lg">
       <div>
         <AirplanemodeActiveSharp fontSize="large" />
       </div>
       <div>
-        <h1>Service 6</h1>
+        <h1 className="font-inter">Service 6</h1>
       </div>
     </div>
   );
@@ -86,10 +89,10 @@ const CustomCard = ({ children }: CustomCardProps) => {
 const ReachUsForm = () => {
   return (
     <div className="px-5 flex flex-col space-y-8 lg:space-y-16 ">
-      <h1 className="text-3xl font-bold text-center">
+      <h1 className=" text-xl md:text-2xl lg:text-3xl font-bold text-center">
         You can reach out to Us
       </h1>
-      <div className="flex  sm:flex-col sm: space-y-5  lg:flex-row lg:space-x-5 ">
+      <div className="flex  flex-col sm:space-y-5  lg:flex-row lg:space-x-5 ">
         <div className="flex space-y-5 flex-col sm:w-[100%] lg:w-[35%] leading-8">
           <p>
             apidiously reconceptualize visionary imperatives without 24/365
@@ -103,7 +106,7 @@ const ReachUsForm = () => {
             <span>Follow us on:</span>
           </div>
         </div>
-        <div className="flex flex-col space-y-5 sm:w-[100%] lg:w-[65%]">
+        <div className="flex flex-col space-y-5 w-[90%] lg:w-[65%]">
           <div className="grid grid-cols-2 space-x-5 ">
             <TextField variant="outlined" placeholder="Name" />
             <TextField variant="outlined" placeholder="E-mail" />

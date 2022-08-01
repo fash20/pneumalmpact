@@ -24,7 +24,7 @@ const AuthContainer:React.FC<Prop> = (props) => {
           <img src={sideImage} alt="side" />
         </div>
       }
-      <div className=" bg-white pt-20 pb-10">
+      <div className=" bg-white pt-20 w-full">
         {
           props.children
         }

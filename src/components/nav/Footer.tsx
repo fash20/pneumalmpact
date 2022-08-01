@@ -17,7 +17,7 @@ const Footer = () => {
     window.open(link, '_blank', 'noopener,noreferrer')
   }
   return (
-    <div className="footer grid grid-cols-1 md:p-5  lg:p-20 space-y-20 text-white">
+    <div className="footer grid grid-cols-1 p-5 md:p-10  lg:p-20 space-y-20 text-white">
       <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col space-y-6 m-3">
           <div className="inline-flex space-x-2 items-center">

@@ -15,8 +15,6 @@ import SideNav from "../nav/SideNav";
 
 const Library = () => {
   return (
-    <div className="flex space-x-6">
-      <SideNav />
       <div className="mt-24">
         <div className="grid grid-flow-row-dense grid-cols-3 gap-10 justify-center p-10 ">
           <QuickInfo />
@@ -30,7 +28,6 @@ const Library = () => {
           <UserActivities />
         </div>
       </div>
-    </div>
   );
 };
 
@@ -38,7 +35,7 @@ export default Library;
 
 const QuickInfo = () => {
   return (
-    <div className="sm:col-span-3 md:col-span-2 quick-info grid grid-cols-2  ">
+    <div className="col-span-3 md:col-span-2 quick-info grid grid-cols-2  ">
       {/* <img src ={bgimage} className='absolute  -z-20' /> */}
       <div className="flex flex-col justify-center gap-4 ml-10">
         <div>
