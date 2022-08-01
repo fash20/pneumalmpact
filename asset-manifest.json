@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pneumalmpact/static/css/main.59a970d1.css",
-    "main.js": "/pneumalmpact/static/js/main.fb8c9db5.js",
+    "main.js": "/pneumalmpact/static/js/main.b47bb052.js",
     "static/js/787.ea9893fe.chunk.js": "/pneumalmpact/static/js/787.ea9893fe.chunk.js",
     "static/media/cimage1.svg": "/pneumalmpact/static/media/cimage1.8dd69182290f7b0250e5f437ac7e62c8.svg",
     "static/media/Rectangle7.svg": "/pneumalmpact/static/media/Rectangle7.51b3acee6ad24c98a82ba537aa0859f5.svg",
@@ -51,11 +51,11 @@
     "static/media/FooterBackground.svg": "/pneumalmpact/static/media/FooterBackground.4b3cab3258de11fbfeae.svg",
     "static/media/footermobile.svg": "/pneumalmpact/static/media/footermobile.c48b9534b5e8b9a50fb1.svg",
     "main.59a970d1.css.map": "/pneumalmpact/static/css/main.59a970d1.css.map",
-    "main.fb8c9db5.js.map": "/pneumalmpact/static/js/main.fb8c9db5.js.map",
+    "main.b47bb052.js.map": "/pneumalmpact/static/js/main.b47bb052.js.map",
     "787.ea9893fe.chunk.js.map": "/pneumalmpact/static/js/787.ea9893fe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.59a970d1.css",
-    "static/js/main.fb8c9db5.js"
+    "static/js/main.b47bb052.js"
   ]
 }
