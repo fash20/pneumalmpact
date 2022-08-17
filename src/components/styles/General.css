@@ -3,7 +3,8 @@
 }
 
 .frontpage {
-  /* background-image: url('../assets/images/frontpagebg.svg'); */
+  background-image: url('../assets/images/frontpagebg.svg');
+  width: 100vw;
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -67,6 +68,7 @@
   font-family: zcool;
   src: url(../assets/fonts/ZCOOL_XiaoWei/ZCOOLXiaoWei-Regular.ttf);
 }
+
 @font-face {
   font-family: narutosans;
   src: url(../assets/fonts/Nunito_Sans/NunitoSans-Regular.ttf);
@@ -216,27 +218,17 @@
 .sub-form {
   background-color: #fff;
   border-radius: 45px;
-  width: 600px;
+  width: 90%;
   display: inline-flex;
+  align-items: center;
 }
 
-.sub-button {
-  color: #fff;
-  background-color: #2F327D;
-  font-size: 13px;
-  font-family: poppins;
-  height: 50px;
-  padding: 0px;
-  width: 100px;
-  border-radius: 45px;
-  margin: 0 10px;
-}
 
 .sub-input {
   font-family: poppins;
   font-size: 13px;
-  height: 50px;
-  width: 90%;
+  height: 60px;
+  width: 100%;
   border-radius: 45px;
   padding-left: 20px;
   font-weight: 300;
@@ -301,6 +293,18 @@
 
 }
 
+.aud-rad-bdr-clr::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: #2F327D;
+  height: 80%;
+  width: 2px;
+  left: -2px;
+  top: 15px;
+
+}
+
 .footer {
   background-image: url('../assets/images/FooterBackground.svg');
   background-size: cover;
@@ -353,6 +357,17 @@
     background-repeat: no-repeat;
     width: 100%;
   }
+
+  .sub-input {
+    height: 60px;
+    width: 90%;
+
+  }
+
+  .sub-form {
+    width: 90%;
+  }
+
 }
 
 @media (min-width: 420px) {
@@ -360,6 +375,7 @@
     background-image: url('../assets/images/frontpagebgmobile.svg');
     background-size: cover;
     background-repeat: no-repeat;
+
   }
 
   .footer {
@@ -370,6 +386,16 @@
     width: 100%; */
     /* background-color: #2F327D; */
   }
+
+  .sub-input {
+    height: 60px;
+    width: 90%;
+  }
+
+  .sub-form {
+
+    width: 90%;
+  }
 }
 
 @media (min-width: 820px) {
@@ -377,6 +403,13 @@
     background-image: url('../assets/images/frontpagebgmobile.svg');
     background-size: cover;
     background-repeat: no-repeat;
+  }
+
+  .sub-input {
+
+    height: 75px;
+    width: 85%;
+
   }
 
 }
@@ -434,4 +467,26 @@
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+}
+
+#upload-input {
+  display: none
+}
+
+#fade-in {
+  animation: fadeIn 4s linear 1;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.card-1{
+  
 }

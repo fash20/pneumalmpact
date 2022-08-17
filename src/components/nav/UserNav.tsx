@@ -1,5 +1,5 @@
-import { Link } from "evergreen-ui";
-import React, { ReactNode } from "react";
+import { Link } from "react-router-dom";
+import React, { ReactNode, useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import squarelogo from "../assets/images/square-logo.svg";
 import "../styles/General.css";
@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "../svgicons/SearchIcon";
 import SideNav from "./SideNav";
+import { useSelector } from "react-redux";
 
 interface RenderComponent {
   children?: ReactNode;
@@ -21,12 +22,21 @@ interface RenderComponent {
 
 const UserNav = ({ children }: RenderComponent) => {
   const [screenSize, isScreenSmall] = useScreenSize();
+  const selector = useSelector((state: { user: any }) => state.user);
+  const [user, setUser] = useState();
+
+  useEffect(()=>{
+    if (selector.userData !== '' && selector.userData !== null){
+     setUser(selector.userData.user)
+    }
+    console.log(selector)
+  }, [])
   return (
     <div className="flex ">
       {
         !isScreenSmall && <SideNav />
       }
-      <div>
+      <div className="w-full">
         <div
           className={`h-20 top-0 blur-1 flex sm:space-x-10  lg:gap-20 w-[100%]  items-center justify-end ${
             isScreenSmall ? "grid-cols-2" : "grid-cols-3"
@@ -57,18 +67,24 @@ const UserNav = ({ children }: RenderComponent) => {
             </IconButton>
 
             <div className="flex flex-row gap-3">
+              <Link to='/user/dashboard'>
               <div className="">
                 {/* <img src={avatar} /> */}
                 <Avatar src={avatar} />
               </div>
+              </Link>
+              <Link to='/user/dashboard'>
               <div className="flex flex-col justify-start">
                 <h3 className="font-inter text-primaryTextColor font-bold">
                   Avatar
                 </h3>
                 <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
-                  avatar@pneummpact.com
+                  {
+                    user
+                  }
                 </h4>
               </div>
+              </Link>
             </div>
           </div>
         </div>

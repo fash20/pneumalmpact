@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import { Link } from "react-router-dom";
+import { BrandButtonStyle } from "../utils/UIThemes";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
@@ -33,7 +34,7 @@ const PasswordReset = () => {
               setEmail(event.target.value)
             }
           />
-          <Button variant="pneumaBlue" onClick={() => alert("hello")}>
+          <Button variant="pneumaBlue" onClick={() => alert("hello")} style={BrandButtonStyle}>
             Login
           </Button>
         </div>

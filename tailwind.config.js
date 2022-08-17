@@ -24,6 +24,7 @@ module.exports = {
       "discountRed":'#EA4B48',
       "aboutBlue": "#F2F4F8",
       "bgWhite": "##E5E5E5",
+      "bgblue":"#F6F7FF",
       "gray2":' #757575'
     },
     fontFamily:{

@@ -1,17 +1,25 @@
-import { Button, Divider, } from "@material-ui/core";
+import { Button, Divider, useMediaQuery } from "@mui/material";
 import React, { useEffect } from "react";
 import { Tag } from "../user/Explore";
 import blogPost from "../assets/images/blogpost.svg";
 import Avatar from "@mui/material/Avatar";
 import avatar from "../assets/images/avatar.svg";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
+import { theme } from "../utils/UIThemes";
+import {
+  Facebook,
+  FacebookOutlined,
+  Instagram,
+  Twitter,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   useEffect(() => {
     document.title = "Pnuemalmpact - Blog";
   }, []);
   return (
-    <div className="mt-28">
+    <div className="mt-28 p-5 md:p-8 lg:p-10">
       <div className="flex sm:flex-col lg:flex-row">
         <div>
           <BlogHeader
@@ -49,8 +57,8 @@ const Blog = () => {
         title2="Posted"
         type="large"
       />
-      <div className="grid grid-flow-row-dense grid-cols-3">
-        <div className="lg:col-span-2 ">
+      <div className="grid grid-flow-row-dense grid-col-1 lg:grid-cols-3">
+        <div className="col-span-1 lg:col-span-2 ">
           <div className="grid sm:grid-cols-1 lg:grid-cols-2 ">
             <BlogPost type="vertical" />
             <BlogPost type="vertical" />
@@ -89,22 +97,32 @@ const Blog = () => {
             <div className="flex flex-col space-y-5">
               <BlogHeader title1="Search" title2="With tags" type="large" />
               <div className="flex  flex-wrap space-x-6 space-y-3">
-                <Button variant="contained" color='primary' size='large'>Travel</Button>
-                <Button variant="contained" color='primary' size='large'>Life Style</Button>
-                <Button variant="contained" color='primary' size='large'>Technology</Button>
-                <Button variant="contained" color='primary' size='large'>Business</Button>
-                <Button variant="contained" color='primary' size='large'>Design</Button>
-                <Button variant="contained" color='primary' size='large'>Fashion</Button>
-                
+                <Button variant="contained" color="primary" size="large">
+                  Travel
+                </Button>
+                <Button variant="contained" color="primary" size="large">
+                  Life Style
+                </Button>
+                <Button variant="contained" color="primary" size="large">
+                  Technology
+                </Button>
+                <Button variant="contained" color="primary" size="large">
+                  Business
+                </Button>
+                <Button variant="contained" color="primary" size="large">
+                  Design
+                </Button>
+                <Button variant="contained" color="primary" size="large">
+                  Fashion
+                </Button>
               </div>
             </div>
           </div>
         </div>
-        <div >
-        </div>
+        <div></div>
       </div>
       <div className="flex justify-center my-20 items-center">
-            <Pagination count={10} variant="outlined" shape="rounded" />
+        <Pagination count={10} variant="outlined" shape="rounded" />
       </div>
     </div>
   );
@@ -120,6 +138,7 @@ const BlogPost = ({ type }: BlogPostProps) => {
   let _className = "";
   let _imgClassName = "";
   let _textClassName = "";
+  const isScreenSmall = useMediaQuery(theme.breakpoints.up("sm"));
 
   switch (type) {
     case "vertical":
@@ -143,6 +162,7 @@ const BlogPost = ({ type }: BlogPostProps) => {
       _textClassName = "text-md over break-words ";
       break;
   }
+  isScreenSmall ? (type = "verticalCompact") : (type = type);
   return (
     <div className={`flex ${_className} mx-4 my-8 `}>
       <div className={_imgClassName}>
@@ -229,16 +249,35 @@ interface AuthorCardProps {
 
 const AuthourCard = () => {
   return (
-    <div className="flex space-x-3 items-center p-5">
+    <div className="flex space-x-3 items-center py-5">
       <div>
-        <Avatar sx={{ width: 60, height: 60 }} src={avatar} />
+        <Avatar sx={{ width: 70, height: 70 }} src={avatar} />
       </div>
       <div className="flex flex-col space-y-2 ">
         <span className="font-bold text-md">Jenny kia</span>
         <span className="font-interlight text-[12px] text-PrimaryGray">
           fashion designer blogger
         </span>
-        <span></span>
+        <span className="flex space-x-2 text-gray text-[12px]">
+          <Link
+            to="/"
+            className="border-[1px] border-gray rounded-md hover:border-primaryTextColor hover:text-primaryTextColor "
+          >
+            <FacebookOutlined sx={{ fontSize: "20px" }} />
+          </Link>
+          <Link
+            to="/"
+            className="border-[1px] border-gray rounded-md hover:border-primaryTextColor hover:text-primaryTextColor "
+          >
+            <Twitter sx={{ fontSize: "20px" }} />{" "}
+          </Link>
+          <Link
+            to=""
+            className="border-[1px] border-gray rounded-md hover:border-primaryTextColor hover:text-primaryTextColor "
+          >
+            <Instagram sx={{ fontSize: "20px" }} />{" "}
+          </Link>
+        </span>
       </div>
     </div>
   );

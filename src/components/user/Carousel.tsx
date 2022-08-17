@@ -6,43 +6,42 @@ import cimage1 from "../assets/images/carousel/cimage1.svg";
 import cimage2 from "../assets/images/carousel/cimage2.svg";
 import cimage3 from "../assets/images/carousel/cimage3.svg";
 import { Button, IconButton } from "@mui/material";
-import '../styles/animations.css'
+import "../styles/animations.css";
 
 const Carousel = () => {
   const carousels = [<Carousel1 />, <Carousel2 />, <Carousel3 />];
   const [componentInView, setComponentInView] = useState(0);
 
-    // useEffect(() => {
-    //   const interval = setInterval(()=>componentChanger(), 7000);
-    //   return ()=>clearInterval(interval)
-    // }, [componentInView]);
+  useEffect(() => {
+    const interval = setInterval(()=>componentChanger(), 7000);
+    return ()=>clearInterval(interval)
+  }, [componentInView]);
 
   function componentChanger() {
-    if (componentInView === carousels.length-1) {
+    if (componentInView === carousels.length - 1) {
       setComponentInView(0);
-
     } else {
       setComponentInView(componentInView + 1);
-
     }
   }
   function componentChangerReverse() {
     if (componentInView === 0) {
-      setComponentInView(carousels.length-1);
-
+      setComponentInView(carousels.length - 1);
     } else {
       setComponentInView(componentInView - 1);
     }
   }
 
   return (
-    <div className="relative carousel-container ">
-        <IconButton className=" absolute z-50 left-full sm:top-[25%] mb:top-[35%] md:top-[45%]" onClick={componentChangerReverse}>
+    <div className="relative carousel-container w-fit bg-fadeWhite ">
+      <span className="flex justify-between w-full absolute z-50  sm:top-[25%] mb:top-[35%] md:top-[45%]">
+        <IconButton onClick={componentChanger}>
           <ChevronLeft style={{ fontSize: "60px" }} className="text-white" />
         </IconButton>
-        <IconButton className=" absolute z-50 right-0 sm:top-[25%] mb:top-[35%] md:top-[45%]" onClick={componentChanger}>
+        <IconButton onClick={componentChangerReverse}>
           <ChevronRight style={{ fontSize: "60px" }} className="text-white" />
         </IconButton>
+      </span>
       {carousels[componentInView]}
     </div>
   );
@@ -51,11 +50,12 @@ export default Carousel;
 
 export const Carousel1 = () => {
   return (
-    <div className="relative c-animation-1">
-      <div className="w-full min-h-[270px] rounded-md">
+    <div className="relative c-animation-2 ">
+      <div className="w-full h-full sm:h-[450px] lg:h-[555px] rounded-md bg-PrimaryGray">
         <img
-          className="rounded-md max-h-full max-w-full"
-          src={cimage1}
+          // className="rounded-md max-h-full max-w-full"
+          style={{ width: "100%", maxHeight: "100%", objectFit: "cover" }}
+          src="https://cdn.pixabay.com/photo/2022/03/19/11/11/girl-7078324_960_720.jpg"
           alt="carousel"
         />
       </div>

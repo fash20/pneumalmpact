@@ -3,29 +3,32 @@ import React, { useState, useEffect } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
 import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
-import { Button, Checkbox, FormControlLabel, IconButton, TextField } from "@mui/material";
+import { Button, IconButton, TextField } from "@mui/material";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { validateEmail } from "../utils/validator";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/userAction";
 import { AppDispatch } from "../store/store";
-import toast, { Toaster } from "react-hot-toast";
-// import TextInput from "../ui/TextInput";
-// import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [userCred, setUserCred] = useState({
     email: "",
     password: "",
   });
-  const { loading, error } = useSelector((state: { user: any }) => state.user);
+  const selector = useSelector((state: { user: any }) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const [screenSize, isScreenSmall] = useScreenSize();
+  const navigate = useNavigate()
 
   useEffect(() => {
     document.title = "Pneumalmpact - Login";
+     if(selector.userData !== null){
+       navigate('/explore')
+     } 
+
   }, []);
 
   const onchange = (
@@ -49,12 +52,10 @@ const Login = () => {
 
   const handleLogin = () => {
     const validationResult = validateEmail(userCred.email);
-
-    //  if (validationResult !== null )
-    //  return
-    //   else{
-    dispatch(loginUser(userCred));
-    // }
+    if (validationResult !== null) return;
+    else {
+      dispatch(loginUser(userCred));
+    }
   };
 
   return (
@@ -92,7 +93,7 @@ const Login = () => {
       )}
       {!isScreenSmall && (
         <div className="flex justify-around ">
-          <Button className="gap-x-1" variant='outlined'>
+          <Button className="gap-x-1" variant="outlined">
             <img
               src={googleIcon}
               alt="googleIcon"
@@ -100,7 +101,7 @@ const Login = () => {
             />
             Login with Google
           </Button>
-          <Button className=" gap-x-1 " variant='outlined'>
+          <Button className=" gap-x-1 " variant="outlined">
             <img src={facebookIcon} alt="facebookIcon" />
             Login with Facebook
           </Button>
@@ -127,13 +128,27 @@ const Login = () => {
               onchange(event, "password")
             }
           />
-          <Button variant="pneumaBlue" onClick={() => handleLogin()}>
+          <Button
+            variant="pneumaBlue"
+            onClick={() => handleLogin()}
+            style={BrandButtonStyle}
+          >
             Login
           </Button>
         </div>
         <div className="flex justify-between text-left">
-          <Link to="/signup" className="font-inter text-[13px] md:text-[15px] text-primaryTextColor hover:underline">Create an Account</Link>
-          <Link to="/passwordreset" className="font-inter text-[13px] md:text-[15px]" >Forget Password?</Link>
+          <Link
+            to="/signup"
+            className="font-inter text-[13px] md:text-[15px] text-primaryTextColor hover:underline"
+          >
+            Create an Account
+          </Link>
+          <Link
+            to="/passwordreset"
+            className="font-inter text-[13px] md:text-[15px]"
+          >
+            Forget Password?
+          </Link>
         </div>
       </div>
     </div>

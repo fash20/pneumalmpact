@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 interface User{
     email: string,
@@ -28,8 +29,8 @@ const login = (email: string, password: string) => {
       password,
     }, config)
     .then((response) => {
-      if (response.data) {
-        console.log(response)
+      if (response.data.user !== undefined ) {
+        // console.log(response)
         const user ={
           user:response.data.user.email,
           token: response.data.token
@@ -38,7 +39,7 @@ const login = (email: string, password: string) => {
       }
       return response.data;
     })
-    .catch(err=> err);
+    .catch(err=> toast.error(err.message));
 };
 
 

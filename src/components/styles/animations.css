@@ -32,23 +32,34 @@
 }
 
 
-#diagonal-one{
+#side-one{
     position: relative;
-    animation: diagonalOne 1s linear 1 ;
+    animation: sideOne 1s linear 1 ;
 }
-#diagonal-two{
+#side-two{
     position: relative;
-    animation: diagonalTwo 1s linear 1 ;
+    animation: sideTwo 1s linear 1 ;
 }
-#target-container{
+#trans-down{
     position: relative;
     animation: translatedown 1s linear 1 ;
 }
-#man-options{
+#trans-up{
     position: relative;
     animation: translateup 1s linear 1  ;
 }
 
+#fade-in{
+  animation: fadeIn .3s linear  1 ;
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0.1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 @keyframes transaction {
     0%{
         opacity: 0;
@@ -59,7 +70,7 @@
 }
 
 
-@keyframes diagonalOne {
+@keyframes sideOne {
     from{
         transform: translate(100%);
     }
@@ -67,22 +78,7 @@
         transform: translate(0%);
     }
 }
-@keyframes diagonalTwo {
-    /* 0% {
-        transform: translateX(10000px) translateY(10000px)
-    }
-    25% {
-        transform: translateX(20px) translateY(-20px)
-    }
-    50%{
-        transform: translateX(70px) translateY(-70px)
-    }
-    75%{
-        transform: translateX(20px) translateY(-20px)
-    }
-    100%{
-        transform: translateX(0px) translateY(0px)
-    } */
+@keyframes sideTwo {
 
     from{
         transform: translate(-100%);
@@ -103,7 +99,7 @@
 @keyframes translatedown {
 
     from{
-        transform: translateY(-50%);
+        transform: translateY(-30%);
     }
     to{
         transform: translateY(0%);
@@ -113,7 +109,7 @@
 @keyframes translateup {
 
     from{
-        transform: translateY(50%);
+        transform: translateY(30%);
     }
     to{
         transform: translateY(0%);

@@ -1,25 +1,24 @@
-import { TextareaAutosize, TextField,Button } from "@material-ui/core";
-import { Textarea, TextInputField, Pane, Label } from "evergreen-ui";
+import { TextareaAutosize, TextField, Button } from "@mui/material";
 import React from "react";
 import TextInput from "../ui/TextInput";
 import { BrandButtonStyle } from "../utils/UIThemes";
 
 const RateUs = () => {
   return (
-    <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-x-20 bg-grdnt sm:px-5 md:px-10 lg:px-28">
-        <div className="mb-28">
-          <div>
-            <span className="step-title-blue">
-              Fill the form to submit your </span>
-            <span className="step-title-red">feedback </span>
-          </div>
-          <div>
-            <p className="hiw-sub">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
-              ipsum dolor sit amet
-            </p>
-          </div>
+    <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-x-20 px-5 md:px-10 lg:px-28 py-5 md:py-10 lg:py-20 bg-[#FCFCFF]">
+      <div className="mb-28">
+        <div className="flex flex-col space-y-5 ">
+          <h1>  Rate Our Service</h1>
+          <span className="step-title-blue">Fill the form to submit your </span>
+          <span className="step-title-red">feedback </span>
         </div>
+        <div>
+          <p className="hiw-sub">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
+            dolor sit amet
+          </p>
+        </div>
+      </div>
       <div>
         <FeedbackForm />
       </div>
@@ -31,19 +30,13 @@ export default RateUs;
 
 const FeedbackForm = () => {
   return (
-    <div className="grid grid-cols-1 gap-5 p-10 bg-white rounded-xl m-10 border-2 border-grayMarginColor ">
-      <TextInput label="Name" TextFieldClassName="bg-blue"/>
+    <div className="grid grid-cols-1 gap-5 p-10 bg-white rounded-xl md:rounded-2xl lg:rounded-3xl md:m-10 border-2 border-grayMarginColor ">
+      <TextInput label="Name"  TextFieldClassName="h-[40px]" />
       <TextInput label="Email" />
-      {/* <TextInputField label="Email" inputHeight={50} /> */}
-      <div>
-        <textarea
-          id="textarea-1"
-          name="textarea-1"
-          placeholder="Write message..."
-          className='w-full p-2 font-interlight border-[1px] border-primaryTextColor outline-primaryTextColor'
-        />
-      </div>
-      <Button color="primary" variant='contained'  style={BrandButtonStyle}> Submit </Button>
+      <TextareaAutosize aria-label="empty textarea" placeholder="Write your message" className=" min-h-[90px] border-[1px] mx-2 px-3 py-1 border-gray outline-1 outline-primaryTextColor" />
+      <Button variant="pneumaBlue" style={BrandButtonStyle}>
+        Submit
+      </Button>
     </div>
   );
 };

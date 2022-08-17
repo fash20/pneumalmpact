@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/General.css";
 import boy from "../assets/images/boy.svg";
-import { Avatar, Button, IconButton } from "@material-ui/core";
+import { Avatar, Button, IconButton } from "@mui/material";
 import profileImage from "../assets/images/profileimage.png";
 import clocksvg from "../assets/images/clock.svg";
 import {
@@ -11,23 +11,27 @@ import {
   Check,
 } from "@material-ui/icons";
 import percentage from "../assets/images/percentage.svg";
-import SideNav from "../nav/SideNav";
+
 
 const Library = () => {
   return (
-      <div className="mt-24">
-        <div className="grid grid-flow-row-dense grid-cols-3 gap-10 justify-center p-10 ">
+    <div className="flex flex-col space-y-10 p-10">
+      <div className="flex flex-col space-y-10">
+        <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5">
           <QuickInfo />
           <UserCard />
-          <ItemsCard image={clocksvg} />
-          <ItemsCard image={clocksvg} />
-          <ItemsCard image={clocksvg} />
         </div>
-        <div className="flex gap-10  pl-36 mt-10 ">
-          <UserFiles />
-          <UserActivities />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-5 sm:gap-y-0 sm:gap-x-5" >
+          <ItemsCard image={clocksvg} />
+        <ItemsCard image={clocksvg} />
+        <ItemsCard image={clocksvg} />
         </div>
       </div>
+      <div className="flex flex-col md:flex-row gap-y-5 md:gap-y-0 md:gap-x-5 ">
+        <UserFiles />
+        <UserActivities />
+      </div>
+    </div>
   );
 };
 
@@ -35,9 +39,10 @@ export default Library;
 
 const QuickInfo = () => {
   return (
-    <div className="col-span-3 md:col-span-2 quick-info grid grid-cols-2  ">
-      {/* <img src ={bgimage} className='absolute  -z-20' /> */}
-      <div className="flex flex-col justify-center gap-4 ml-10">
+    // <div className=" quick-info grid grid-cols-2  ">
+    <div className=" bg-gray grid grid-cols-2  ">
+      {/* <img src ={bgimage} className='absolute  -z-20' />  */}
+      <div className="flex flex-col justify-center items-center space-y-4 ml-10">
         <div>
           <h3 className="font-inter text-fadeWhite">AD</h3>
         </div>
@@ -80,7 +85,7 @@ const QuickInfo = () => {
 
 const UserCard = () => {
   return (
-    <div className="grid grid-cols-1  bg-white items-center p-5 text-center  border-2 border-grayMarginColor  border-slate-700 ">
+    <div className="grid bg-white items-center p-5 text-center  border-2 border-grayMarginColor  border-slate-700 ">
       <div className="flex justify-center">
         <img
           sizes="large"
@@ -130,7 +135,7 @@ const ItemsCard = ({ image }: IItemCardProps) => {
           </IconButton>
         </div>
       </div>
-      <div className="flexjustify-between items-center">
+      <div className="flex justify-between items-center">
         <h2 className="font-inter  text-2xl">03</h2>
         <img src={image} alt={"file"} />
       </div>
@@ -140,7 +145,7 @@ const ItemsCard = ({ image }: IItemCardProps) => {
 
 const UserFiles = () => {
   return (
-    <div className="bg-white  border-2 border-grayMarginColor w-7/12 p-5">
+    <div className="bg-white  border-2 border-grayMarginColor w-full md:w-[70%] p-5">
       <div className="flex justify-between ">
         <h2 className="font-inter text-fadeWhite text-2xl ">My Files</h2>
         <Button>View All</Button>
@@ -165,7 +170,7 @@ const File = () => {
 
 const UserActivities = () => {
   return (
-    <div className=" bg-white flex flex-col gap-5 p-5 border-2 border-grayMarginColor w-4/12">
+    <div className=" bg-white flex flex-col gap-5 p-5 border-2 border-grayMarginColor  w-full md:w-[30%]">
       <div className="flex  justify-between">
         <h2 className="font-inter text-2xl">Recent Activity</h2>
         <IconButton>

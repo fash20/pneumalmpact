@@ -6,7 +6,7 @@ declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
     pneumaBlue: true;
     pneumaRed: true;
-    dashed: true;
+    pneumaWhite: true;
   }
 }
 
@@ -29,27 +29,34 @@ export const theme = createTheme({
             textTransform: "none",
             backgroundColor: "#2F327D",
             color: "#FFF", 
+            '&:hover': {
+              background: "#40428d",
+           },
           },
         },
         {
           props: { variant: "pneumaRed", },
           style: {
             backgroundColor:'#FF5364',
-            color: "#FFF", 
+            color: "#FFF",
+            '&:hover': {
+              background: "#ff6978",
+           }, 
           },
+          
         },
         {
-          props: { variant: "dashed" },
+          props: { variant: "pneumaWhite", },
           style: {
-            textTransform: "none",
+            backgroundColor:'',
+            color: "#444",
+            '&:hover': {
+              background: "#ff6978",
+           }, 
           },
+          
         },
-        {
-          props: { variant: "dashed" },
-          style: {
-            border: `4px dashed ${red[500]}`,
-          },
-        },
+       
       ],
     },
   },
@@ -76,8 +83,8 @@ export const theme = createTheme({
 });
 
 export const BrandButtonStyle = {
-  height: 40,
-  borderRadius: 40,
+  height: 50,
+  borderRadius: 50,
 };
 export const TabButtonStyle = {
   height: 40,

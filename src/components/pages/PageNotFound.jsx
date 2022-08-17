@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 function PageNotFound() {
   return (
-    <div className="pt-28 w-full flex flex-col items-center justify-center space-y-10">
-        <div className=" text-[45px] font-bold ">404</div>
+    <div className="pt-28 w-full flex flex-col items-center justify-center space-y-10 my-10">
+      
+      <div className=" text-[45px] font-bold ">404</div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
     //   width="381"
@@ -119,7 +120,7 @@ function PageNotFound() {
       </defs>
     </svg>
     <div >
-    <Link to='/' className="flex space-x-8 items-center justify-center">
+    <Link to='/' className="flex space-x-4 md:space-x-8 items-center justify-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="27"
@@ -135,7 +136,7 @@ function PageNotFound() {
         <path id="Vector 2" d="M6.043 1.473L1.668 5.848l4.375 4.375"></path>
       </g>
     </svg>
-    <h2 className='text-3xl'>Go Home</h2>
+    <h2 className=' md:text-xl lg:text-3xl'>Go Home</h2>
     </Link>
     </div>
     </div>

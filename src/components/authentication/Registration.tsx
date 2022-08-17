@@ -11,7 +11,7 @@ import { validateEmail } from "../utils/validator";
 import toast, { Toaster } from "react-hot-toast";
 import { registerUser } from "../store/userAction";
 import { Button, Checkbox, FormControlLabel, IconButton, TextField} from "@mui/material";
-import TextInput from '../ui/TextInput'
+import { BrandButtonStyle } from "../utils/UIThemes";
 
 
 
@@ -159,6 +159,7 @@ const Registration = () => {
           </div>
           <Button
             variant = 'pneumaBlue'
+            style={BrandButtonStyle}
             onClick={() => {
               if (password === '' || password1 === ''){
                 toast.error("Password can't be empty string")

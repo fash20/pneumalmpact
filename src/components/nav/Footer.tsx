@@ -48,7 +48,7 @@ const Footer = () => {
           <span className="font-dmSansr flex flex-col space-y-3 text-gray">
             <h4>About us</h4>
             <h4>Contact us</h4>
-            <h4>Explore </h4>
+            <h4><a href='/explore'>Explore </a></h4>
           </span>
         </div>
         <div className="flex flex-col space-y-4 items-start px-4  m-3">

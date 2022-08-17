@@ -43,9 +43,8 @@ const navItems = [
 
 const SideNav = () => {
   const location = useLocation();
-  console.log(location.pathname);
   return (
-    <div className="sticky left-0 flex flex-col w-[103px] h-[full] space-y-16  border-r-[1px]  border-x-grayMarginColor">
+    <div className="bg-white  sticky left-0 flex flex-col w-[103px] h-[full] space-y-16  border-r-[1px]  border-x-grayMarginColor">
       <a href="/">
         <img className=" h-20 bg-white" src={squarelogo} alt="logo" />
       </a>
@@ -72,11 +71,11 @@ interface NavItemProps {
 const NavItem = ({ name, href, icon }: NavItemProps) => {
   const location = useLocation();
   return (
-    <Link to={href} className="">
+    <Link to={href} className="h-16 hover:scale-125 transition-[1s] my-5">
       <div
-        className={`relative flex flex-col items-center gap-2 justify-end rounded-lg border-r-4 bg-white border-white ${
+        className={`relative flex flex-col items-center gap-2 justify-end rounded-lg  bg-white ${
           location.pathname === href
-            ? "bg-lightBlue side-nav-item text-base p-2"
+            ? "bg-lightBlue side-nav-item text-base p-2 shadow-sm"
             : ""
         }`}
       >

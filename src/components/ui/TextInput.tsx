@@ -1,6 +1,7 @@
 import { InputLabel, TextField } from "@material-ui/core";
-import { TextFieldProps } from "@mui/material";
+import { TextFieldProps, useMediaQuery } from "@mui/material";
 import React, { useId } from "react";
+import { theme } from "../utils/UIThemes";
 
 interface Prop {
   label?: string;
@@ -17,14 +18,15 @@ const TextInput = ({
   onChange
 }: Prop) => {
   const id = useId();
+  const isScreenSmall = useMediaQuery(theme.breakpoints.down('sm'))
   return (
     <div className={`grid grid-cols-1 gap-2 m-2 font-inter` + ContainerClassName}>
       <InputLabel htmlFor={label + id}>{label}</InputLabel>
       <TextField
         variant="outlined"
         type={type || "text"}
-        size='small'
-        // className={`border-[1px] ${TextFieldClassName}`}
+        size={`${isScreenSmall? 'small':'medium'}`}
+        className={`${TextFieldClassName}`}
         style={{ borderRadius: "12px" }}
         placeholder={label}
         id={label + id}

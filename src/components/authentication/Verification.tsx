@@ -6,6 +6,7 @@ import logo from "../assets/images/pneumaImpact-logo.svg";
 import "../styles/General.css";
 import { PinInput } from "react-input-pin-code";
 import { Link } from "react-router-dom";
+import { BrandButtonStyle } from "../utils/UIThemes";
 
 const Verification = () => {
   const [values, setValues] = React.useState(["", "", "", ""]);
@@ -41,7 +42,7 @@ const Verification = () => {
             onChange={(value, index, values) => setValues(values)}
           />
         </div>
-        <Button >Done</Button>
+        <Button style={BrandButtonStyle}>Done</Button>
         <div className="flex justify-between text-left">
           <Link to="/signup" className="font-inter text-[13px] md:text-[15px] text-primaryTextColor hover:underline">Create an Account</Link>
           <Link to="/passwordreset" className="font-inter text-[13px] md:text-[15px]" >Forget Password?</Link>
