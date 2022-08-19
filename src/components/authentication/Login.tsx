@@ -52,10 +52,10 @@ const Login = () => {
 
   const handleLogin = () => {
     const validationResult = validateEmail(userCred.email);
-    if (validationResult !== null) return;
-    else {
+    // if (validationResult !== null) return;
+    // else {
       dispatch(loginUser(userCred));
-    }
+    // }
   };
 
   return (

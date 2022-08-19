@@ -34,12 +34,17 @@ const Registration = () => {
     (state: {user: {loading:boolean,userInfo:{}, error: string, success:boolean }})=> state.user
   )
   // const [loading, setLoading] = useState();
+  const selector = useSelector((state: { user: any }) => state.user);
   const [screenSize, isScreenSmall] = useScreenSize();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   useEffect(() => {
       if (success ) navigate('/verify')
+        document.title = "Pneumalmpact - Signup";
+         if(selector.userData !== null){
+           navigate('/explore')
+         } 
 
   },[navigate, userInfo, success]);
 
