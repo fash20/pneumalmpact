@@ -85,7 +85,7 @@ const Navbar = () => {
             <Button
               style={BrandButtonStyle}
               className=" shadow-md sm:w-fit lg:w-[120px]"
-              href="/login"
+              href="/pneumalmpact/login"
             >
               Log In
             </Button>
@@ -93,7 +93,7 @@ const Navbar = () => {
               variant="pneumaBlue"
               style={BrandButtonStyle}
               className="shadow-md bg-white  sm:w-fit lg:w-[120px]"
-              href="/signup"
+              href="/pneumalmpact/signup"
             >
               Sign Up
             </Button>
@@ -168,7 +168,7 @@ const TopDrawer = ({ show, setShow, userData, isUserLoggedIn }: TopDrawerProps) 
         <div className="flex flex-col  space-y-4 ">
           <Button
             className=" w-full"
-            href="/login"
+            href="/pneumalmpact/login"
             onClick={handleButtonClick}
           >
             Log In
@@ -176,7 +176,7 @@ const TopDrawer = ({ show, setShow, userData, isUserLoggedIn }: TopDrawerProps) 
           <Button
             variant="pneumaBlue"
             className=" w-full"
-            href="/signup"
+            href="/pneumalmpact/signup"
             onClick={handleButtonClick}
           >
             Sign Up

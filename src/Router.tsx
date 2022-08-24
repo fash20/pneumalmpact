@@ -24,7 +24,7 @@ export const Router = () => {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/pneumalmpact"
         element={
           <>
             <Navbar />
@@ -33,7 +33,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/login"
+        path="/pneumalmpact/login"
         element={
           <>
             <Navbar />
@@ -44,7 +44,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/settings"
+        path="/pneumalmpact/settings"
         element={
           <UserNav>
             <Settings />
@@ -52,7 +52,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/passwordreset"
+        path="/pneumalmpact/passwordreset"
         element={
           <>
             <Navbar />
@@ -63,7 +63,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/personalinfo"
+        path="/pneumalmpact/personalinfo"
         element={
           <>
             <Navbar />
@@ -74,7 +74,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/signup"
+        path="/pneumalmpact/signup"
         element={
           <>
             <Navbar />
@@ -85,7 +85,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/verification"
+        path="/pneumalmpact/verification"
         element={
           <>
             <Navbar />
@@ -96,7 +96,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/additionalinfo"
+        path="/pneumalmpact/additionalinfo"
         element={
           <>
             <Navbar />
@@ -107,7 +107,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/personalinfo"
+        path="/pneumalmpact/personalinfo"
         element={
           <>
             <Navbar />
@@ -118,7 +118,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/user/dashboard"
+        path="/pneumalmpact/user/dashboard"
         element={
           <UserNav>
             <Dashboard />
@@ -126,7 +126,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/course"
+        path="/pneumalmpact/course"
         element={
           <UserNav>
             <Course />
@@ -134,7 +134,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/library"
+        path="/pneumalmpact/library"
         element={
           <UserNav>
             <Collection />
@@ -142,7 +142,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/audit"
+        path="/pneumalmpact/audit"
         element={
           <UserNav>
             <Audit />
@@ -150,7 +150,7 @@ export const Router = () => {
         }
       />
       <Route
-        path="/explore"
+        path="/pneumalmpact/explore"
         element={
           <UserNav>
             <Explore />
@@ -158,14 +158,14 @@ export const Router = () => {
         }
       />
       <Route
-        path="/blog"
+        path="/pneumalmpact/blog"
         element={
           <>
             <Navbar /><Blog />
           </>
         }
       />
-      <Route path="/about" element={<><AboutNav /><About /></>} />
+      <Route path="/pneumalmpact/about" element={<><AboutNav /><About /></>} />
       <Route
         path="*"
         element={
