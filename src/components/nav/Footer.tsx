@@ -17,7 +17,7 @@ const Footer = () => {
     window.open(link, '_blank', 'noopener,noreferrer')
   }
   return (
-    <div className="footer grid grid-cols-1 p-5 md:p-10  lg:p-20 space-y-20 text-white">
+    <div className="footer grid grid-cols-1 p-5 md:p-10  lg:p-20 space-y-20 text-white font-extralight">
       <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col space-y-6 m-3">
           <div className="inline-flex space-x-2 items-center">
@@ -26,13 +26,13 @@ const Footer = () => {
           </div>
           <p className="font-dmSansr text-gray">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam</p>
           <div className="inline-flex flex-row space-x-2">
-            <a href='https://www.google.com' target="_blank">
+            <a href='https://www.facebook.com/profile.php?id=100083285375332' target="_blank">
               <FacebookIcon />
             </a>
-            <a href='https://www.google.com' target="_blank">
+            <a href='https://twitter.com/PneumaImpact' target="_blank">
               <TwitterIcon />
             </a>
-            <a href='https://www.google.com' target="_blank">
+            <a href='https://instagram.com/pneuma_impact?igshid=YmMyMTA2M2Y=' target="_blank">
                 <InstagramIcon />
             </a>
             <a href='https://www.google.com' target="_blank">
@@ -62,14 +62,14 @@ const Footer = () => {
           <h3 className="font-dmSans text-[bold]">Contact Us</h3>
           <span className="font-dmSansr flex flex-col space-y-3 text-gray">
             <span className="inline-flex space-x-2">
-              <MailIcon /> <h4>About us</h4>{" "}
+              <MailIcon /> <h4>About us</h4>
             </span>
             <span className="inline-flex space-x-2">
-              <PhoneIcon /> <h4>+234 456 432 4324</h4>{" "}
+              <PhoneIcon /> <h4>+234 807 364 8625</h4>
             </span>
             <span className="inline-flex space-x-2">
-              <LocationOnIcon />{" "}
-              <h4>Hilltop towers foor 12 V.I Lagos Nigeria</h4>{" "}
+              <LocationOnIcon />
+              <h4>Bodija Estate, House no. 5, Ibadan</h4>
             </span>
           </span>
         </div>

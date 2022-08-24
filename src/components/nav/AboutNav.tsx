@@ -2,7 +2,7 @@ import { Avatar, Button, Drawer, IconButton } from "@mui/material";
 import { Dehaze } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/pneumaImpact-logo.svg";
+import logo from "../assets/images/pneumaImpact-logo-2.svg";
 import "../styles/General.css";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
@@ -13,7 +13,7 @@ import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/avatar.svg";
 import toast from "react-hot-toast";
 
-const Navbar = () => {
+const AboutNav = () => {
   const selector = useSelector((state: { user: any }) => state.user);
   const [screenSize, isScreenSmall] = useScreenSize();
   const [showDrawer, setShowDrawer] = useState(false);
@@ -26,7 +26,7 @@ const Navbar = () => {
     }
   }, [])
   return (
-    <div className="navbar navbar-bg ">
+    <div className="navbar bg-primaryTextColor">
       <div
         className={`h-16 grid justify-center  items-center ${
           isScreenSmall ? "grid-cols-2" : "grid-cols-3"
@@ -35,7 +35,7 @@ const Navbar = () => {
         <a href="/">
           <div className="flex justify-center items-center space-x-3 sm:space-x-4 ">
             <img className="w-10 h-10" src={logo} alt="logo" />
-            <label className=" font-zcool text-lg sm:text-xl  md:text-2xl">Pneumalmpact</label>
+            <label className=" font-zcool text-lg sm:text-xl  md:text-2xl text-white">Pneumalmpact</label>
           </div>
         </a>
         {isScreenSmall && (
@@ -46,33 +46,32 @@ const Navbar = () => {
           </div>
         )}
         {!isScreenSmall && (
-          <div className="flex items-center  justify-around p-5 ">
-            <a href="/explore" className="nav-link">
+          <div className="flex items-center font-poppins  justify-around p-5 text-white ">
+            <a href="/explore" className="">
               Explore
             </a>
-            <a href="/blogs" className="nav-link">
+            <a href="/blogs" className="">
               Blog
             </a>
-            <a href="/about" className="nav-link">
+            <a href="/about" className="">
               About us
             </a>
           </div>
         )}
         {!isScreenSmall &&  (
           isUserLoggedIn ?
-          <div className="flex flex-row space-x-3 justify-center items-center">
+          <div className="flex flex-row space-x-3 justify-center items-center ">
               <Link to='/user/dashboard'>
               <div className="">
-                {/* <img src={avatar} /> */}
                 <Avatar src={avatar} />
               </div>
               </Link>
               <Link to='/user/dashboard'>
-              <div className="flex flex-col justify-start ">
-                <h3 className="font-inter text-primaryTextColor font-bold">
+              <div className="flex text-sm flex-col justify-start ">
+                <h3 className="font-inter  text-white font-bold">
                   Avatar
                 </h3>
-                <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
+                <h4 className="font-inter text-white text-sm font-[100] ">
                   {
                     selector.userData.user
                   }
@@ -83,6 +82,7 @@ const Navbar = () => {
           :(
           <div className="flex justify-center gap-4 space-x-4 w-full">
             <Button
+              variant="pneumaWhite"
               style={BrandButtonStyle}
               className=" shadow-md sm:w-fit lg:w-[120px]"
               href="/login"
@@ -90,9 +90,9 @@ const Navbar = () => {
               Log In
             </Button>
             <Button
-              variant="pneumaBlue"
-              style={BrandButtonStyle}
-              className="shadow-md bg-white  sm:w-fit lg:w-[120px]"
+              variant="pneumaWhite"
+              style={BrandButtonStyle }
+              className="shadow-md bg-white  sm:w-fit lg:w-[120px] border-[1px] border-white"
               href="/signup"
             >
               Sign Up
@@ -107,7 +107,7 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AboutNav;
 
 interface TopDrawerProps {
   show: boolean;

@@ -7,6 +7,7 @@ import PersonalInfo from "./components/authentication/PersonalInfo";
 import Registration from "./components/authentication/Registration";
 import Verification from "./components/authentication/Verification";
 import Home from "./components/home/Home";
+import AboutNav from "./components/nav/AboutNav";
 import Navbar from "./components/nav/Navbar";
 import UserNav from "./components/nav/UserNav";
 import About from "./components/pages/About";
@@ -46,7 +47,6 @@ export const Router = () => {
         path="/settings"
         element={
           <UserNav>
-            {" "}
             <Settings />
           </UserNav>
         }
@@ -165,7 +165,7 @@ export const Router = () => {
           </>
         }
       />
-      <Route path="/about" element={<About />} />
+      <Route path="/about" element={<><AboutNav /><About /></>} />
       <Route
         path="*"
         element={

@@ -7,7 +7,7 @@ const Subscription = () => {
   return (
     <div className="bg-white flex justify-center items-center ">
       <div className="my-28 flex flex-col gap-7 justify-center  items-center text-center mb-20 bg-[#F7F7FF]   lg:rounded-3xl p-5 md:p-16 lg:p-20 w-[100%]  md:w-[75%]">
-        <h3 className=" font-poppins "> Our Subscribe</h3>
+        <h3 className=" font-poppins "> Our News</h3>
         <div>
           <span className="step-title-blue"> Subscribe To Get Our </span>
           <span className="step-title-red">Latest </span>

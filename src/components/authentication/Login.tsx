@@ -18,18 +18,18 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const selector = useSelector((state: { user: any }) => state.user);
+  const {userData,loading} = useSelector((state: { user: any }) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const [screenSize, isScreenSmall] = useScreenSize();
   const navigate = useNavigate()
 
   useEffect(() => {
     document.title = "Pneumalmpact - Login";
-     if(selector.userData !== null){
+     if(userData.user !== '' && userData.token !== ''){
        navigate('/explore')
      } 
 
-  }, []);
+  }, [userData, navigate]);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -51,11 +51,11 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    const validationResult = validateEmail(userCred.email);
-    // if (validationResult !== null) return;
-    // else {
-      dispatch(loginUser(userCred));
-    // }
+    const validationResult = validateEmail(userCred.email);    
+    if (validationResult === undefined && userCred.password !=='') {
+          dispatch(loginUser(userCred));
+    }
+  
   };
 
   return (

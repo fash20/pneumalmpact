@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import OurFeature from "./OurFeature";
 import FAQ from "./FAQ";
 import OurReview from "./OurReview";
@@ -9,6 +9,10 @@ import Target from "./Target";
 
 
 const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="grid grid-cols-1 gap-y-10 lg:gap-36">
       <FrontPage />
