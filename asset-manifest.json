@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pneumalmpact/static/css/main.eb053467.css",
-    "main.js": "/pneumalmpact/static/js/main.5f528a54.js",
+    "main.css": "/pneumalmpact/static/css/main.e76699da.css",
+    "main.js": "/pneumalmpact/static/js/main.faea3256.js",
     "static/js/787.ea9893fe.chunk.js": "/pneumalmpact/static/js/787.ea9893fe.chunk.js",
     "static/media/Rectangle7.svg": "/pneumalmpact/static/media/Rectangle7.51b3acee6ad24c98a82ba537aa0859f5.svg",
     "static/media/cimage2.svg": "/pneumalmpact/static/media/cimage2.860cd1b0f69d030a29a71eec0becbf8d.svg",
@@ -42,7 +42,6 @@
     "static/media/clock.svg": "/pneumalmpact/static/media/clock.c94320abba62c342b1f41a1819dc6f94.svg",
     "static/media/pneumaImpact-logo-2.svg": "/pneumalmpact/static/media/pneumaImpact-logo-2.e77eedd671f736fcb71a5a0b3a8a6568.svg",
     "static/media/pneumaImpact-logo.svg": "/pneumalmpact/static/media/pneumaImpact-logo.1bb0c18501900e3ac770a9dce0f05cf4.svg",
-    "static/media/01.svg": "/pneumalmpact/static/media/01.109c245a65c384425e8746c3edb212f1.svg",
     "static/media/square-logo.svg": "/pneumalmpact/static/media/square-logo.18f5aa45ec5997b954f50e618549bb24.svg",
     "static/media/icon-facebook.svg": "/pneumalmpact/static/media/icon-facebook.94a3ae563cea40fef0902940fe2e32ed.svg",
     "index.html": "/pneumalmpact/index.html",
@@ -50,12 +49,12 @@
     "static/media/frontpagebg.svg": "/pneumalmpact/static/media/frontpagebg.88f174f74de03c41e1c3.svg",
     "static/media/FooterBackground.svg": "/pneumalmpact/static/media/FooterBackground.4b3cab3258de11fbfeae.svg",
     "static/media/footermobile.svg": "/pneumalmpact/static/media/footermobile.c48b9534b5e8b9a50fb1.svg",
-    "main.eb053467.css.map": "/pneumalmpact/static/css/main.eb053467.css.map",
-    "main.5f528a54.js.map": "/pneumalmpact/static/js/main.5f528a54.js.map",
+    "main.e76699da.css.map": "/pneumalmpact/static/css/main.e76699da.css.map",
+    "main.faea3256.js.map": "/pneumalmpact/static/js/main.faea3256.js.map",
     "787.ea9893fe.chunk.js.map": "/pneumalmpact/static/js/787.ea9893fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb053467.css",
-    "static/js/main.5f528a54.js"
+    "static/css/main.e76699da.css",
+    "static/js/main.faea3256.js"
   ]
 }
