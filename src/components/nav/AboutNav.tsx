@@ -17,7 +17,7 @@ const AboutNav = () => {
   const selector = useSelector((state: { user: any }) => state.user);
   const [screenSize, isScreenSmall] = useScreenSize();
   const [showDrawer, setShowDrawer] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(selector.userData === null ? false:true)
+  const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(selector.userData === null || selector.userData.user === '' ? false:true)
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(()=>{
@@ -129,7 +129,7 @@ const TopDrawer = ({ show, setShow, userData, isUserLoggedIn }: TopDrawerProps) 
       <a href="/">
           <div className="flex justify-left space-x-2 ">
             <img className="w-8 h-8" src={logo} alt="logo" />
-            <label className=" font-zcool text-xl">Pneumalmpact</label> 
+            <label className=" font-zcool text-xl">Pneuma Impact</label> 
           </div>
         </a>
         <div className="flex flex-col items-start space-y-10 justify-around ">
@@ -148,17 +148,17 @@ const TopDrawer = ({ show, setShow, userData, isUserLoggedIn }: TopDrawerProps) 
               <Link to='/user/dashboard'>
               <div className="">
                 {/* <img src={avatar} /> */}
-                <Avatar src={avatar} />
+                {/* <Avatar src={avatar} /> */}
               </div>
               </Link>
               <Link to='/user/dashboard' onClick={handleButtonClick}>
               <div className="flex flex-col justify-start">
                 <h3 className="font-inter text-primaryTextColor font-bold">
-                  Avatar
+                  {/* Avatar */}
                 </h3>
                 <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
                   {
-                    userData.user
+                    // userData.user
                   }
                 </h4>
               </div>

@@ -1,14 +1,22 @@
 import { AsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginUser, registerUser, getUserDetails } from "./userAction";
 
-const userData = localStorage.getItem('user')
-? JSON.parse( localStorage.getItem('user'))
-: null
-
 interface UserData {
   user: string,
-  token: string
+  token: string,
+  isVerified:boolean
 }
+
+const initialUserData:UserData = {
+  user:null,
+  token:null,
+  isVerified: null,
+}
+
+const userData = localStorage.getItem('user')
+? JSON.parse(localStorage.getItem('user'))
+: localStorage.setItem("user", JSON.stringify(initialUserData));
+
 
 export interface State{
   loading: boolean,
@@ -19,19 +27,23 @@ export interface State{
 
 const  initialState = {
   loading: false,
-  userData: {
-    user: '',
-    token: ''
-  },
+  userData: userData,
   error: "",
   success: false,
 };
 
 
-const userSlice = createSlice({
+const userSlice :any  = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem('user') // deletes token from storage
+      state.loading = false
+      state.userData = null
+      state.error = null
+    },
+  },
   extraReducers: {
     [registerUser.pending as any]: (state:State) => {
       state.loading = true
@@ -72,4 +84,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { logout } = userSlice.actions
 export default userSlice.reducer

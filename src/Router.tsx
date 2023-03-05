@@ -1,4 +1,6 @@
-import { Routes, BrowserRouter, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import AddCourse from "./components/admin/AddCourse";
+import AdminDashboard from "./components/admin/AdminDashboard";
 import AdditionalInfo from "./components/authentication/AdditionalInfo";
 import AuthContainer from "./components/authentication/AuthContainer";
 import Login from "./components/authentication/Login";
@@ -12,7 +14,10 @@ import Navbar from "./components/nav/Navbar";
 import UserNav from "./components/nav/UserNav";
 import About from "./components/pages/About";
 import Blog from "./components/pages/Blog";
+import CourseUpload from "./components/pages/CourseUpload";
 import PageNotFound from "./components/pages/PageNotFound";
+import ProtectedRoute from "./components/pages/ProtectedRoute";
+import Payment from "./components/payment/Payment";
 import Audit from "./components/user/Audit";
 import Collection from "./components/user/Collection";
 import Course from "./components/user/Course";
@@ -118,15 +123,17 @@ export const Router = () => {
         }
       />
       <Route
-        path="/user/dashboard"
+        path="/profile"
         element={
-          <UserNav>
-            <Dashboard />
-          </UserNav>
+          <ProtectedRoute>
+            <UserNav>
+              <Dashboard />
+            </UserNav>
+          </ProtectedRoute>
         }
       />
       <Route
-        path="/course"
+        path="/course/id/:id"
         element={
           <UserNav>
             <Course />
@@ -144,28 +151,80 @@ export const Router = () => {
       <Route
         path="/audit"
         element={
-          <UserNav>
-            <Audit />
-          </UserNav>
+          <ProtectedRoute>
+            <UserNav>
+              <Audit />
+            </UserNav>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/explore"
         element={
-          <UserNav>
-            <Explore />
-          </UserNav>
+          <ProtectedRoute>
+            <UserNav>
+              <Explore />
+            </UserNav>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+              <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/courseupload"
+        element={
+          <ProtectedRoute>
+            <UserNav>
+              <CourseUpload />
+            </UserNav>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/blog"
         element={
           <>
-            <Navbar /><Blog />
+            <Navbar />
+            <Blog />
           </>
         }
       />
-      <Route path="/about" element={<><AboutNav /><About /></>} />
+      <Route
+        path="/about"
+        element={
+          <>
+            <AboutNav />
+            <About />
+          </>
+        }
+      />
+      <Route
+        path="/admin/addcourse"
+        element={
+          <>
+            <Navbar />
+            <AddCourse />
+          </>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <>
+            {" "}
+            <Navbar />
+            <AuthContainer>
+              <Payment />
+            </AuthContainer>
+          </>
+        }
+      />
       <Route
         path="*"
         element={

@@ -1,9 +1,14 @@
 import { Avatar } from "@material-ui/core";
 import { ArrowLeftIcon, ArrowRightIcon, IconButton } from "evergreen-ui";
 import React, {useState} from "react";
-import numberOne from "../assets/images/01.svg";
-import profileImage from "../assets/images/profileimage.png";
 import '../styles/animations.css'
+import image1 from '../assets/images/testimonials/image1.png'
+import image2 from '../assets/images/testimonials/image2.jpeg'
+import image3 from '../assets/images/testimonials/image3.jpeg'
+import image4 from '../assets/images/testimonials/image4.jpg'
+import image5 from '../assets/images/testimonials/image5.jpg'
+import image6 from '../assets/images/testimonials/image6.png'
+import image7 from '../assets/images/testimonials/image7.png'
 
 const Testimonials= [
   {
@@ -12,23 +17,23 @@ const Testimonials= [
     review:`I've never seen a complete course for enterprneus like this. Talk about 
     the finance management, the business management, Pnuema Impact got all these. I encourage
     everyone doing business or want to start any businesses to take the course and you'll never regret dong that`,
-    img:'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg'
+    img:image1
   },
   {
     author:'Francis W.',
     field:'',
-    review:`I never knew how to write business plan is that simple untill I enrolled with Pneuma Impact. I was thought everything I
+    review:`I never knew how to write business plan is that simple untill I enrolled with Pneuma Impact. I was taught everything I
     needed to know about business plan. Now, my business has its ownl plan and this has made me more visible to my investors and 
-    brought real life into my business. And guess what? I won te 500k grants. Thank you Pneuma Impact`,
-    img:'https://images.pexels.com/photos/1484794/pexels-photo-1484794.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+    brought real life into my business. And guess what? I won the 500k grants. Thank you Pneuma Impact`,
+    img:image4
   },
   {
-    author:'Funmi G.',
+    author:'Michael G.',
     field:'',
     review:`I've been wanting to start business for long but no adequate training materials for me. A friend sent Pneuma Impact link to me.
      I applied and found all the courses interesting and educating. Now, I can start my business in peace and I even have mentors from them 
      for a whole year. Thank you Pneuma Impact.`,
-     img:'https://images.pexels.com/photos/7256659/pexels-photo-7256659.jpeg?cs=srgb&dl=pexels-olha-ruskykh-7256659.jpg&fm=jpg'
+     img:image3
   },
   {
     author:'Chimezie T.',
@@ -36,7 +41,39 @@ const Testimonials= [
     review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
     Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
     Chimezie T`,
-    img:'https://images.pexels.com/photos/2216607/pexels-photo-2216607.jpeg?cs=srgb&dl=pexels-dellon-thomas-2216607.jpg&fm=jpg'
+    img:image2
+  },
+  {
+    author:'Adebayo O.',
+    field:'',
+    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
+    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+    Chimezie T`,
+    img:image6
+  },
+  {
+    author:'Chimezie T.',
+    field:'',
+    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
+    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+    Chimezie T`,
+    img:image2
+  },
+  {
+    author:'Anjela C.',
+    field:'',
+    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
+    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+    Chimezie T`,
+    img:image7
+  },
+  {
+    author:'Mubarak K.',
+    field:'',
+    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
+    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+    Chimezie T`,
+    img:image2
   },
 ]
 
@@ -111,7 +148,7 @@ const StudentReview = ({testimonial, count}:TestimonialProp) => {
         }
       </div>
       <div className="flex flex-col items-center justify-center gap-y-5 mt-[5px]">
-        <Avatar src={testimonial.img} style={{ height: 90, width: 90 }} />
+        <Avatar src={testimonial.img} style={{ height: 100, width: 100 }} />
         <span className="font-zcool fnt25 h-[20px]">{testimonial.author}</span>
         <span className="font-inter">{testimonial.field}</span>
         <p id='fade-in' className="font-zcool text-md h-[220px] mb:h-[200px] md:h-[160px] lg:h-[100px] ">

@@ -40,14 +40,13 @@ const Registration = () => {
     }) => state.user
   );
   // const [loading, setLoading] = useState();
-  const {userData} = useSelector((state: { user: any }) => state.user);
+  const { userData } = useSelector((state: { user: any }) => state.user);
   const [screenSize, isScreenSmall] = useScreenSize();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(success)
-    if (success) navigate("/verify");
+    if (success) navigate("/verification");
     document.title = "Pneumalmpact - Signup";
     // if (userData !== null) {
     //   navigate("/explore");
@@ -74,11 +73,19 @@ const Registration = () => {
   };
 
   const handleRegistration = () => {
-    //   const validationResult = validateEmail(userCred.email)
+    const validationResult = validateEmail(userCred.email);
     //  if (validationResult !== null )
     //  return
     //  else
-    dispatch(registerUser(userCred));
+    
+    if (validationResult === undefined ) {
+      dispatch(registerUser(userCred));
+    }
+    else{
+      toast.error("Ensure no password field is empty")
+    }
+    
+
   };
   return (
     <div className="grid grid-cols-1 mx-5 mb:mx-5 md:mx-10 my-10 gap-y-14 ">
@@ -100,7 +107,7 @@ const Registration = () => {
       <div className="flex  ">
         {isScreenSmall && (
           <div className="flex justify-around w-full ">
-            <IconButton className="gap-x-1">
+            {/* <IconButton className="gap-x-1">
               <img
                 src={googleIcon}
                 alt="googleIcon"
@@ -113,12 +120,12 @@ const Registration = () => {
                 alt="facebookIcon"
                 className={`${!isScreenSmall ? " w-[15px]" : `drop-shadow-xl`}`}
               />
-            </IconButton>
+            </IconButton> */}
           </div>
         )}
         {!isScreenSmall && (
           <div className="flex justify-around w-full ">
-            <Button className="gap-x-1" variant="outlined">
+            {/* <Button className="gap-x-1" variant="outlined">
               <img
                 src={googleIcon}
                 alt="googleIcon"
@@ -129,12 +136,12 @@ const Registration = () => {
             <Button className=" gap-x-1 " variant="outlined">
               <img src={facebookIcon} alt="facebookIcon" />
               Register with Facebook
-            </Button>
+            </Button> */}
           </div>
         )}
       </div>
       <div className="text-center">
-        <Heading size={800}>OR</Heading>
+        {/* <span className=" text-2xl font-inter">OR</span> */}
       </div>
       <div className="grid grid-cols-1 gap-y-4">
         <div className="grid grid-cols-1 gap-y-8 sm:gap-y-8 md:gap-y-10 lg:gap-y-12 ">

@@ -7,33 +7,52 @@ import { Button, IconButton } from "@mui/material";
 import {  DeleteOutlined } from "@mui/icons-material";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import axios, { Axios } from "axios";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { ProfileSection } from "./Settings";
+
+interface AuditDocument{
+  businessName:string,
+  businessPlan:any
+  meansOfIdentification:any
+}
 
 const Audit = () => {
   const [selectedValue, setSelectedValue] = useState("a");
+  const [auditDocument, setAuditDocument] = useState<AuditDocument>({
+    businessName:'',
+    businessPlan: {},
+    meansOfIdentification:{}
+  })
+
+  console.log(auditDocument.businessName)
+  console.log(auditDocument.businessPlan.size)
+  console.log(auditDocument.meansOfIdentification.size)
+
+
 
   return (
     <div className="grid grid-cols-1 relative w-full " id='fade-in'>
-      <SettingSVG />
-      <div className="flex gap-5 p-8 ">
-        <div className="grid grid-cols-1 w-100">
-          <div className="h-44 w-44 border-8 rounded-full border-primaryTextColor  absolute bg-neutral-900 top-[5%] md:left-[5%]">
-            <div className=" flex justify-center items-center w-[40px] h-[40px] rounded-[50%] absolute bottom-0 right-3  bg-primaryTextColor">
-              <CameraAltIcon sx={{ color: "#FFF" }} />
-            </div>
-          </div>
-        </div>
+       <div className="relative h-[250px]">
+        <SettingSVG />
+        <ProfileSection />
       </div>
       <div className="flex flex-col space-y-5  md:flex-row  md:space-x-5 md:space-y-0 p-4 ">
+        
         <AuditRadioGroup
           selectedValue={selectedValue}
           setSelectedValue={setSelectedValue}
         />
         {/* <div className="md:mr-20"> */}
-        {selectedValue === "a" && <BusinessNameForm />}
-        {selectedValue === "b" && <BusinessPlanUpload />}
-        {selectedValue === "c" && <MeansOfIdenficationForm />}
+        {selectedValue === "a" && <BusinessNameForm auditDocument={auditDocument} setAuditDocument={setAuditDocument} />}
+        {selectedValue === "b" && <BusinessPlanUpload  auditDocument={auditDocument} setAuditDocument={setAuditDocument}/>}
+        {selectedValue === "c" && <MeansOfIdenficationForm auditDocument={auditDocument} setAuditDocument={setAuditDocument} />}
         {/* </div> */}
       </div>
+      {
+         JSON.stringify(auditDocument) 
+      }
     </div>
   );
 };
@@ -134,19 +153,23 @@ const AuditRadioGroup = ({
   );
 };
 
-const BusinessNameForm = () => {
+const BusinessNameForm = ({auditDocument, setAuditDocument}:AuditDocumentProp) => {
+  const [businessName, setBusinessName] = useState('')
   return (
     <div className="flex flex-col space-y-10 border-[1px] border-grayMarginColor w-full p-9 md:w-[60%]  justify-center">
       <span>
         <h3>Business Name</h3>
         <h4>Your Business should be unique to what you are into</h4>
       </span>
-      <TextInput label={"Business Name"} />
+      <TextInput label={"Business Name"} onChange={(e)=>setBusinessName(e.target.value)}  value={businessName === null? "":businessName}/>
       <div className="flex justify-center items-center w-[full]">
         <Button
           variant="pneumaBlue"
           style={BrandButtonStyle}
           className="w-[50%]"
+          onClick={()=>{
+            setAuditDocument({...auditDocument, businessName} )
+          }}
         >
           Next
         </Button>
@@ -154,12 +177,18 @@ const BusinessNameForm = () => {
     </div>
   );
 };
-const MeansOfIdenficationForm = () => {
+
+interface AuditDocumentProp{
+  auditDocument:AuditDocument
+  setAuditDocument:(auditDocument: any)=>void
+}
+const MeansOfIdenficationForm = ({auditDocument, setAuditDocument}:AuditDocumentProp) => {
   const [selectedFile, setSelectedFile] = useState<any>();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+  const [isFilePicked, setIsFilePicked] = useState(auditDocument.meansOfIdentification? true: false);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedFile(event.target.files[0]);
+    // setAuditDocument({...auditDocument, meansOfIdenfication:event.target.files})
     setIsFilePicked(true);
   };
 
@@ -169,14 +198,14 @@ const MeansOfIdenficationForm = () => {
         <h1 className="font-bold ">Means of Identification</h1>
         <p>
           Upload a mean of Identifcation. Upload either of the following
-          National ID, Drivers Licence, CAC carticficate, Voters' Card{" "}
+          National ID, Drivers Licence, CAC carticficate, Voters' Card
         </p>
       </div>
       <div className="flex relative w-full h-[100px] bg-lightBlue justify-center items-center space-x-4">
         <label
           id="upload-label"
           className="flex justify-center space-x-4 items-center w-full h-full text-center"
-          htmlFor="upload-input"
+          htmlFor="upload-input1"
         >
           <CloudUploadIcon />
           <span>
@@ -185,24 +214,26 @@ const MeansOfIdenficationForm = () => {
           </span>
         </label>
         <input
-          id="upload-input"
+          id="upload-input1"
           onChange={changeHandler}
           accept=".doc,.docx,.pdf"
           type={"file"}
           multiple
         />
       </div>
-      {isFilePicked && (
+      {!isFilePicked && (
         <div className="flex relative w-full h-[60px] bg-lightBlue justify-between items-center space-x-4 " id='fadein'>
           <SelectedItem
-            fileSize={selectedFile.size}
-            fileName={selectedFile.name}
+            fileSize={auditDocument.meansOfIdentification}
+            fileName={auditDocument.meansOfIdentification.name}
           />
 
           <IconButton
             onClick={() => {
               setSelectedFile({});
               setIsFilePicked(false);
+              // setAuditDocument({...auditDocument, selectedFile} )
+            
             }}
           >
             <DeleteOutlined />
@@ -214,21 +245,39 @@ const MeansOfIdenficationForm = () => {
           variant="pneumaBlue"
           style={BrandButtonStyle}
           className="w-[50%]"
+          onClick={()=>{
+
+            axios.post("https://api.pneumaimpact.ng/v1/api/uploads", {file:selectedFile})
+            .then((res)=>{
+              console.log(res)
+              setAuditDocument({...auditDocument, meansOfIdentification:res})
+            })
+            .catch(err=>{
+              toast.error("Something went wrong while uploading the your Means of Identification")
+            })
+            
+          }}
         >
-          Next
+          Finish
         </Button>
       </div>
     </div>
   );
 };
-const BusinessPlanUpload = () => {
+const BusinessPlanUpload =  ({auditDocument, setAuditDocument}:AuditDocumentProp) => {
   const [selectedFile, setSelectedFile] = useState<any>();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+  const [isFilePicked, setIsFilePicked] = useState(auditDocument.businessPlan? true: false);
+  var formData = new FormData();
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
+    formData.append('file', event.target.files[0]);
+
   };
+  const { userData, loading } = useSelector(
+    (state: { user: any }) => state.user
+  );
 
   return (
     <div className="w-full flex flex-col space-y-10  md:w-[60%]">
@@ -243,7 +292,7 @@ const BusinessPlanUpload = () => {
         <label
           id="upload-label"
           className="flex justify-center space-x-4 items-center w-full h-full text-center"
-          htmlFor="upload-input"
+          htmlFor="upload-input1"
         >
           <CloudUploadIcon />
           <span>
@@ -252,7 +301,7 @@ const BusinessPlanUpload = () => {
           </span>
         </label>
         <input
-          id="upload-input"
+          id="upload-input1"
           onChange={changeHandler}
           accept=".doc,.docx,.pdf"
           type={"file"}
@@ -262,14 +311,14 @@ const BusinessPlanUpload = () => {
       {isFilePicked && (
         <div className="flex relative w-full h-[60px] bg-lightBlue justify-between items-center space-x-4" id='fadein'>
           <SelectedItem
-            fileSize={selectedFile.size}
-            fileName={selectedFile.name}
+            fileSize={auditDocument.businessPlan ? auditDocument.businessPlan.size: selectedFile.size }
+            fileName={auditDocument.businessPlan.name}
           />
 
           <IconButton
             onClick={() => {
-              setSelectedFile({});
               setIsFilePicked(false);
+              setSelectedFile({});
             }}
           >
             <DeleteOutlined />
@@ -281,8 +330,25 @@ const BusinessPlanUpload = () => {
           variant="pneumaBlue"
           style={BrandButtonStyle}
           className="w-[50%]"
+
+          onClick={()=>{
+            axios.post("https://api.pneumaimpact.ng/v1/api/uploads",  {
+              headers: {
+                Authorization: `Bearer ${userData.token}`,
+                "Content-Type": "application/json",
+              },
+            },  )
+            .then((res)=>{
+              console.log(res)
+              setAuditDocument({...auditDocument, businessPlan:res})
+            })
+            .catch(err=>{
+              toast.error("Something went wrong while uploading the your Means of Identification")
+            })
+            
+          }}
         >
-          Finish
+          Next
         </Button>
       </div>
     </div>
@@ -294,7 +360,8 @@ interface SelectedItemProp {
   fileSize: string;
 }
 
-const SelectedItem = ({ fileName, fileSize }: SelectedItemProp) => {
+export const SelectedItem = ({ fileName, fileSize }: SelectedItemProp) => {
+
   return (
     <div className="flex flex-row space-x-5 p-4">
       <svg

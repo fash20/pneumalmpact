@@ -35,10 +35,10 @@ const Footer = () => {
             <a href='https://instagram.com/pneuma_impact?igshid=YmMyMTA2M2Y=' target="_blank">
                 <InstagramIcon />
             </a>
-            <a href='https://www.google.com' target="_blank">
+            <a href='https://www.linkedin.com/' target="_blank">
                 <LinkedInIcon />
             </a>
-            <a href='https://www.google.com' target="_blank">
+            <a href='https://youtube.com/channel/UCQvXMPoVMgbKzO6QOYRsT6Q'  target="_blank">
                 <YouTubeIcon />
             </a>
           </div>

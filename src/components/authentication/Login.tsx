@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
 import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
 import { Button, IconButton, TextField } from "@mui/material";
 import { BrandButtonStyle } from "../utils/UIThemes";
@@ -11,25 +11,59 @@ import { validateEmail } from "../utils/validator";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../store/userAction";
 import { AppDispatch } from "../store/store";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
+import axios from "axios";
+import useVerifyJWT from "../utils/useVerifyJWT";
+import checkTokenExpired from "../utils/checkTokenExp";
 
 const Login = () => {
   const [userCred, setUserCred] = useState({
     email: "",
     password: "",
   });
-  const {userData,loading} = useSelector((state: { user: any }) => state.user);
+  const { userData, loading } = useSelector(
+    (state: { user: any }) => state.user
+  );
   const dispatch = useDispatch<AppDispatch>();
   const [screenSize, isScreenSmall] = useScreenSize();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const clientId =
+    "643627771993-b1qcteo15v37rq14dld7rlnrh68uiveu.apps.googleusercontent.com";
+
+  const onSuccess = (res: string) => {
+    console.log("success:", res);
+  };
+  const onFailure = (err: string) => {
+    console.log("failed:", err);
+  };
 
   useEffect(() => {
     document.title = "Pneumalmpact - Login";
-     if(userData.user !== '' && userData.token !== ''){
-       navigate('/explore')
-     } 
-
-  }, [userData, navigate]);
+    if(userData && userData.user){
+      if (
+        userData.user !== "" &&
+        checkTokenExpired(userData.token) &&
+        userData.isVerified !== false
+      ) {
+        navigate("/explore");
+      } else if (
+        userData.user !== "" &&
+        userData.token !== "" &&
+        userData.isVerified === false
+      ) {
+        navigate("/verification");
+      }
+    }
+    const initClient = () => {
+      gapi.auth2.init({
+        clientId: clientId,
+        scope: "",
+      });
+    };
+    gapi.load("client:auth2", initClient);
+  }, [userData, navigate,]);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -51,11 +85,14 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    const validationResult = validateEmail(userCred.email);    
-    if (validationResult === undefined && userCred.password !=='') {
-          dispatch(loginUser(userCred));
+    const validationResult = validateEmail(userCred.email);
+    if (validationResult === undefined && userCred.password !== "") {
+      dispatch(loginUser(userCred));
     }
-  
+    else{
+      toast.error("Ensure password field is not empty")
+    }
+    
   };
 
   return (
@@ -82,33 +119,47 @@ const Login = () => {
               className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
             />
           </IconButton>
+          {/* <GoogleLogin
+            clientId={clientId}
+            buttonText="Sign in with Google"
+            onSuccess={() => onSuccess}
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+          />
           <IconButton className="flex gap-x-1 ">
             <img
               src={facebookIcon}
               alt="facebookIcon"
               className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
             />
-          </IconButton>
+          </IconButton> */}
         </div>
       )}
       {!isScreenSmall && (
         <div className="flex justify-around ">
-          <Button className="gap-x-1" variant="outlined">
+          {/* <Button className="gap-x-1" variant="outlined">
             <img
               src={googleIcon}
               alt="googleIcon"
               className={`${!isScreenSmall ? "" : `drop-shadow-xl`}`}
             />
             Login with Google
-          </Button>
+          </Button> */}
+          {/* <GoogleLogin
+            clientId={clientId}
+            buttonText="Login with Google"
+            onSuccess={() => onSuccess}
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+          />
           <Button className=" gap-x-1 " variant="outlined">
             <img src={facebookIcon} alt="facebookIcon" />
             Login with Facebook
-          </Button>
+          </Button> */}
         </div>
       )}
       <div className="text-center">
-        <Heading size={800}>OR</Heading>
+        {/* <Heading size={800}>OR</Heading> */}
       </div>
       <div className="grid grid-cols-1 gap-y-10">
         <div className="grid grid-cols-1 gap-y-8 sm:gap-y-8 md:gap-y-10 lg:gap-y-12">

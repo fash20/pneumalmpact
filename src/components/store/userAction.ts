@@ -12,11 +12,18 @@ export const registerUser = createAsyncThunk(
   "auth/regiter",
   async (user: User, thunkAPI) => {
     try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      // const { data }: any  = await axios.post("https://api.pneumaimpact.ng/v1/api/auth/register", user, config)
+      // .catch(err=> toast.error(err.message))
       AuthService.register(user.email, user.password)
         .then((res) => {
           toast.success(res.data.message);
         })
-        .catch((err) => toast.error(err.response.data.errors[0].msg));
+        .catch(err=> toast.error(err.message))
     } catch (error: any) {
       if (error.response && error.response.data.message) {
         return thunkAPI.rejectWithValue(error.response.data.message);
@@ -36,28 +43,25 @@ export const loginUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       }
-      // AuthService.login(user.email, user.password)
-      //   .then((res) => {
-      //     toast.success(res.data);
-      //     // if res !== null ? toast
-      //     // toast.error(res.data.message)
-      //   })
-      //   .catch((err) => {
-      //     toast.error('An error occured' + err)
-      //   });
 
-      const { data }: any  =await axios.post("https://api.pneumaimpact.ng/v1/api/auth/login", user, config)
-      .catch(err=> toast.error(err.response.data.message))
+      const { data }: any  = await axios.post("https://api.pneumaimpact.ng/v1/api/auth/login", user, config)
+      .catch(err=> {
+        // toast.error(err.response.data.message)
+        toast.error(err.message || err.response.data.message)
+      })
+      console.log(data);
+      
       const userData = {
         user: data.user.email,
         token: data.token,
+        isVerified: data.user.isVerified
       };
       localStorage.setItem("user", JSON.stringify(userData));
       
       return data
     } catch (error: any) {
       if (error.response && error.response.data.message) {
-        // toast.error(error.response.data.message)
+        toast.error(error.response.data.message)
         return thunkAPI.rejectWithValue(error.response.data.message);
       } else {
         return thunkAPI.rejectWithValue(error.message);
@@ -78,7 +82,7 @@ export const getUserDetails = createAsyncThunk(
           Authorization: `Bearer ${user.userToken}`,
         },
       }
-      const { data } = await axios.get(`api/auth/user`, config)
+      const { data } = await axios.get(`https://api.pneumaimpact.ng/v1/api/profile`, config)
       return data
     }
     catch (error:any) {

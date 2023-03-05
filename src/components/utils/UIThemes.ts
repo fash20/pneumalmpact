@@ -48,10 +48,10 @@ export const theme = createTheme({
         {
           props: { variant: "pneumaWhite", },
           style: {
-            backgroundColor:'',
-            color: "#444",
+            backgroundColor:'#FFF',
+            color: "#2F327D",
             '&:hover': {
-              background: "#ff6978",
+              background: "#f2f2f2",
            }, 
           },
           

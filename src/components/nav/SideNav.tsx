@@ -7,6 +7,7 @@ import LibraryIcon from "../svgicons/LibraryIcon";
 import AuditIcon from "../svgicons/AuditIcon";
 import GearIcon from "../svgicons/GearIcon";
 import HelpIcon from "../svgicons/HelpIcon";
+import { useScreenSize } from "../utils/useScreenSize";
 
 const navItems = [
   {
@@ -37,18 +38,19 @@ const navItems = [
     id: 5,
     name: "Help",
     href: "/help",
-    icon: <HelpIcon />,
+    icon: <HelpIcon  />,
   },
 ];
 
 const SideNav = () => {
   const location = useLocation();
+  const [screenSize, isScreenSmall] = useScreenSize();
   return (
-    <div className="bg-white  sticky left-0 flex flex-col w-[103px] h-[full] space-y-16  border-r-[1px]  border-x-grayMarginColor">
-      <a href="/">
-        <img className=" h-20 bg-white" src={squarelogo} alt="logo" />
-      </a>
-      <div className="flex flex-col  space-y-6 p-3">
+    <div className={`bg-white relative  flex flex-col min-w-[103px] h-[full] space-y-16 ${isScreenSmall ? '' : 'border-r-[1px] border-x-grayMarginColor' }  `}>
+      {/* <a href="/">
+        <img src={squarelogo} alt="logo" />
+      </a> */}
+      <div className="flex flex-col sticky left-0  space-y-6 p-3">
         {navItems.map((item) => (
           <NavItem
             key={item.id}

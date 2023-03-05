@@ -1,10 +1,12 @@
-import { Button,  Heading, TextInputField } from "evergreen-ui";
+import {  Heading, TextInputField } from "evergreen-ui";
 import React, { useState } from "react";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import countries from "i18n-iso-countries";
 import ReactFlagsSelect from "react-flags-select";
 import "../styles/General.css";
+import { TextField, Button } from "@mui/material";
+import { BrandButtonStyle } from "../utils/UIThemes";
 
 
 const PersonalInfo = () => {
@@ -36,18 +38,16 @@ const PersonalInfo = () => {
         <Heading size={800}>Personal Inofrmation</Heading>
       </div>
       <div className="grid grid-cols-1 gap-y-10">
-        <div className=" grid grid-cols-1">
-          <TextInputField
-            inputHeight={50}
+        <div className=" grid grid-cols-1 space-y-5">
+          <TextField
             label="First Name"
             placeholder={"First Name"}
           />
-          <TextInputField
-            inputHeight={50}
+          <TextField
             label="Last Name"
             placeholder="LastName"
           />
-          <div className="grid gap-6 grid-cols-2">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
             <div className="grid gap-2">
               <Heading size={400}>Country</Heading>
               <ReactFlagsSelect
@@ -63,27 +63,20 @@ const PersonalInfo = () => {
                 
               />
             </div>
-            <TextInputField
-              inputHeight={50}
+            <TextField
               label="State"
               placeholder={"State"}
             />
-            <TextInputField
-              inputHeight={50}
+            <TextField
               label="Code"
               placeholder={"123"}
             />
-            <TextInputField
-              inputHeight={50}
+            <TextField
               label="Phone Number"
               placeholder={"Phone"}
             />
           </div>
-          <Button appearance="primary">Login</Button>
-        </div>
-        <div className="flex justify-center">
-          <Heading>Have an account?</Heading>
-          <Heading>Login</Heading>
+          <Button variant="pneumaBlue" style={BrandButtonStyle}>Next</Button>
         </div>
       </div>
     </div>

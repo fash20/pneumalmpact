@@ -12,7 +12,6 @@ import {
 } from "@material-ui/icons";
 import percentage from "../assets/images/percentage.svg";
 
-
 const Library = () => {
   return (
     <div className="flex flex-col space-y-10 p-10">
@@ -21,10 +20,10 @@ const Library = () => {
           <QuickInfo />
           <UserCard />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-5 sm:gap-y-0 sm:gap-x-5" >
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-5 sm:gap-y-0 sm:gap-x-5">
           <ItemsCard image={clocksvg} />
-        <ItemsCard image={clocksvg} />
-        <ItemsCard image={clocksvg} />
+          <ItemsCard image={clocksvg} />
+          <ItemsCard image={clocksvg} />
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-y-5 md:gap-y-0 md:gap-x-5 ">
@@ -41,7 +40,7 @@ const QuickInfo = () => {
   return (
     // <div className=" quick-info grid grid-cols-2  ">
     <div className=" bg-gray grid grid-cols-2  ">
-      {/* <img src ={bgimage} className='absolute  -z-20' />  */}
+    {/* <img src ={bgimage} className='absolute  -z-20' />  */}
       <div className="flex flex-col justify-center items-center space-y-4 ml-10">
         <div>
           <h3 className="font-inter text-fadeWhite">AD</h3>
@@ -85,24 +84,37 @@ const QuickInfo = () => {
 
 const UserCard = () => {
   return (
-    <div className="grid bg-white items-center p-5 text-center  border-2 border-grayMarginColor  border-slate-700 ">
+    <div className="grid bg-white items-center p-5 text-center  border-2 border-grayMarginColor  border-slate-700 w-[80%]">
       <div className="flex justify-center">
-        <img
+        {/* <img
           sizes="large"
           src={profileImage}
           className="h-25 w-25 rounded align-middle items-center"
+        /> */}
+        <img
+          className="rounded-full border border-gray-100 shadow-sm"
+          src="https://randomuser.me/api/portraits/women/81.jpg"
+          alt="user image"
         />
       </div>
+      {/* <div className="relative w-24 h-24">
+        <img
+          className="rounded-full border border-gray-100 shadow-sm"
+          src="https://randomuser.me/api/portraits/women/81.jpg"
+          alt="user image"
+        />
+        <div className="absolute top-0 right-0 h-6 w-6 my-1 border-4 border-white rounded-full bg-gray-300 z-2"></div>
+      </div> */}
       <div className="text-center">
         <h2 className="font-inter text-primaryTextColor text-2xl">
-          Lugard Osasumwen
+          Username
         </h2>
       </div>
       <div className="flex justify-center">
         <LocationOnOutlined className="text-fadeWhite" />
         <h3 className="font-inter text-fadeWhite text-sm">New York, USA</h3>
       </div>
-      <div className="grid grid-cols-3 font-inter items-center">
+      <div className="grid grid-cols-3 font-inter items-center ">
         <div>
           <h3 className=" text-sm">Courses</h3>
           <h3 className="text-2xl text-primaryTextColor">28</h3>

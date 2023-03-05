@@ -7,7 +7,7 @@ const FAQ = () => {
       <div className="text-center ">
         <span className="step-title-blue">Frequently </span>
         <span className="step-title-red">Asked </span>
-        <span className="step-title-blue">Question </span>
+        <span className="step-title-blue">Questions </span>
       </div>
       <div className="flex flex-col space-y-5 md:flex-row md:space-x-8 md:space-y-0 justify-center ">
         <div className="flex flex-col items-center space-y-5">
@@ -21,7 +21,19 @@ const FAQ = () => {
           />
           <Questions
             question="How am i sure the courses will benefit me"
-            answer="The courses are well researched materials by our academic department before it is listed"
+            answer="The courses are well researched materials by our academic department before they are listed"
+          />
+          <Questions
+            question="Would I need to pay to travel to Dubai?"
+            answer="No! The Dubai trip expenses will be covered by Pneuma Impact."
+          />
+          <Questions
+            question="How long will be the mentorship program"
+            answer="Pneuma Impact is going to mentor all her students for one year upon the completion of their classes"
+          />
+          <Questions
+            question="Can my registration fee be refunded"
+            answer="Yes! If you feel we've added no value to you after the whole session comes to an end"
           />
         </div>
         <div className="flex flex-col items-center space-y-5">
@@ -40,6 +52,14 @@ const FAQ = () => {
           <Questions
             question="How can I be Eligible for the Pnuemalpact Funds?"
             answer="Funds are given to entrepreneurs who have received the training and mentorship and meet certain participatory requirements."
+          />
+          <Questions
+            question="Who's eligible for the trip?"
+            answer="some of our  best students "
+          />
+          <Questions
+            question="How can I win the iPhone 13 Pro max"
+            answer="Always attend class and participate actively in the students' community provided for you by the school "
           />
         </div>
       </div>

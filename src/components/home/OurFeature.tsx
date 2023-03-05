@@ -19,10 +19,10 @@ function OurFeature() {
           <span className="step-title-red">Works</span>
         </div>
         <div>
-          <p className="font-poppins">
+          {/* <p className="font-poppins">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
             dolor sit amet
-          </p>
+          </p> */}
         </div>
       </div>
       <div  className="grid gap-y-14 lg:gap-y-16">
@@ -58,8 +58,8 @@ function OurFeature() {
         animationNumber={3}
           direction="flex-row-reverse"
           title={<Title4 />}
-          detail="Entrepreneurs that have successfully passed the training will be eligible for grants of $1000.This is to support early growth, 
-          and enhance their business operation. This funds is given to entrepreneurs who meet the participatory requirements.
+          detail="Entrepreneurs that have successfully passed the training will be eligible for grants of $1000. This is to support early growth, 
+          and enhance their business operation. This fund is given to entrepreneurs who meet the participatory requirements.
           "
         >
           <Transaction />
@@ -71,9 +71,10 @@ function OurFeature() {
           size="large"
           style={{ borderRadius: "40px" }}
           variant="pneumaBlue"
+          href="/signup"
         >
           Get Started
-        </Button>
+        </Button >
       </div>
     </div>
   );

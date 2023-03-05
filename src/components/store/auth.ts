@@ -37,12 +37,23 @@ const login = async (email: string, password: string) => {
     )
     .then((response) => {
       if (response.data.user !== undefined) {
+        console.log(response);
         const user = {
           user: response.data.user.email,
           token: response.data.token,
         };
+        const config = {
+          headers: {
+            Authorization: `Bearer ${response.data.token}`,
+          },
+        }
         localStorage.setItem("user", JSON.stringify(user));
+        if (response.data.user.isverfied === false){
+          console.log("Hello")
+          axios.post('https://api.pneumaimpact.ng/v1/api/auth/resend-verification-email',config)
+        }
       }
+      
       return response.data;
     })
     .catch((err) => toast.error(err.message + '--auth'));

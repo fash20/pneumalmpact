@@ -8,6 +8,7 @@ interface Prop {
   ContainerClassName?: string;
   TextFieldClassName?: string;
   type?: string;
+  value?:string
   onChange?(event: React.ChangeEvent<HTMLInputElement>): any
 }
 const TextInput = ({
@@ -15,6 +16,7 @@ const TextInput = ({
   ContainerClassName,
   TextFieldClassName,
   type,
+  value,
   onChange
 }: Prop) => {
   const id = useId();
@@ -31,6 +33,7 @@ const TextInput = ({
         placeholder={label}
         id={label + id}
         onChange ={onChange}
+        value={value}
       />
     </div>
   );
