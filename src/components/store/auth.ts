@@ -49,7 +49,6 @@ const login = async (email: string, password: string) => {
         }
         localStorage.setItem("user", JSON.stringify(user));
         if (response.data.user.isverfied === false){
-          console.log("Hello")
           axios.post('https://api.pneumaimpact.ng/v1/api/auth/resend-verification-email',config)
         }
       }

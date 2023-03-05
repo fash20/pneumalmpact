@@ -6,6 +6,8 @@ import RateUs from "./RateUs";
 import Subscription from "./Subscription";
 import FrontPage from "./FrontPage";
 import Target from "./Target";
+import Travel from "./Travel";
+import Phone from "./Phone";
 
 
 const Home = () => {
@@ -19,6 +21,8 @@ const Home = () => {
       <OurFeature />
       <Target />
       <FAQ />
+      <Travel />
+      <Phone />
       <OurReview />
       <RateUs />
       <Subscription />

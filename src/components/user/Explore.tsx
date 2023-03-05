@@ -124,7 +124,11 @@ const Explore = () => {
           <CustomCarousel />
           <div className="absolute top: top-[78%] flex flex-col z-50 max-w-full space-y-5 overflow-hidden">
             <h3 className="tex-xl text-white ml-6">Trending Courses</h3>
-            <HScrollable />
+            <div className="flex flex-row space-x-6 px-4 h-scrollable ">
+      {courseData.map((item, key) => (
+        <CourseCard key={key} title={item.title.substring(0, 4)} image={item.image} />
+      ))}
+    </div>
           </div>
         </div>
         <div className=" mt-20">
@@ -191,11 +195,15 @@ interface CourseCardProps {
 const CourseCard = ({ title, image }: CourseCardProps) => {
   return (
     <div className="flex flex-col space-y-3 w-[80px] mb:w-[100px]  sm:w-[120px] lg:w-[150px] shrink-0  object-cover">
-      <img
+      <div className=" w-[80px] mb:w-[100px]  sm:w-[120px] lg:w-[150px] h-[80px] mb:h-[100px]  sm:h-[120px] lg:h-[150px] rounded-sm">
+        <img
+        crossOrigin="anonymous" 
         src={image === undefined ? hScroll1 : image}
-        // className="rounded-3xl shadow-md "
+        className="w-full h-full object-cover rounded-sm"
         style={{ maxHeight: "100%", width: "100%", objectFit: "cover" }}
       />
+      </div>
+      
       <h4 className="text-gray text-center">{title}</h4>
     </div>
   );
