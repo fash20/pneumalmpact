@@ -15,7 +15,7 @@ import logo from "../assets/images/pneumaImpact-logo.svg";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../store/userAction";
+// import { getUserDetails } from "../store/userAction";
 import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/user.png";
 import { logout } from "../store/userSlice";
@@ -66,7 +66,7 @@ const Navbar = () => {
     };
   useEffect(() => {
     if (selector.userData) {
-      dispatch(getUserDetails());
+      // dispatch(getUserDetails());
     }
   }, [selector.userData]);
   return (

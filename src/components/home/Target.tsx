@@ -26,23 +26,33 @@ const Target = () => {
       <div id={isAnimatedDivVisible ? "trans-up" : ""}>
         <div className="text-left ">
           <span className="step-title-blue">Who is this </span>
-          <span className="step-title-red">Platform </span>
+          <span className="step-title-red">training </span>
           <span className="step-title-blue">for ? </span>
         </div>
-        <ul className="font-poppins text-gray2 list-disc text-[18px] leading-9 tracking-wide my-5 px-4">
+        <ul className="hiw-sub list-disc text-[18px] leading-9 tracking-wide my-5 px-4">
           <li className="mx-4 my-5">
-            Don't have any basic entrepreneurship knowledge
+            People who don't have basic entrepreneurship knowledge
           </li>
           <li className="mx-4 my-5">
-            Lack funds to turn your idea into a profitable business
+            People with a business idea and don't have fund to execute it
           </li>
           <li className="mx-4 my-5">
-            Don’t have any digital skills to scale your business
+            People who don't have any knowledge about entrepreneurship and are willing to start their businesses 
           </li>
           <li className="mx-4 my-5">
-            And you need a program to hold and guide you through every step of
-            the way
-          
+            People who don't have any digital skill to scale up their businesses 
+          </li>
+          <li className="mx-4 my-5">
+            People who need a program to hold guide them through every step of their entrepreneurship journey
+          </li>
+          <li className="mx-4 my-5">
+           People doing business and need funds to scale up
+          </li>
+          <li className="mx-4 my-5">
+           People that needs foreign or local investors to invest in their ideas 
+          </li>
+          <li className="mx-4 my-5">
+           People that need mentors to hold them hand-by-hand in their entrepreneurship journey e.t.c.  
           </li>
         </ul>
       </div>

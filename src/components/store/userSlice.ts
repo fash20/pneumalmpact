@@ -1,5 +1,5 @@
 import { AsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser, getUserDetails } from "./userAction";
+import { loginUser, registerUser } from "./userAction";
 
 interface UserData {
   user: string,
@@ -70,17 +70,6 @@ const userSlice :any  = createSlice({
       state.loading = false
       state.error = payload
     },
-    [getUserDetails.pending as any] : (state:State, {payload})=>{
-      state.loading = true
-
-    }, 
-    [getUserDetails.fulfilled as any] : (state:State, {payload})=>{
-      state.loading = false
-      state.userData = payload.user
-    }, 
-    [getUserDetails.fulfilled as any] : (state:State, {payload})=>{
-      state.loading = false
-    }, 
   },
 });
 

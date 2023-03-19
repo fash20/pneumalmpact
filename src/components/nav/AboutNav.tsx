@@ -8,7 +8,7 @@ import { BrandButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../store/userSlice";
-import { getUserDetails } from "../store/userAction";
+// import { getUserDetails } from "../store/userAction";
 import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/avatar.svg";
 import toast from "react-hot-toast";
@@ -22,7 +22,7 @@ const AboutNav = () => {
 
   useEffect(()=>{
     if(selector.userData){
-      dispatch(getUserDetails())      
+      // dispatch(getUserDetails())      
     }
   }, [])
   return (

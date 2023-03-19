@@ -71,27 +71,27 @@ export const loginUser = createAsyncThunk(
 );
 
 
-export const getUserDetails = createAsyncThunk(
-  'user/getUser/Details',
-  async(arg, {getState, rejectWithValue})=>{
-    try{
-      const {user} = getState() as any
+// export const getUserDetails = createAsyncThunk(
+//   'user/getUser/Details',
+//   async(arg, {getState, rejectWithValue})=>{
+//     try{
+//       const {user} = getState() as any
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.userToken}`,
-        },
-      }
-      const { data } = await axios.get(`https://api.pneumaimpact.ng/v1/api/profile`, config)
-      return data
-    }
-    catch (error:any) {
-      if (error.response && error.response.data.message) {
-        toast.error(error.response.data.message+ 'userAction 86')
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
-    }
-  }
-)
+//       const config = {
+//         headers: {
+//           Authorization: `Bearer ${user.userToken}`,
+//         },
+//       }
+//       const { data } = await axios.get(`https://api.pneumaimpact.ng/v1/api/profile`, config)
+//       return data
+//     }
+//     catch (error:any) {
+//       if (error.response && error.response.data.message) {
+//         toast.error(error.response.data.message+ 'userAction 86')
+//         return rejectWithValue(error.response.data.message);
+//       } else {
+//         return rejectWithValue(error.message);
+//       }
+//     }
+//   }
+// )

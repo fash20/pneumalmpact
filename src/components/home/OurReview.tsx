@@ -12,69 +12,53 @@ import image7 from '../assets/images/testimonials/image7.png'
 
 const Testimonials= [
   {
-    author:'Lara J.',
+    author:'Lara',
     field:'',
-    review:`I've never seen a complete course for enterprneus like this. Talk about 
-    the finance management, the business management, Pnuema Impact got all these. I encourage
-    everyone doing business or want to start any businesses to take the course and you'll never regret dong that`,
+    review:`I've never seen a complete training for entrepreneurs like this before. Talk about finance management, business management, 
+    business plan, etc., PneumaImpact got all these. I urge everyone into business and anyone that wants to start any business to go through 
+    all PneumaImpact training activities. It's best thing that's ever happened to me and my business.`,
     img:image1
   },
   {
-    author:'Francis W.',
+    author:'Francis',
     field:'',
-    review:`I never knew how to write business plan is that simple untill I enrolled with Pneuma Impact. I was taught everything I
-    needed to know about business plan. Now, my business has its ownl plan and this has made me more visible to my investors and 
-    brought real life into my business. And guess what? I won the 500k grants. Thank you Pneuma Impact`,
-    img:image4
-  },
-  {
-    author:'Michael G.',
-    field:'',
-    review:`I've been wanting to start business for long but no adequate training materials for me. A friend sent Pneuma Impact link to me.
-     I applied and found all the courses interesting and educating. Now, I can start my business in peace and I even have mentors from them 
-     for a whole year. Thank you Pneuma Impact.`,
-     img:image3
-  },
-  {
-    author:'Chimezie T.',
-    field:'',
-    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
-    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
-    Chimezie T`,
-    img:image2
-  },
-  {
-    author:'Adebayo O.',
-    field:'',
-    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
-    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
-    Chimezie T`,
+    review:` never business business plan wiring could be this simple. I enrolled with PneumaImpact and I was taught comprehensively 
+    everything I  needed to know about writing business plan. My business has its own plan now and this has made me more visible to investors. 
+    And guess what? I won the $1,000 grants from PneumaImpact. Thank you PneumaImpact.`,
     img:image6
   },
   {
-    author:'Chimezie T.',
+    author:'Michael',
     field:'',
-    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
-    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+    review:`I've been wanting to start business for long but no adequate training materials for me. A friend sent PneumaImpact link to me.
+     I applied and found all the courses interesting and educating. Now, I can start my business in peace and I even have mentors from them 
+     for a whole year. Thank you PneumaImpact.`,
+     img:image3
+  },
+  {
+    author:'Chimezie',
+    field:'',
+    review:`The digital marketing training is all I needed to move my business to the internet. I got everything from PneumaImpact. 
+    Thank you also for the iPhone 13 pro max that I won. I love you PneumaImpact 🤗
     Chimezie T`,
     img:image2
   },
-  {
-    author:'Anjela C.',
-    field:'',
-    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
-    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
-    Chimezie T`,
-    img:image7
-  },
-  {
-    author:'Mubarak K.',
-    field:'',
-    review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
-    Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
-    Chimezie T`,
-    img:image2
-  },
+  // {
+  //   author:'Adebayo ',
+  //   field:'',
+  //   review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
+  //   Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+  //   Chimezie T`,
+  //   img:image6
+  // },
+  // {
+  //   author:'Chimezie T.',
+  //   field:'',
+  //   review:`The digital marketing training is all I need to move my business to the internet. I got everything from Pneuma Impact.
+  //   Thank you also for the iPhone 13 pro max that I won. I love you Pneuma Impact 🤗
+  //   Chimezie T`,
+  //   img:image2
+  // },
 ]
 
 const OurReview = () => {

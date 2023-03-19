@@ -24,7 +24,7 @@ const Footer = () => {
             <img className="h-[45px] w-[45px]" src={logo} alt="logo" />
             <h3 className="font-zcool text-[22px] text-white">Pnuemalmpact</h3>
           </div>
-          <p className="font-dmSansr text-gray">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam</p>
+          <p className="font-dmSansr text-gray">We train, we fund, we mentor.</p>
           <div className="inline-flex flex-row space-x-2">
             <a href='https://www.facebook.com/profile.php?id=100083285375332' target="_blank">
               <FacebookIcon />

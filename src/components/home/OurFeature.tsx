@@ -37,9 +37,13 @@ function OurFeature() {
         <StepContainer
         animationNumber={3}
           direction="flex-row-reverse"
-          detail="The PneumaImpact training is a 12 weeks training designed to equip entrepreneurs with basic and digital 
+          detail="The PneumaImpact training is a 12 week training designed to equip entrepreneurs with basic and digital 
           skills required to launch and run their businesses at an early growth stage and scale In the digital age. It covers 
-          several topics including starting and scaling a business, Business management, Art of negotiations and how to seal 
+          several courses like; The Psychology of business mind(Mind Reformation), Executing your business ideas, Business ownership, Business leadership and strategies for business growth,
+          The fundamental of business management, Implementation of marketing plan and improving sales outcome, Building a lasting brand and business networking,
+          Wiring of a comprehensive business plan, discussion group and practice session, Pitching your idea, Submitting your business plan,
+          The lean startup, Sales like crazy, Digital marketing for business, Internet marketing for business, Email marketing for business, Content creating for business, 
+          Selling psychology starting and scaling a business, Business management, Art of negotiations and how to seal 
           business deals using win/win ideology, How to determine your target customers and how to build a mutual relationship with them etc"
           title={<Title2 />}
         >
@@ -55,7 +59,7 @@ function OurFeature() {
           <Mentorship />
         </StepContainer>
         <StepContainer
-        animationNumber={3}
+          animationNumber={3}
           direction="flex-row-reverse"
           title={<Title4 />}
           detail="Entrepreneurs that have successfully passed the training will be eligible for grants of $1000. This is to support early growth, 
@@ -107,7 +111,7 @@ const StepContainer: React.FC<Step> = (props) => {
     <div
       id="anim"
       ref={ref}
-      className={ isScreenSmall ? " flex flex-col items-center justify-center " :`flex sm:gap-x-10 md:gap-x-16  ${direction} lg:gap-x-20`}
+      className={ isScreenSmall ? " flex flex-col sm:gap-x-10 md:gap-x-16 items-center justify-center " :`flex items-left justify-start ${direction} lg:gap-x-20`}
     >
       <Step id={isAnimatedDivVisible ? animations[animationNumber] : ""} detail={detail} >
         {title}
@@ -134,7 +138,7 @@ const Step: React.FC<Step> = (props) => {
   return (
     <div
       id={id}
-      className="flex flex-col gap-y-5 sm:items-center lg:items-start justify-start md:mt-20"
+      className="flex flex-col gap-y-5 sm:items-center lg:items-start lg:max-w-4xl justify-start md:mt-20"
     >
       <div className="flex sm:justify-center lg:justify-center">{children}</div>
       <p className="step-detail text-center md:text-left">{detail}</p>

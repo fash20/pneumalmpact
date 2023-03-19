@@ -191,7 +191,7 @@ const Registration = () => {
               style={BrandButtonStyle}
               onClick={() => {
                 if (password === "" || password1 === "") {
-                  toast.error("Password can't be empty string");
+                  toast.error("Password can't be empty");
                 } else if (password === password1 && password !== "") {
                   setUserCred({ ...userCred, password });
                   handleRegistration();

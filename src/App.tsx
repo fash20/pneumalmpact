@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import "./App.css";
 import { theme } from "./components/utils/UIThemes";
@@ -9,6 +9,10 @@ import { BrowserRouter, useParams } from "react-router-dom";
 import Footer from "./components/nav/Footer";
 
 function App() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>

@@ -7,14 +7,19 @@ const Phone = () => {
   return (
     <div className='p-20 flex flex-col space-y-20'>
         <div className="grid  grid-col-1 space-y-4 lg:grid-cols-2 lg:space-y-0 mt-3 mb-2 ">
-            <span className=' font-nuSans text-3xl text-primaryTextColor max-w-[350px]  tracking-wider '>
-            Win an iPhone 13 Pro max
-            </span>
-            <span className=' font-poppins text-sm leading-[40px] tracking-wider'>
+            <div className=' font-nuSans text-3xl  max-w-[350px]  tracking-wider  '>
+                <span className="step-title-blue">
+                   Win an {" "}
+                </span>
+                <span className="step-title-red">
+                     iPhone 13 Pro max
+                </span>
+            </div>
+            <span className='hiw-sub text-sm leading-[40px] tracking-wider'>
             The student with the highest attendance in class will be given an iPhone 13 Pro max as a consistency gift.
             </span>
         </div>
-        <div className='mt-3 h-52'>
+        <div className='mt-3 h-40'>
             <img alt='dubai' className='w-full h-full object-cover ' src={iphone}  />
         </div>
         <div className='grid grid-col-1 space-y-10 lg:grid-cols-2 lg:space-y-0  mt-3 mb-2 '>
@@ -22,7 +27,7 @@ const Phone = () => {
                 <span className="font-nuSans text-3xl max-w-[450px] tracking-wider  ">
                 Entrepreneurship  Summit
                 </span>
-                <div className='font-poppins text-sm leading-8 tracking-wider space-y-3'> 
+                <div className='hiw-sub text-sm leading-8 tracking-wider space-y-3'> 
                 <p> All our students will be invited to a physical entrepreneurship Summit where notable speakers 
                     will be brought to speak to them. </p> 
                 <p>
@@ -43,10 +48,10 @@ const Phone = () => {
             </div>
         </div>
         <div className=' flex flex-col items-center justify-center'>
-            <span className='font-nuSans text-3xl text-primaryTextColor max-w-[300px]  tracking-wider'> Certification</span>
-            <span className=' font-poppins  text-sm leading-[40px] max-w-[1000px] tracking-wider text-center'>
-                Two internationally recognised certificates will be presented to all our students. 
-                Certificate in Entrepreneurship studies and certificate in Entrepreneurship Digital marketing.
+            <span className=' step-title-blue text-3xl text-primaryTextColor max-w-[300px]  tracking-wider'> Certification</span>
+            <span className='hiw-sub text-sm leading-[40px] max-w-[1000px] tracking-wider text-center'>
+            Two internationally recognised certificates will be presented to our students. Certificate in Entrepreneurship 
+            studies and certificate in Entrepreneurship Digital marketing
             </span>
 
         </div>
