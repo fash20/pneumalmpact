@@ -37,7 +37,6 @@ const Travel = () => {
           <div className="hiw-sub text-sm leading-8 tracking-wider space-y-3">
             <p> We have an investment portfolios totaling 3M US dollars. </p>
             <p>
-              We have an investment portfolios totalling 3M US dollars.
               PneumaImpact has a group of investors with a portfolio of about 3M
               US dollars. Our students will be given opportunity to meet with
               these investors, present their ideas, get business funds, and a

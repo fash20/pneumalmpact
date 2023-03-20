@@ -18,8 +18,8 @@ const Subscription = () => {
             className="font-poppins text-gray2 leading-7"
             style={{ maxWidth: "600px" }}
           >
-            We recommended you to subscribe to our promo program, drop your
-            email below to get daily update about us
+            We recommend you to subscribe to our weekly newsletter. 
+            Drop your email below to get weekly update about us.
           </p>
         </div>
 
