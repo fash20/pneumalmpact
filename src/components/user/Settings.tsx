@@ -4,7 +4,7 @@ import TextInput from "../ui/TextInput";
 import SettingSVG from "./SettingSVG";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Avatar, useMediaQuery } from "@mui/material";
-import { theme } from "../utils/UIThemes";
+import { BrandButtonStyle, theme } from "../utils/UIThemes";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -52,7 +52,7 @@ const Settings = () => {
   };
   const [selected, setSelected] = useState("a");
   return (
-    <div className="ggrid grid-cols-1 relative w-full  " id="fade-in">
+    <div className="grid grid-cols-1 relative w-full  " id="fade-in">
       <div className="relative h-[250px]">
         <SettingSVG />
         <ProfileSection />
@@ -80,13 +80,21 @@ export function ProfileSection() {
   };
 
   return (
-    <div className="avatar" style={{ backgroundImage: `url(${profileImage ? profileImage : avatar})`}}>
+    <div
+      className="avatar"
+      style={{
+        backgroundImage: `url(${profileImage ? profileImage : avatar})`,
+      }}
+    >
       <label
         id="upload-label"
         className="flex justify-center space-x-4 items-center w-full h-full text-center"
         htmlFor="upload-input"
       >
-        <CameraAltIcon className="cameraicon" sx={{ color: "#FFF", position:'relative', top:'100%' }} />
+        <CameraAltIcon
+          className="cameraicon"
+          sx={{ color: "#FFF", position: "relative", top: "100%" }}
+        />
       </label>
       <input
         id="upload-input"
@@ -252,7 +260,7 @@ const SettingsForm = () => {
         />
       </div>
 
-      <Button variant="pneumaBlue" onClick={() => alert(userInfo)}>
+      <Button  style={BrandButtonStyle} variant="pneumaBlue" onClick={() => alert(userInfo)}>
         Done
       </Button>
     </div>
@@ -310,6 +318,8 @@ const PasswordChange = () => {
         />
       </div>
       <Button
+        style={BrandButtonStyle}
+        variant="pneumaBlue"
         onClick={() => {
           if (password === "" || password1 === "") {
             toast.error("Password can't be empty string");

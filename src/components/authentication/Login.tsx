@@ -1,11 +1,12 @@
 import { Heading, TextInputField } from "evergreen-ui";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
 import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, IconButton, InputAdornment, OutlinedInput} from "@mui/material";
+import TextField from '@mui/material/TextField';
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { validateEmail } from "../utils/validator";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,16 +18,22 @@ import { gapi } from "gapi-script";
 import axios from "axios";
 import useVerifyJWT from "../utils/useVerifyJWT";
 import checkTokenExpired from "../utils/checkTokenExp";
+import { AuthContext } from "../store/auth/authContext";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Login = () => {
   const [userCred, setUserCred] = useState({
     email: "",
     password: "",
   });
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
-  const dispatch = useDispatch<AppDispatch>();
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  // const { userData, loading } = useSelector(
+  //   (state: { user: any }) => state.user
+  // );
+  // const dispatch = useDispatch<AppDispatch>();
+  const { signIn } = useContext(AuthContext);
+
   const [screenSize, isScreenSmall] = useScreenSize();
   const navigate = useNavigate();
   const clientId =
@@ -39,31 +46,31 @@ const Login = () => {
     console.log("failed:", err);
   };
 
-  useEffect(() => {
-    document.title = "Pneumalmpact - Login";
-    if(userData && userData.user){
-      if (
-        userData.user !== "" &&
-        checkTokenExpired(userData.token) &&
-        userData.isVerified !== false
-      ) {
-        navigate("/explore");
-      } else if (
-        userData.user !== "" &&
-        userData.token !== "" &&
-        userData.isVerified === false
-      ) {
-        navigate("/verification");
-      }
-    }
-    const initClient = () => {
-      gapi.auth2.init({
-        clientId: clientId,
-        scope: "",
-      });
-    };
-    gapi.load("client:auth2", initClient);
-  }, [userData, navigate,]);
+  // useEffect(() => {
+  //   document.title = "Pneumalmpact - Login";
+  //   if(userData && userData.user){
+  //     if (
+  //       userData.user !== "" &&
+  //       checkTokenExpired(userData.token) &&
+  //       userData.isVerified !== false
+  //     ) {
+  //       navigate("/explore");
+  //     } else if (
+  //       userData.user !== "" &&
+  //       userData.token !== "" &&
+  //       userData.isVerified === false
+  //     ) {
+  //       navigate("/verification");
+  //     }
+  //   }
+  //   const initClient = () => {
+  //     gapi.auth2.init({
+  //       clientId: clientId,
+  //       scope: "",
+  //     });
+  //   };
+  //   gapi.load("client:auth2", initClient);
+  // }, [userData, navigate,]);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -87,12 +94,19 @@ const Login = () => {
   const handleLogin = () => {
     const validationResult = validateEmail(userCred.email);
     if (validationResult === undefined && userCred.password !== "") {
-      dispatch(loginUser(userCred));
+      // dispatch(loginUser(userCred));
+      signIn(userCred.email, userCred.password);
+    
     }
     else{
       toast.error("Ensure password field is not empty")
     }
     
+  };
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
   };
 
   return (
@@ -174,10 +188,28 @@ const Login = () => {
           <TextField
             label="Password"
             placeholder="*****"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onchange(event, "password")
             }
+          />
+            <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            endAdornment={
+              <InputAdornment position="start">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            
           />
           <Button
             variant="pneumaBlue"

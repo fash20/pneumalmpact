@@ -8,12 +8,12 @@ const dashboardItem = [
   {
     name: "User Management",
     icon: <ContactsOutlined fontSize="large" style={{color:'#2F327D'}} />,
-    link: "/admin/users",
+    link: "/admin/usermanagement",
   },
   {
     name: "Course Management",
     icon: <LibraryAddOutlined fontSize="large" style={{color:'#2F327D'}} />,
-    link: "/admin/upload_course",
+    link: "/admin/coursemanagement",
   },
 ];
 

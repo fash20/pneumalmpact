@@ -12,18 +12,19 @@ import { State } from "../store/userSlice";
 import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/avatar.svg";
 import toast from "react-hot-toast";
+import { useAuth } from "../store/auth/AuthProvider";
 
 const AboutNav = () => {
-  const selector = useSelector((state: { user: any }) => state.user);
+  const { user : {token} } = useAuth();
   const [screenSize, isScreenSmall] = useScreenSize();
   const [showDrawer, setShowDrawer] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(selector.userData === null || selector.userData.user === '' ? false:true)
-  const dispatch = useDispatch<AppDispatch>()
+  const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(token === null || token === '' ? false:true)
+  // const dispatch = useDispatch<AppDispatch>()
 
   useEffect(()=>{
-    if(selector.userData){
-      // dispatch(getUserDetails())      
-    }
+    // if(selector.userData){
+    //   // dispatch(getUserDetails())      
+    // }
   }, [])
   return (
     <div className="navbar bg-primaryTextColor">
@@ -35,7 +36,7 @@ const AboutNav = () => {
         <a href="/">
           <div className="flex justify-center items-center space-x-3 sm:space-x-4 ">
             <img className="w-10 h-10" src={logo} alt="logo" />
-            <label className=" font-zcool text-lg sm:text-xl  md:text-2xl text-white">Pneumalmpact</label>
+            <label className=" font-zcool text-lg sm:text-xl  md:text-2xl text-white">Pneuma impact</label>
           </div>
         </a>
         {isScreenSmall && (
@@ -63,17 +64,17 @@ const AboutNav = () => {
           <div className="flex flex-row space-x-3 justify-center items-center ">
               <Link to='/user/dashboard'>
               <div className="">
-                <Avatar src={avatar} />
+                <Avatar  />
               </div>
               </Link>
               <Link to='/user/dashboard'>
               <div className="flex text-sm flex-col justify-start ">
                 <h3 className="font-inter  text-white font-bold">
-                  Avatar
+                  Hi, there
                 </h3>
                 <h4 className="font-inter text-white text-sm font-[100] ">
                   {
-                    selector.userData.user
+                    // selector.userData.user
                   }
                 </h4>
               </div>
@@ -101,7 +102,8 @@ const AboutNav = () => {
         )}
       </div>
       {showDrawer && isScreenSmall && (
-        <TopDrawer setShow={setShowDrawer} show={showDrawer} userData={selector.userData} isUserLoggedIn={isUserLoggedIn}/>
+        <></>
+        // <TopDrawer setShow={setShowDrawer} show={showDrawer} userData={selector.userData} isUserLoggedIn={isUserLoggedIn}/>
       )}
     </div>
   );

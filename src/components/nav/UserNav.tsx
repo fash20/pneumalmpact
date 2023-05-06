@@ -30,13 +30,13 @@ interface RenderComponent {
 const UserNav = ({ children }: RenderComponent) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [screenSize, isScreenSmall] = useScreenSize();
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+  // const { userData, loading } = useSelector(
+  //   (state: { user: any }) => state.user
+  // );
   const [user, setUser] = useState();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
   const [showDrawer, setShowDrawer] = useState({
     left: false,
   });
@@ -57,7 +57,7 @@ const UserNav = ({ children }: RenderComponent) => {
       ) {
         return;
       }
-      console.log("clicked");
+
       setShowDrawer({ ...showDrawer, left: open });
     };
   useEffect(() => {
@@ -67,19 +67,15 @@ const UserNav = ({ children }: RenderComponent) => {
   }, [open]);
   return (
     <React.Fragment>
-      <div className="flex flex-col ">
+      <div className="flex flex-col w-full bg">
         <div
-          className={`h-20 top-0 blur-1 grid  sm:space-x-10 mb-2 lg:gap-20 w-[100%] items-center
+          className={`h-12 top-0 blur-1 grid  sm:space-x-10 md:h-16 lg:h-20 mb-2  lg:gap-20 w-[100%] items-center
             ${isScreenSmall ? "grid-cols-2" : "grid-cols-3"}
           `}
         >
-          <div className="flex w-[103px]">
+          <div className="flex w-[50px] md:w-[75px] lg:w-[103px]">
             <a href="/">
-              <img
-                className="w-full h-full flex-shrink-0"
-                src={squarelogo}
-                alt="logo"
-              />
+              <img className="w-full h-full " src={squarelogo} alt="logo" />
             </a>
           </div>
 
@@ -103,7 +99,9 @@ const UserNav = ({ children }: RenderComponent) => {
               <MenuOutlined />
             </Button>
           )}
-          {!isScreenSmall && userData && userData.user ? (
+          {!isScreenSmall 
+          // && userData && userData.user 
+          ? (
             <div className="relative px-5 flex gap-4 justify-left items-center">
               <IconButton>
                 <NotificationIcon />
@@ -117,8 +115,7 @@ const UserNav = ({ children }: RenderComponent) => {
                   aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                 >
-
-                  <Avatar  />
+                  <Avatar />
                 </IconButton>
                 <Menu
                   id="fade-menu"
@@ -146,17 +143,19 @@ const UserNav = ({ children }: RenderComponent) => {
                   >
                     Explore
                   </MenuItem>
-                  <MenuItem onClick={() => dispatch(logout())}>Logout</MenuItem>
+                  <MenuItem onClick={() =>{ 
+                    // dispatch(logout())
+                  }}>Logout</MenuItem>
                 </Menu>
                 <div className="flex flex-col justify-start">
-                  <h3 className="font-inter text-primaryTextColor font-bold">
+                  {/* <h3 className="font-inter text-primaryTextColor font-bold">
                     {userData && userData.user
                       ? nameExtractor(userData.user)
                       : ""}
                   </h3>
                   <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
                     {userData && userData.user ? userData.user : ""}
-                  </h4>
+                  </h4> */}
                 </div>
               </div>
             </div>
@@ -185,7 +184,7 @@ const UserNav = ({ children }: RenderComponent) => {
             </div>
           )}
         </div>
-        <div className="flex w-full">
+        <div className="flex justify-center w-full">
           {!isScreenSmall && <SideNav />}
           {children}
         </div>
@@ -199,13 +198,15 @@ const UserNav = ({ children }: RenderComponent) => {
           <div className="flex flex-col space-y-5 w-[300px] p-5">
             <a href="/">
               <div className="flex justify-left space-x-2 ">
-                <img className="w-8 h-8" src={logo} alt="logo" />
+                <img className="w-8 h-8 " src={logo} alt="logo" />
                 <label className=" font-zcool text-xl">Pneumalmpact</label>
               </div>
             </a>
-            {userData && userData.user ? (
-              <SideNav />
-            ) : (
+            {
+         //   userData && userData.user ? (
+          //    <SideNav />
+          //  ) : 
+            (
               <div className="flex flex-col  space-y-4 ">
                 <Button variant="pneumaWhite" className=" w-full" href="/login">
                   Log In

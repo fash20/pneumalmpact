@@ -48,9 +48,7 @@ export const loginUser = createAsyncThunk(
       .catch(err=> {
         // toast.error(err.response.data.message)
         toast.error(err.message || err.response.data.message)
-      })
-      console.log(data);
-      
+      })      
       const userData = {
         user: data.user.email,
         token: data.token,

@@ -29,7 +29,7 @@ const FrontPage = () => {
           </p>
         </div>
         <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 md:space-y-0 ">
-          <Button variant="contained" color="primary" style={BrandButtonStyle}>
+          <Button variant="contained" color="primary" style={BrandButtonStyle} href='/register'>
             Get Started
           </Button>
           <Button variant="pneumaRed" style={BrandButtonStyle}>

@@ -14,7 +14,7 @@ import percentage from "../assets/images/percentage.svg";
 
 const Library = () => {
   return (
-    <div className="flex flex-col space-y-10 p-10">
+    <div className="flex flex-col space-y-10 p-10 w-full">
       <div className="flex flex-col space-y-10">
         <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5">
           <QuickInfo />

@@ -1,10 +1,8 @@
 import { Avatar, Button, Divider, useMediaQuery } from "@material-ui/core";
-import courseimg from "../assets/images/courseimg.svg";
 import hScroll1 from "../assets/images/course-card.svg";
 import mountainImg from "../assets/images/mountain.svg";
 import { TabButtonStyle, theme } from "../utils/UIThemes";
 import { ReactNode, useEffect, useState } from "react";
-import Carousel from "./Carousel1";
 import { numberShortner } from "../utils/utilityfunctions";
 import { Link, useNavigate } from "react-router-dom";
 import hScroll2 from "../assets/images/course/scroll2.svg";
@@ -19,6 +17,7 @@ import toast from "react-hot-toast";
 import { Replay } from "@mui/icons-material";
 import { logout } from "../store/userSlice";
 import CustomCarousel from "./CustomCarousel";
+import { useAuth } from "../store/auth/AuthProvider";
 
 const horizontalImage = [
   {
@@ -52,9 +51,9 @@ const horizontalImage = [
 ];
 
 const Explore = () => {
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+ 
+  const { user : {token} } = useAuth();
+
   const navigate = useNavigate();
   const [courseData, setCourseData] = useState<Array<ICourseProps>>([]);
   const [loadingProp, setLoadingProp] = useState({
@@ -66,7 +65,7 @@ const Explore = () => {
      axios
       .get("https://api.pneumaimpact.ng/v1/api/courses", {
         headers: {
-          Authorization: `Bearer ${userData.token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       })
@@ -83,7 +82,7 @@ const Explore = () => {
 
   useEffect(() => {
     document.title = "Pneumalmpact - Explore";
-    if (!checkTokenExp(userData.token)) {
+    if (!checkTokenExp(token)) {
       logout();
       navigate("/login");
     } else {
@@ -92,12 +91,12 @@ const Explore = () => {
   }, []);
   return (
     // <ProtectedRoute>
-    <div className="w-full min-h-[100vh]">
+    <div className="grid grid-cols-1 relative">
       {(() => {
         {
       if (loadingProp.failed)
       return (
-        <div className=" w-full h-[100vh] flex flex-col items-center px-5 pt-10 ">
+        <div className="grid grid-cols-1 relative ">
           <span className=" font-dmSans text-lg">
             Sorry, we are unable to fetch data . Please check your network connection and
             reload.
@@ -109,7 +108,7 @@ const Explore = () => {
       );
     else if (loadingProp.isloading)
     return(
-      <div className=" w-full h-[100vh] flex justify-center py-20">
+      <div className="flex justify-center py-20 ">
         <ReactLoading
           type="spin"
           color="#2F327D"
@@ -119,7 +118,7 @@ const Explore = () => {
       </div>);
     else 
       return(
-      <div className=" grid grid-cols-1 p-5 gap-y-10 md:gap-y-20 pt:8 lg:px-6 w-fit overflow-x-hidden">
+      <div className="grid grid-cols-1 p-5 gap-y-5 md:gap-y-10 pt:8 lg:px-6 w-fit overflow-x-hidden">
         <div className="relative max-w-full">
           <CustomCarousel />
           <div className="absolute top: top-[78%] flex flex-col z-50 max-w-full space-y-5 overflow-hidden">

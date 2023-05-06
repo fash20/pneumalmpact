@@ -9,7 +9,7 @@ interface UserData {
 
 const initialUserData:UserData = {
   user:null,
-  token:null,
+  token:"",
   isVerified: null,
 }
 
@@ -22,7 +22,6 @@ export interface State{
   loading: boolean,
   userData: UserData
   error: string,
-  success: boolean,
 }
 
 const  initialState = {
@@ -63,7 +62,7 @@ const userSlice :any  = createSlice({
     },
     [loginUser.fulfilled as any]: (state:State, {payload})=> {
       state.loading = false
-      state.userData.token = payload.token
+      // state.userData.token = payload.token
       state.userData.user = payload.user.email
     },
     [loginUser.rejected as any]: (state:State, {payload})=>{

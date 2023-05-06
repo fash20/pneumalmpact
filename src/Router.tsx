@@ -24,6 +24,8 @@ import Course from "./components/user/Course";
 import Explore from "./components/user/Explore";
 import Dashboard from "./components/user/Library";
 import Settings from "./components/user/Settings";
+import UserManagement from "./components/admin/UserManagement";
+
 
 export const Router = () => {
   return (
@@ -41,7 +43,7 @@ export const Router = () => {
         path="/login"
         element={
           <>
-            <Navbar />
+            {/* <Navbar /> */}
             <AuthContainer>
               <Login />
             </AuthContainer>
@@ -208,7 +210,7 @@ export const Router = () => {
         path="/admin/addcourse"
         element={
           <>
-            <Navbar />
+            {/* <Navbar /> */}
             <AddCourse />
           </>
         }
@@ -217,8 +219,7 @@ export const Router = () => {
         path="/payment"
         element={
           <>
-            {" "}
-            <Navbar />
+            {/* <Navbar /> */}
             <AuthContainer>
               <Payment />
             </AuthContainer>
@@ -226,10 +227,19 @@ export const Router = () => {
         }
       />
       <Route
+        path="/admin/usermanagement"
+        element={
+          <>
+            {/* <Navbar /> */}
+            <UserManagement />
+          </>
+        }
+      />
+      <Route
         path="*"
         element={
           <>
-            <Navbar />
+            {/* <Navbar /> */}
             <PageNotFound />
           </>
         }

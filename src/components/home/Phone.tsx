@@ -31,7 +31,7 @@ const Phone = () => {
                 <p> All our students will be invited to a physical entrepreneurship Summit where notable speakers 
                     will be brought to speak to them. </p> 
                 <p>
-                This same day is the day when our grant beneficiaries, our an all expense paid trip to Dubai winners 
+                This same day is the day when our grant beneficiaries, our all expense paid trip to Dubai winners 
                 and our iPhone 13 Pro max winner will be announced. 
                 </p>
                 <p>

@@ -20,39 +20,32 @@ const Verification = () => {
   );
 
   const handleVefrifcation = () => {
-    var data = JSON.stringify({
-      token: values,
-    });
-
+  
     axios
       .post(
         "https://api.pneumaimpact.ng/v1/api/auth/verify-user-account",
         {
-          token: values
+          token: values,
         },
         {
-          headers: {
-            Authorization: `Bearer ${userData.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
+          headers: { Authorization: `Bearer ${userData.token}` },
+        })
       .then((res) => {
         userData.isverified = true;
-        let user = JSON.parse(localStorage.getItem('user'));
-        if (user ){
+        let user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
           user.isVerified = true;
           localStorage.clear();
-          localStorage.setItem('user',JSON.stringify(user));
-          navigate('/explore')
+          localStorage.setItem("user", JSON.stringify(user));
+          navigate("/explore");
         }
-        console.log()
+        console.log();
       })
-      .catch(err=> {
-        toast.error(err.response.data.message)
-        console.log(err.response.data.message)
-        alert(err.response.data.message)
-      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        console.log(err.response.data.message);
+        alert(err.response.data.message);
+      });
   };
 
   useEffect(() => {
@@ -90,7 +83,6 @@ const Verification = () => {
       </div>
       <div className="grid grid-cols-1 gap-y-5">
         <div className="grid justify-center items-center grid-cols-1 gap-x-1 w-full">
-
           <OtpInput
             value={values}
             onChange={(values: any) => setValues(values)}
@@ -101,8 +93,6 @@ const Verification = () => {
             isInputNum={true}
             shouldAutoFocus={true}
           />
-
-       
         </div>
         <Button
           variant="pneumaBlue"

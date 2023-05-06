@@ -3,6 +3,7 @@ import React, { ReactNode, useEffect } from 'react'
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../store/auth/AuthProvider';
 
 
 interface RenderComponent {
@@ -12,21 +13,19 @@ interface RenderComponent {
 
 const ProtectedRoute = ({children}:RenderComponent) => {
   const navigate = useNavigate();
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+  const { user : {token} } = useAuth();
 
   useEffect(()=>{
 
-    if (userData == null || userData == undefined || !userData.user){
+    if (token == null || token == undefined){
       navigate('/login')
     }
-    else if (userData && userData.user !== null && userData.isVerified === false){
-        navigate("/verification");
-    }
+    // else if (userData && userData.user !== null && userData.isVerified === false){
+    //     navigate("/verification");
+    // }
   },[])
   return (
-    <div className=' justify-center items-center'>
+    <div className='justify-center items-center'>
       {
         children
       }

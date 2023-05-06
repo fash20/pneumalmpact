@@ -14,15 +14,15 @@ import logo from "../assets/images/pneumaImpact-logo.svg";
 // import "../styles/General.css";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
-import { useDispatch, useSelector } from "react-redux";
 // import { getUserDetails } from "../store/userAction";
 import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/user.png";
 import { logout } from "../store/userSlice";
 import { nameExtractor, wordShortner } from "../utils/utilityfunctions";
+import { useAuth } from "../store/auth/AuthProvider";
 
 const Navbar = () => {
-  const selector = useSelector((state: { user: any }) => state.user);
+  // const selector = useSelector((state: { user: any }) => state.user);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorEl1, setAnchorEl1] = React.useState<null | HTMLElement>(null);
   const [screenSize, isScreenSmall] = useScreenSize();
@@ -34,7 +34,7 @@ const Navbar = () => {
   // const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(
   //   selector.userData.user === null || selector.userData !== undefined  ? false : true
   // );
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
   
   const handleClick1 = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl1(event.currentTarget);
@@ -42,9 +42,10 @@ const Navbar = () => {
   const handleClose1 = () => {
     setAnchorEl1(null);
   };
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+  // const { userData, loading } = useSelector(
+  //   (state: { user: any }) => state.user
+  // );
+  const { user : {token} } = useAuth();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -64,11 +65,6 @@ const Navbar = () => {
       console.log('clicked')
       setShowDrawer({ ...showDrawer, left: open });
     };
-  useEffect(() => {
-    if (selector.userData) {
-      // dispatch(getUserDetails());
-    }
-  }, [selector.userData]);
   return (
     <React.Fragment>
     <div className="navbar navbar-bg ">
@@ -106,7 +102,7 @@ const Navbar = () => {
           </div>
         )}
         {!isScreenSmall &&
-          (userData && userData.user ? (
+          (token? (
             <div className="flex flex-row space-x-3 justify-center items-center">
               {/* <Link > */}
                 <div className="">
@@ -138,7 +134,7 @@ const Navbar = () => {
                   >
                     Explore
                   </MenuItem>
-                  <MenuItem onClick={() => dispatch(logout())}>Logout</MenuItem>
+                  <MenuItem onClick={() => {}}>Logout</MenuItem>
                 </Menu>
                 </div>
               {/* </Link> */}
@@ -148,9 +144,9 @@ const Navbar = () => {
                     {showDrawer.left}
                   </h3>
                   <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
-                    {
+                    {/* {
                      selector.userData.user !== null ? nameExtractor(selector.userData.user): ''
-                    }
+                    } */}
                   </h4>
                   <Menu
                     id="fade-menu"
@@ -178,7 +174,7 @@ const Navbar = () => {
                     >
                       Explore
                     </MenuItem>
-                    <MenuItem onClick={() => dispatch(logout())}>
+                    <MenuItem onClick={() =>{}}>
                       Logout
                     </MenuItem>
                   </Menu>
@@ -212,7 +208,7 @@ const Navbar = () => {
           open={showDrawer["left"]}
           onClose={toggleDrawer("left", false)}
         >
-          <div className="flex flex-col space-y-5 w-[300px] p-5">
+          {/* <div className="flex flex-col space-y-5 w-[300px] p-5">
             <a href="/">
               <div className="flex justify-left space-x-2 ">
                 <img className="w-8 h-8" src={logo} alt="logo" />
@@ -268,7 +264,7 @@ const Navbar = () => {
                 </Button>
               </div>
             )}
-          </div>
+          </div> */}
         </Drawer>
       )}
     </div>
