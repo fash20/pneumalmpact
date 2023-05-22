@@ -9,11 +9,11 @@ interface AuthProviderProps{
     children: ReactNode
 }
 
-const userFromLocalStorage = localStorage.getItem("user");
+const userFromLocalStorage = localStorage.getItem("userData");
 const initialUser = userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
 
 export const AuthProvider:FunctionComponent<AuthProviderProps> = ({ children }) => {
-  const [user, dispatch] = useReducer(reducer, initialUser);
+  const [userData, dispatch] = useReducer(reducer, initialUser);
   const navigate = useNavigate();
 
 
@@ -22,11 +22,11 @@ export const AuthProvider:FunctionComponent<AuthProviderProps> = ({ children }) 
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-    });
+    })
   
     if (response.ok) {
-      const { name, email, token, isVerified } = await response.json();
-      const user = { name, email, token, isVerified };
+      const {  token, user:{email, isVerified, role  } } = await response.json();
+      const user = {  token, user: {email, isVerified, role}};
       dispatch({ type: "SIGN_IN", payload: user });
         navigate('/explore')
     } else {
@@ -34,12 +34,13 @@ export const AuthProvider:FunctionComponent<AuthProviderProps> = ({ children }) 
     }
   };
 
+
   const signOut = () => {
     dispatch({ type: "SIGN_OUT" });
   };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ userData, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

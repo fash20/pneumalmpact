@@ -68,10 +68,6 @@ const Payment = () => {
           />
           <PaystackButton {...componentProps} />
         </div>
-        <div className="flex flex-row justify-between">
-          <Heading>Create an Account</Heading>
-          <Heading>Forget Password?</Heading>
-        </div>
       </div>
     </div>
   );

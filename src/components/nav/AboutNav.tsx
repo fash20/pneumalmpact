@@ -6,19 +6,14 @@ import logo from "../assets/images/pneumaImpact-logo-2.svg";
 import "../styles/General.css";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../store/userSlice";
-// import { getUserDetails } from "../store/userAction";
-import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/avatar.svg";
-import toast from "react-hot-toast";
 import { useAuth } from "../store/auth/AuthProvider";
 
 const AboutNav = () => {
-  const { user : {token} } = useAuth();
+  const { userData  } = useAuth();
   const [screenSize, isScreenSmall] = useScreenSize();
   const [showDrawer, setShowDrawer] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(token === null || token === '' ? false:true)
+  const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(userData === null ? false:true)
   // const dispatch = useDispatch<AppDispatch>()
 
   useEffect(()=>{

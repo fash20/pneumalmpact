@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { ReactNode, useEffect } from 'react'
 import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../store/auth/AuthProvider';
 
 
@@ -13,21 +12,22 @@ interface RenderComponent {
 
 const ProtectedRoute = ({children}:RenderComponent) => {
   const navigate = useNavigate();
-  const { user : {token} } = useAuth();
+  const { userData } = useAuth();
+
 
   useEffect(()=>{
 
-    if (token == null || token == undefined){
+    if (userData === null || userData.token === null || userData.token === "" ){
       navigate('/login')
+      toast("Please Sign in")
     }
-    // else if (userData && userData.user !== null && userData.isVerified === false){
-    //     navigate("/verification");
-    // }
-  },[])
+
+  },[userData])
   return (
     <div className='justify-center items-center'>
+      
       {
-        children
+       userData === null? <Navigate to={'/login'} />  : children
       }
     </div>
   )

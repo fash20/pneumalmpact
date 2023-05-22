@@ -1,23 +1,23 @@
-import { Heading, TextInputField } from "evergreen-ui";
-import React, { useEffect, useState } from "react";
-import googleIcon from "../assets/images/icon-google.svg";
-import facebookIcon from "../assets/images/icon-facebook.svg";
+import React, { useEffect, useReducer, useState } from "react";
+// import googleIcon from "../assets/images/icon-google.svg";
+// import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../store/store";
-import { validateEmail } from "../utils/validator";
-import toast, { Toaster } from "react-hot-toast";
-import { registerUser } from "../store/userAction";
+import { emailValidator, validateEmail } from "../utils/validator";
+import toast from "react-hot-toast";
 import {
   Button,
   Checkbox,
-  FormControlLabel,
   IconButton,
+  InputAdornment,
+  OutlinedInput,
   TextField,
 } from "@mui/material";
 import { BrandButtonStyle } from "../utils/UIThemes";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { register1 } from "../store/auth/AuthHelper";
+import { reducer } from "../store/auth/authReducer";
 
 interface User {
   loading: boolean;
@@ -34,24 +34,17 @@ const Registration = () => {
   });
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
-  const { loading, userInfo, error, success } = useSelector(
-    (state: {
-      user: { loading: boolean; userInfo: {}; error: string; success: boolean };
-    }) => state.user
-  );
-  // const [loading, setLoading] = useState();
-  const { userData } = useSelector((state: { user: any }) => state.user);
   const [screenSize, isScreenSmall] = useScreenSize();
-  const dispatch = useDispatch<AppDispatch>();
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword1, setShowPassword1] = React.useState(false);
+  const [user, dispatch] = useReducer(reducer, null);
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (success) navigate("/verification");
     document.title = "Pneumalmpact - Signup";
-    // if (userData !== null) {
-    //   navigate("/explore");
-    // }
-  }, [navigate, userInfo, success]);
+  }, [navigate]);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -72,31 +65,43 @@ const Registration = () => {
     }
   };
 
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+  const handleClickShowPassword1 = () => setShowPassword1((show) => !show);
+
+  const handleMouseDownPassword1 = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   const handleRegistration = () => {
-    const validationResult = validateEmail(userCred.email);
-    //  if (validationResult !== null )
-    //  return
-    //  else
-    
-    if (validationResult === undefined ) {
-      dispatch(registerUser(userCred));
+
+    if (emailValidator(userCred.email)) {
+      register1(userCred.email, password, password1).then(res=>{
+        toast.success("registration successful")
+        const { token, user:{email, role, isVerified} } = res.data;
+        const user = { token, user:{email, role, isVerified} }
+        dispatch({ type: "SIGN_IN", payload: user });
+        toast.success("registration successful")
+        navigate('/verification')
+      })
+      .catch(err=>{
+        toast.error("Unable to complete registration: "+err )
+      })
+      
     }
-    else{
+    else {
       toast.error("Ensure no password field is empty")
     }
     
-
   };
+
+  
+
   return (
     <div className="grid grid-cols-1 mx-5 mb:mx-5 md:mx-10 my-10 gap-y-14 ">
-      {
-        <Toaster
-          toastOptions={{
-            className: "toaster",
-          }}
-        />
-      }
-
       <div className="flex justify-center">
         <img
           src={logo}
@@ -152,21 +157,47 @@ const Registration = () => {
               onchange(event, "email")
             }
           />
-          <TextField
-            label="Password"
-            placeholder="*****"
-            type="password"
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? 'text' : 'password'}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onchange(event, "password")
             }
+            placeholder="Password"
+            endAdornment={
+              <InputAdornment position="start">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            
           />
-          <TextField
-            label="Confrim Password"
-            placeholder="*****"
-            type="password"
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword1 ? 'text' : 'password'}
+            placeholder="Confirm Password"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onchange(event, "password1")
             }
+            endAdornment={
+              <InputAdornment position="start">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword1}
+                  onMouseDown={handleMouseDownPassword1}
+                  edge="end"
+                >
+                  {showPassword1 ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            
           />
           <div className="flex flex-col space-y-2">
             <div className="flex justify-between items-center">
@@ -208,7 +239,7 @@ const Registration = () => {
           Have an Account?{" "}
           <Link to="/login" className="text-primaryTextColor hover:underline">
             Login
-          </Link>{" "}
+          </Link>
         </span>
       </div>
     </div>

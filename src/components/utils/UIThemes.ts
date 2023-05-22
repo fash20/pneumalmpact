@@ -7,6 +7,7 @@ declare module "@mui/material/Button" {
     pneumaBlue: true;
     pneumaRed: true;
     pneumaWhite: true;
+    noBg: true;
   }
 }
 
@@ -56,6 +57,19 @@ export const theme = createTheme({
           },
           
         },
+        {
+          props: { variant: "noBg", },
+          style: {
+            backgroundColor:'none',
+            outline: "1px solid  #FFF",
+            color: "#FFF",
+            '&:hover': {
+              background: "#f2f2f2",
+              color: "#FF5364"
+           }, 
+          },
+          
+        },
        
       ],
     },
@@ -85,6 +99,10 @@ export const theme = createTheme({
 export const BrandButtonStyle = {
   height: 50,
   borderRadius: 50,
+};
+export const homeButtonStyle = {
+  height: 57,
+  borderRadius: 8,
 };
 export const TabButtonStyle = {
   height: 40,

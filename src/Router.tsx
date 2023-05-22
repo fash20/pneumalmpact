@@ -4,7 +4,9 @@ import AdminDashboard from "./components/admin/AdminDashboard";
 import AdditionalInfo from "./components/authentication/AdditionalInfo";
 import AuthContainer from "./components/authentication/AuthContainer";
 import Login from "./components/authentication/Login";
-import PasswordReset from "./components/authentication/PasswordReset";
+import PasswordReset, {
+  CreateNewPassword,
+} from "./components/authentication/PasswordReset";
 import PersonalInfo from "./components/authentication/PersonalInfo";
 import Registration from "./components/authentication/Registration";
 import Verification from "./components/authentication/Verification";
@@ -25,7 +27,7 @@ import Explore from "./components/user/Explore";
 import Dashboard from "./components/user/Library";
 import Settings from "./components/user/Settings";
 import UserManagement from "./components/admin/UserManagement";
-
+import CourseManagement from "./components/admin/CourseManagement";
 
 export const Router = () => {
   return (
@@ -43,7 +45,7 @@ export const Router = () => {
         path="/login"
         element={
           <>
-            {/* <Navbar /> */}
+            <Navbar />
             <AuthContainer>
               <Login />
             </AuthContainer>
@@ -53,9 +55,11 @@ export const Router = () => {
       <Route
         path="/settings"
         element={
-          <UserNav>
-            <Settings />
-          </UserNav>
+          <ProtectedRoute>
+            <UserNav>
+              <Settings />
+            </UserNav>
+          </ProtectedRoute>
         }
       />
       <Route
@@ -67,6 +71,17 @@ export const Router = () => {
               <PasswordReset />
             </AuthContainer>
           </>
+        }
+      />
+      <Route
+        path="/createpassword"
+        element={
+          <ProtectedRoute>
+            <Navbar />
+            <AuthContainer>
+              <CreateNewPassword />
+            </AuthContainer>
+          </ProtectedRoute>
         }
       />
       <Route
@@ -94,34 +109,34 @@ export const Router = () => {
       <Route
         path="/verification"
         element={
-          <>
+          <ProtectedRoute>
             <Navbar />
             <AuthContainer>
               <Verification />
             </AuthContainer>
-          </>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/additionalinfo"
         element={
-          <>
+          <ProtectedRoute>
             <Navbar />
             <AuthContainer>
               <AdditionalInfo />
             </AuthContainer>
-          </>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/personalinfo"
         element={
-          <>
+          <ProtectedRoute>
             <Navbar />
             <AuthContainer>
               <PersonalInfo />
             </AuthContainer>
-          </>
+          </ProtectedRoute>
         }
       />
       <Route
@@ -174,7 +189,9 @@ export const Router = () => {
         path="/admin"
         element={
           <ProtectedRoute>
-              <AdminDashboard />
+            <UserNav>
+              <AdminDashboard />\
+            </UserNav>
           </ProtectedRoute>
         }
       />
@@ -210,28 +227,44 @@ export const Router = () => {
         path="/admin/addcourse"
         element={
           <>
-            {/* <Navbar /> */}
-            <AddCourse />
+            <ProtectedRoute>
+              <UserNav>
+                <AddCourse />
+              </UserNav>
+            </ProtectedRoute>
           </>
         }
       />
       <Route
         path="/payment"
         element={
-          <>
-            {/* <Navbar /> */}
+          <ProtectedRoute>
+            <Navbar />
             <AuthContainer>
               <Payment />
             </AuthContainer>
-          </>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/admin/usermanagement"
         element={
+          <ProtectedRoute>
+            <UserNav>
+              <UserManagement />
+            </UserNav>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/coursemanagement"
+        element={
           <>
-            {/* <Navbar /> */}
-            <UserManagement />
+            <ProtectedRoute>
+              <UserNav>
+                <CourseManagement />
+              </UserNav>
+            </ProtectedRoute>
           </>
         }
       />

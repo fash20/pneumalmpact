@@ -1,4 +1,4 @@
-import { Avatar, Button, Divider, useMediaQuery } from "@material-ui/core";
+import { Avatar, Button, Divider, useMediaQuery } from "@mui/material";
 import hScroll1 from "../assets/images/course-card.svg";
 import mountainImg from "../assets/images/mountain.svg";
 import { TabButtonStyle, theme } from "../utils/UIThemes";
@@ -10,7 +10,6 @@ import hScroll3 from "../assets/images/course/scroll3.svg";
 import hScroll4 from "../assets/images/course/scroll4.svg";
 import hScroll5 from "../assets/images/course/scroll5.svg";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import checkTokenExp from "../utils/checkTokenExp";
 import ReactLoading from "react-loading";
 import toast from "react-hot-toast";
@@ -52,7 +51,8 @@ const horizontalImage = [
 
 const Explore = () => {
  
-  const { user : {token} } = useAuth();
+  const { userData : {token} } = useAuth();
+  const { userData } = useAuth();
 
   const navigate = useNavigate();
   const [courseData, setCourseData] = useState<Array<ICourseProps>>([]);
@@ -63,14 +63,14 @@ const Explore = () => {
 
   const getData = () => {
      axios
-      .get("https://api.pneumaimpact.ng/v1/api/courses", {
+      .get("https://api.pneumaimpact.ng/v1/api/courses/", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        setCourseData(res.data.courses);
+        setCourseData(res.data.docs);
         setLoadingProp({ failed: false, isloading: false });
   
       })
@@ -90,18 +90,17 @@ const Explore = () => {
     }
   }, []);
   return (
-    // <ProtectedRoute>
-    <div className="grid grid-cols-1 relative">
+    <div className="grid grid-cols-1 relative w-full">
       {(() => {
         {
       if (loadingProp.failed)
       return (
-        <div className="grid grid-cols-1 relative ">
+        <div className="flex flex-col items-center relative px-5 pt-5 space-y-5 ">
           <span className=" font-dmSans text-lg">
-            Sorry, we are unable to fetch data . Please check your network connection and
+            Sorry, we are unable to fetch data. Please check your network connection and
             reload.
           </span>
-          <Button style={{ color: "#2F327D" }} onClick={() => getData()}>
+          <Button variant="pneumaWhite"  onClick={() => getData()}>
             <Replay color="primary" />
           </Button>
         </div>
@@ -118,14 +117,14 @@ const Explore = () => {
       </div>);
     else 
       return(
-      <div className="grid grid-cols-1 p-5 gap-y-5 md:gap-y-10 pt:8 lg:px-6 w-fit overflow-x-hidden">
+      <div className="grid grid-cols-1 w-full p-5 gap-y-5 md:gap-y-10 pt:8 lg:px-6  overflow-x-hidden">
         <div className="relative max-w-full">
           <CustomCarousel />
           <div className="absolute top: top-[78%] flex flex-col z-50 max-w-full space-y-5 overflow-hidden">
             <h3 className="tex-xl text-white ml-6">Trending Courses</h3>
             <div className="flex flex-row space-x-6 px-4 h-scrollable ">
       {courseData.map((item, key) => (
-        <CourseCard key={key} title={item.title.substring(0, 4)} image={item.image} />
+        <CourseCard key={key} title={`${item.title.substring(0, 4)}...`} image={item.image} />
       ))}
     </div>
           </div>
@@ -163,13 +162,13 @@ const Explore = () => {
             </Button>
           </div>
           <div className="grid justify-center items-center grid-cols-1 md:grid-cols-2 md:items-start md:justify-left lg:grid-cols-3 gap-5 bg-white mb-10 md:mb-20 ">
+            {/* <CourseCardBrief />
             <CourseCardBrief />
             <CourseCardBrief />
             <CourseCardBrief />
             <CourseCardBrief />
             <CourseCardBrief />
-            <CourseCardBrief />
-            <CourseCardBrief />
+            <CourseCardBrief /> */}
           </div>
         </div>
       </div>)
@@ -196,7 +195,6 @@ const CourseCard = ({ title, image }: CourseCardProps) => {
     <div className="flex flex-col space-y-3 w-[80px] mb:w-[100px]  sm:w-[120px] lg:w-[150px] shrink-0  object-cover">
       <div className=" w-[80px] mb:w-[100px]  sm:w-[120px] lg:w-[150px] h-[80px] mb:h-[100px]  sm:h-[120px] lg:h-[150px] rounded-sm">
         <img
-        crossOrigin="anonymous" 
         src={image === undefined ? hScroll1 : image}
         className="w-full h-full object-cover rounded-sm"
         style={{ maxHeight: "100%", width: "100%", objectFit: "cover" }}
@@ -239,15 +237,15 @@ const Course = ({
 }: ICourseProps) => {
   return (
     <div className="max-w-[287px] md:max-w-[250px] h-[250px]  p-3 grid  items-center gap-2 border-[1px] border-grayMarginColor bg-white hover:scale-105 hover:transition-transform">
-      <img className="w-[100%] h-[50px] object-cover " crossOrigin="anonymous" src="http://api.pneumaimpact.ng/uploads/file-1677434622673-222348319.png"/>
+      <img className="w-[100%] h-[50px] object-cover " src={image}/>
       <div className="grid grid-cols-1 gap-2 font-inter text-PrimaryGray">
         <div className="flex space-x-1 ">
 
            {/* <Tag title="Design" className="" />  */}
           
-           { tags.length === 0 ? (<></>) :tags.map((item, key) => (
+           {/* { tags.length === 0 ? (<></>) :tags.map((item, key) => (
             <Tag title={item} key={key} className={""} />
-           ))}  
+           ))}   */}
         </div>
         <div className="py-2 h-[70px]">
           <Link to={`/course/id/${_id}`} className="hover:underline">

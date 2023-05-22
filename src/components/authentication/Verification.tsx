@@ -1,23 +1,19 @@
 import Button from "@mui/material/Button";
 import React, { useEffect } from "react";
-import ReactCodeInput from "react-code-input";
-import VerificationInput from "react-verification-input";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import "../styles/General.css";
-import { PinInput } from "react-input-pin-code";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import OtpInput from "react-otp-input";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { useAuth } from "../store/auth/AuthProvider";
+import jwtDecode from "jwt-decode";
 
 const Verification = () => {
+  const { userData : {token} } = useAuth();
   const [values, setValues] = React.useState("");
   const navigate = useNavigate();
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
 
   const handleVefrifcation = () => {
   
@@ -28,34 +24,31 @@ const Verification = () => {
           token: values,
         },
         {
-          headers: { Authorization: `Bearer ${userData.token}` },
+          headers: { Authorization: `Bearer ${token}` },
         })
       .then((res) => {
-        userData.isverified = true;
-        let user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-          user.isVerified = true;
-          localStorage.clear();
-          localStorage.setItem("user", JSON.stringify(user));
-          navigate("/explore");
-        }
-        console.log();
+        // userData.isverified = true;
+        // let user = JSON.parse(localStorage.getItem("user"));
+        // if (user) {
+        //   user.isVerified = true;
+        //   localStorage.clear();
+        //   localStorage.setItem("user", JSON.stringify(user));
+          navigate("/personalinfo");
+        // }
       })
       .catch((err) => {
         toast.error(err.response.data.message);
-        console.log(err.response.data.message);
-        alert(err.response.data.message);
       });
   };
 
   useEffect(() => {
-    if (userData.user !== null && userData.isVerified === false) {
-      toast.success("Verication code was sent to " + userData.user);
+    if (token ) {
+      toast.success("Verication code was sent to " + jwtDecode(token));
       axios
         .post(
           "https://api.pneumaimpact.ng/v1/api/auth/resend-verification-email",
           {},
-          { headers: { Authorization: `Bearer ${userData.token}` } }
+          { headers: { Authorization: `Bearer ${token}` } }
         )
         .then((res) => toast.success("verifcation code sent to your mail"))
         .catch((err) => toast.error("unable to send verifcation code "));
@@ -82,15 +75,15 @@ const Verification = () => {
         </h2>
       </div>
       <div className="grid grid-cols-1 gap-y-5">
-        <div className="grid justify-center items-center grid-cols-1 gap-x-1 w-full">
+        <div className="flex justify-center items-center grid-cols-1 gap-x-1 w-full">
           <OtpInput
             value={values}
             onChange={(values: any) => setValues(values)}
-            numInputs={5}
+            numInputs={6}
             separator={<span> </span>}
             inputStyle="input-style"
             containerStyle="container"
-            isInputNum={true}
+            isInputNum={false}
             shouldAutoFocus={true}
           />
         </div>

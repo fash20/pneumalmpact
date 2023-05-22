@@ -23,7 +23,7 @@ const AdminDashboard = () => {
       <span className=" font-inter text-lg">Admin Dashboard</span>
       <div className="flex flex-row ">
         {dashboardItem.map((item, key) => (
-          <ADCard name={item.name} icon={item.icon} link={item.link} />
+          <ADCard name={item.name} icon={item.icon} link={item.link} key={key}/>
         ))}
       </div>
     </div>

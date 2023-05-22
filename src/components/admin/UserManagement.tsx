@@ -35,7 +35,7 @@ const UserManagement = () => {
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
   return (
-    <div>
+    <div className="flex flex-col w-full mt-9 p-5 space-y-5">
 
         <div style={{ height: 400, width: '100%' }}>
       <DataGrid

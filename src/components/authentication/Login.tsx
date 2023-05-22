@@ -1,7 +1,5 @@
-import { Heading, TextInputField } from "evergreen-ui";
 import React, { useState, useEffect, useContext } from "react";
 import googleIcon from "../assets/images/icon-google.svg";
-import facebookIcon from "../assets/images/icon-facebook.svg";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useScreenSize } from "../utils/useScreenSize";
@@ -9,14 +7,9 @@ import { Button, IconButton, InputAdornment, OutlinedInput} from "@mui/material"
 import TextField from '@mui/material/TextField';
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { validateEmail } from "../utils/validator";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../store/userAction";
-import { AppDispatch } from "../store/store";
 import toast, { Toaster } from "react-hot-toast";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-import axios from "axios";
-import useVerifyJWT from "../utils/useVerifyJWT";
 import checkTokenExpired from "../utils/checkTokenExp";
 import { AuthContext } from "../store/auth/authContext";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -28,11 +21,9 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = React.useState(false);
 
-  // const { userData, loading } = useSelector(
-  //   (state: { user: any }) => state.user
-  // );
-  // const dispatch = useDispatch<AppDispatch>();
-  const { signIn } = useContext(AuthContext);
+
+  const { signIn, userData } = useContext(AuthContext);
+  
 
   const [screenSize, isScreenSmall] = useScreenSize();
   const navigate = useNavigate();
@@ -46,31 +37,24 @@ const Login = () => {
     console.log("failed:", err);
   };
 
-  // useEffect(() => {
-  //   document.title = "Pneumalmpact - Login";
-  //   if(userData && userData.user){
-  //     if (
-  //       userData.user !== "" &&
-  //       checkTokenExpired(userData.token) &&
-  //       userData.isVerified !== false
-  //     ) {
-  //       navigate("/explore");
-  //     } else if (
-  //       userData.user !== "" &&
-  //       userData.token !== "" &&
-  //       userData.isVerified === false
-  //     ) {
-  //       navigate("/verification");
-  //     }
-  //   }
-  //   const initClient = () => {
-  //     gapi.auth2.init({
-  //       clientId: clientId,
-  //       scope: "",
-  //     });
-  //   };
-  //   gapi.load("client:auth2", initClient);
-  // }, [userData, navigate,]);
+  useEffect(() => {
+    document.title = "Pneumalmpact - Login";
+    // if(token){
+    //   if ( checkTokenExpired(token)
+    //   ) {
+    //     navigate("/explore");
+    //   }
+
+      
+    // }
+    const initClient = () => {
+      gapi.auth2.init({
+        clientId: clientId,
+        scope: "",
+      });
+    };
+    gapi.load("client:auth2", initClient);
+  }, [navigate,]);
 
   const onchange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -185,18 +169,13 @@ const Login = () => {
               onchange(event, "email")
             }
           />
-          <TextField
-            label="Password"
-            placeholder="*****"
-            type={showPassword ? 'text' : 'password'}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              onchange(event, "password")
-            }
-          />
             <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
+            placeholder="Password" 
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onchange(event, "password")
+            }
             endAdornment={
               <InputAdornment position="start">
                 <IconButton

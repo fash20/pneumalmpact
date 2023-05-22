@@ -11,15 +11,12 @@ import { Dehaze } from "@material-ui/icons";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-// import "../styles/General.css";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
-// import { getUserDetails } from "../store/userAction";
-import { AppDispatch } from "../store/store";
 import avatar from "../assets/images/user.png";
-import { logout } from "../store/userSlice";
 import { nameExtractor, wordShortner } from "../utils/utilityfunctions";
 import { useAuth } from "../store/auth/AuthProvider";
+import { signOut } from "../store/auth/AuthHelper";
 
 const Navbar = () => {
   // const selector = useSelector((state: { user: any }) => state.user);
@@ -31,10 +28,7 @@ const Navbar = () => {
   const [showDrawer, setShowDrawer] = useState({
     left: false,
   });
-  // const [isUserLoggedIn, setIsUserLoggedin] = useState<Boolean>(
-  //   selector.userData.user === null || selector.userData !== undefined  ? false : true
-  // );
-  // const dispatch = useDispatch<AppDispatch>();
+
   
   const handleClick1 = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl1(event.currentTarget);
@@ -42,10 +36,7 @@ const Navbar = () => {
   const handleClose1 = () => {
     setAnchorEl1(null);
   };
-  // const { userData, loading } = useSelector(
-  //   (state: { user: any }) => state.user
-  // );
-  const { user : {token} } = useAuth();
+  const { userData   } = useAuth();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -62,7 +53,6 @@ const Navbar = () => {
       ) {
         return;
       }
-      console.log('clicked')
       setShowDrawer({ ...showDrawer, left: open });
     };
   return (
@@ -102,7 +92,7 @@ const Navbar = () => {
           </div>
         )}
         {!isScreenSmall &&
-          (token? (
+          (userData !== null   ? (
             <div className="flex flex-row space-x-3 justify-center items-center">
               {/* <Link > */}
                 <div className="">
@@ -134,7 +124,7 @@ const Navbar = () => {
                   >
                     Explore
                   </MenuItem>
-                  <MenuItem onClick={() => {}}>Logout</MenuItem>
+                  <MenuItem onClick={signOut}>Logout</MenuItem>
                 </Menu>
                 </div>
               {/* </Link> */}
@@ -174,7 +164,7 @@ const Navbar = () => {
                     >
                       Explore
                     </MenuItem>
-                    <MenuItem onClick={() =>{}}>
+                    <MenuItem onClick={signOut}>
                       Logout
                     </MenuItem>
                   </Menu>
@@ -208,7 +198,7 @@ const Navbar = () => {
           open={showDrawer["left"]}
           onClose={toggleDrawer("left", false)}
         >
-          {/* <div className="flex flex-col space-y-5 w-[300px] p-5">
+           <div className="flex flex-col space-y-5 w-[300px] p-5">
             <a href="/">
               <div className="flex justify-left space-x-2 ">
                 <img className="w-8 h-8" src={logo} alt="logo" />
@@ -226,7 +216,7 @@ const Navbar = () => {
                 About us
               </a>
             </div>
-            { userData && userData.user ? (
+            { !userData === null  ? (
               <div className="flex flex-row gap-3">
                 <Link to="/profile">
                   <div className="">
@@ -236,12 +226,14 @@ const Navbar = () => {
                 <Link to="/user/dashboard" >
                   <div className="flex flex-col justify-start">
                   <h3 className="font-inter text-primaryTextColor font-bold">
-                    {userData && userData.user
+                    {
+                    /* {userData && userData.user
                       ? nameExtractor(userData.user)
-                      : ""}
+                      : ""} */  
+                    }
                   </h3>
                     <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
-                      {userData.user}
+                      Hello
                     </h4>
                   </div>
                 </Link>
@@ -264,7 +256,7 @@ const Navbar = () => {
                 </Button>
               </div>
             )}
-          </div> */}
+          </div> 
         </Drawer>
       )}
     </div>

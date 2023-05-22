@@ -1,15 +1,25 @@
-import { Avatar, Button, IconButton } from "@material-ui/core";
+import { Avatar, Button, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import book from "../assets/images/book.svg";
 import book2 from "../assets/images/book2.svg";
 import courseimage from "../assets/images/courseimage.svg";
-import { Star, FiberManualRecordRounded } from "@material-ui/icons";
+import { Star, FiberManualRecordRounded } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import ReactLoading from "react-loading";
 import { Replay } from "@mui/icons-material";
+import { useAuth } from "../store/auth/AuthProvider";
+import { BrandButtonStyle } from "../utils/UIThemes";
+import { toWeeksAgo } from "../utils/utilityfunctions";
+
+interface Course {
+  title?: string;
+  description?: string;
+  downloadUrl?: string;
+  createdAt?: string;
+  image?: string;
+}
 
 const Course = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,20 +27,33 @@ const Course = () => {
     isloading: true,
     failed: false,
   });
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+  const {
+    userData: { token },
+  } = useAuth();
+  const [courseData, setCourseData] = useState<Course>({
+    title: "",
+    image: "",
+    description: "",
+    createdAt: "",
+    downloadUrl: "",
+  });
 
   const getData = () => {
-     axios
+    axios
       .get("https://api.pneumaimpact.ng/v1/api/courses/id/" + id, {
         headers: {
-          Authorization: `Bearer ${userData.token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
         setLoadingProp({ failed: false, isloading: false });
+        setCourseData({
+          title: res.data.course.title,
+          description: res.data.course.description,
+          image: res.data.course.image,
+          createdAt: res.data.course.createdAt,
+        });
       })
       .catch((err) => {
         toast.error("Something went wrong try again");
@@ -41,56 +64,131 @@ const Course = () => {
   useEffect(() => {
     getData();
   }, []);
+  // return (
+  //   <div className="w-full">
+  //    {(() => {
+  //       {
+  //         if (loadingProp.failed)
+  //           return (
+  //             <div className="flex flex-col items-center relative px-5 pt-5 space-y-5 ">
+  //               <span className=" font-dmSans text-lg">
+  //                 Sorry, we are unable to fetch data. Please check your network
+  //                 connection and reload.
+  //               </span>
+  //               <Button variant="pneumaWhite" onClick={getData}>
+  //                 <Replay color="primary" />
+  //               </Button>
+  //             </div>
+  //           );
+  //         else if (loadingProp.isloading)
+  //           return (
+  //             <div className="flex justify-center py-20 ">
+  //               <ReactLoading
+  //                 type="spin"
+  //                 color="#2F327D"
+  //                 height={50}
+  //                 width={50}
+  //               ></ReactLoading>
+  //               hi
+  //             </div>
+  //           );
+  //         else
+  //           <div className="mt-5 flex flex-col gap-10 px-5  md:px-10 p-5">
+  //             hi
+  //             <CourseInfo
+  //               title={courseData.title}
+  //               image={courseData.image}
+  //               description={courseData.description}
+  //               createdAt={courseData.createdAt}
+  //             />
+  //             <div className="flex flex-col gap-5 font-medium">
+  //               <span>
+  //                 <h3 className="font-poppins text-xl text-PrimaryGray">
+  //                   Related Courses
+  //                 </h3>
+  //               </span>
+  //               <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-5 gap-2">
+  //                 <CourseCard />
+  //                 <CourseCard />
+  //                 <CourseCard />
+  //                 <CourseCard />
+  //                 <CourseCard />
+  //               </div>
+  //             </div>
+
+  //             <div className="grid justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4">
+  //               <CourseTag name="Tag 1" />
+  //               <CourseTag name="Tag 2" />
+  //               <CourseTag name="Tag 3" />
+  //               <CourseTag name="Tag 1" />
+  //             </div>
+  //           </div>;
+  //       }
+  //     })()}
+  //   </div>
+  // );
+
   return (
-    <div className="w-full">
+    <div className="grid grid-cols-1 relative w-full">
       {(() => {
         {
           if (loadingProp.failed)
             return (
-              <div className=" w-full h-[100vh] flex flex-col items-center px-5 pt-10 ">
+              <div className="flex flex-col items-center relative px-5 pt-5 space-y-5 ">
                 <span className=" font-dmSans text-lg">
-                  Unable to get course. Please check your network connection and
-                  reload.
+                  Sorry, we are unable to fetch data. Please check your network
+                  connection and reload.
                 </span>
-                <Button style={{ color: "#2F327D" }} onClick={() => getData()}>
+                <Button variant="pneumaWhite" onClick={() => getData()}>
                   <Replay color="primary" />
                 </Button>
               </div>
             );
           else if (loadingProp.isloading)
-            <div className=" w-full h-[100vh] flex justify-center py-20">
-              <ReactLoading
-                type="spin"
-                color="#2F327D"
-                height={50}
-                width={50}
-              ></ReactLoading>
-            </div>;
+            return (
+              <div className="flex justify-center py-20 ">
+                <ReactLoading
+                  type="spin"
+                  color="#2F327D"
+                  height={50}
+                  width={50}
+                ></ReactLoading>
+              </div>
+            );
           else
-            <div className="mt-5 flex flex-col gap-10 px-5  md:px-10 p-5">
-              <CourseInfo />
-              <div className="flex flex-col gap-5 font-medium">
-                <span>
-                  <h3 className="font-poppins text-xl text-PrimaryGray">
-                    Related Courses
-                  </h3>
-                </span>
-                <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-5 gap-2">
-                  <CourseCard />
-                  <CourseCard />
-                  <CourseCard />
-                  <CourseCard />
-                  <CourseCard />
+            return (
+              <div className="grid grid-cols-1 w-full p-5 gap-y-5 md:gap-y-10 pt:8 lg:px-6  overflow-x-hidden">
+                <div className="mt-5 flex flex-col gap-10 px-5  md:px-10 p-5">
+                  <CourseInfo
+                    title={courseData.title}
+                    image={courseData.image}
+                    description={courseData.description}
+                    createdAt={courseData.createdAt}
+                  />
+                  <div className="flex flex-col gap-5 font-medium">
+                    <span>
+                      <h3 className="font-poppins text-xl text-PrimaryGray">
+                        Related Courses
+                      </h3>
+                    </span>
+                    <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-5 gap-2">
+                      <CourseCard />
+                      <CourseCard />
+                      <CourseCard />
+                      <CourseCard />
+                      <CourseCard />
+                    </div>
+                  </div>
+                  <div className="grid justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4">
+                    <CourseTag name="Tag 1" />
+                    <CourseTag name="Tag 2" />
+                    <CourseTag name="Tag 3" />
+                    <CourseTag name="Tag 1" />
+                  </div>
                 </div>
+                ;
               </div>
-
-              <div className="grid justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4">
-                <CourseTag name="Tag 1" />
-                <CourseTag name="Tag 2" />
-                <CourseTag name="Tag 3" />
-                <CourseTag name="Tag 1" />
-              </div>
-            </div>;
+            );
         }
       })()}
     </div>
@@ -151,19 +249,29 @@ const CourseTag = ({ name }: CourseTagProp) => {
   );
 };
 
-const CourseInfo = () => {
+interface CourseInfoProps {
+  token: string;
+  id: string;
+}
+
+const CourseInfo: React.FC<Course> = ({
+  title,
+  description,
+  image,
+  createdAt,
+}) => {
   return (
     <div className="flex flex-col md:flex-row  space-y-5 md:space-x-5 md:space-y-0 ">
       <div className=" p-10 border-[1px] border-grayMarginColor  ">
         <img
           className=" w-full h-[150px] object-cover lg:max-w-[182px] lg:h-[270px]"
-          src={courseimage}
+          src={image}
         />
       </div>
-      <div className="flex flex-col space-5">
+      <div className="flex w-full flex-col space-5">
         <div className="flex flex-col space-y-3 md:space-y-4">
           <h2 className="font-inter text-[24px] md:text-4xl lg:text-5xl text-gray2">
-            Sketching for Designers
+            {title}
           </h2>
           <div className=" flex font-inter ">
             <Star fontSize={"small"} />
@@ -178,27 +286,28 @@ const CourseInfo = () => {
             <div className="flex items-center gap-2">
               <Avatar style={{ width: 24, height: 24 }} />
               <h3 className=" font-interlight text:text-sm md:text-md   ">
-                Username
+                Admin
               </h3>
             </div>
 
             <div className="flex font-interlight text-md items-center ">
-              <FiberManualRecordRounded fontSize="small" />
-              <h3 className="font-interlight text-gray"> 1 week ago </h3>
+              <FiberManualRecordRounded
+                style={{ height: "20px" }}
+                fontSize="small"
+              />
+              <h3 className="font-interlight text-gray">
+                {" "}
+                {toWeeksAgo(createdAt)}{" "}
+              </h3>
             </div>
           </div>
         </div>
         <div className="font-interlight text-sm lg:text-xl my-5 max-w-[750px] ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu
-          penatibus arcu convallis aliquet. Facilisis viverra nec vitae diam
-          nunc. Blandit malesuada nisl eget tellus pellentesque habitasse
-          malesuada. Duis vitae lectus ullamcorper at. Ut tincidunt eget
-          pellentesque praesent volutpat. Eget et urna praesent semper curabitur
-          quam curabitur vulputate scelerisque. Eget eget massa, dignissim
-          commodo viverra lectus metus, nibh quisque. Duis sapien orci, at lacus
-          eget sed odio vitae massa. Gravida nulla aliquet in velit velit.
+          {description}
         </div>
-        <Button>Download</Button>
+        <Button style={BrandButtonStyle} variant="pneumaBlue">
+          Get
+        </Button>
       </div>
     </div>
   );

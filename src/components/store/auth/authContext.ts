@@ -1,20 +1,22 @@
 import { createContext } from "react";
 
-export type User = {
-  name: string;
-  email: string;
+export type UserData = {
   token: string;
-  isVerified: boolean;
+  user:{
+    isVerified: boolean;
+    email: string;
+    role: string
+  }
 };
 
 type AuthContextType = {
-  user: User | null;
+  userData: UserData | null;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => void;
 };
 
 export const AuthContext = createContext<AuthContextType>({
-  user: null,
+  userData: null,
   signIn: async (email: string, password: string) => {},
   signOut: () => {},
 });

@@ -12,3 +12,8 @@ export const validateEmail = (value: string) => {
 
     return error
 }
+
+export function emailValidator(email: string): boolean {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}

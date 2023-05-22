@@ -13,15 +13,14 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "../svgicons/SearchIcon";
 import SideNav from "./SideNav";
-import { useSelector, useDispatch } from "react-redux";
 import MenuItem from "@mui/material/MenuItem";
 import { Button, Drawer, Fade, Menu } from "@mui/material";
 import { MenuOutlined } from "@mui/icons-material";
-import { logout } from "../store/userSlice";
-import { AppDispatch } from "../store/store";
 import { nameExtractor, wordShortner } from "../utils/utilityfunctions";
 import { BrandButtonStyle } from "../utils/UIThemes";
 import logo from "../assets/images/pneumaImpact-logo.svg";
+import {  useAuth } from "../store/auth/AuthProvider";
+import { signOut } from "../store/auth/AuthHelper";
 
 interface RenderComponent {
   children?: ReactNode;
@@ -30,16 +29,12 @@ interface RenderComponent {
 const UserNav = ({ children }: RenderComponent) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [screenSize, isScreenSmall] = useScreenSize();
-  // const { userData, loading } = useSelector(
-  //   (state: { user: any }) => state.user
-  // );
-  const [user, setUser] = useState();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
-  // const dispatch = useDispatch<AppDispatch>();
   const [showDrawer, setShowDrawer] = useState({
     left: false,
   });
+  const {userData} = useAuth()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -60,11 +55,7 @@ const UserNav = ({ children }: RenderComponent) => {
 
       setShowDrawer({ ...showDrawer, left: open });
     };
-  useEffect(() => {
-    // if (userData.email !== "" && userData !== null) {
-    //   setUser(userData.user);
-    // }
-  }, [open]);
+  useEffect(() => {}, [open]);
   return (
     <React.Fragment>
       <div className="flex flex-col w-full bg">
@@ -99,9 +90,8 @@ const UserNav = ({ children }: RenderComponent) => {
               <MenuOutlined />
             </Button>
           )}
-          {!isScreenSmall 
-          // && userData && userData.user 
-          ? (
+          {!isScreenSmall ? (
+            // && userData && userData.user
             <div className="relative px-5 flex gap-4 justify-left items-center">
               <IconButton>
                 <NotificationIcon />
@@ -143,20 +133,25 @@ const UserNav = ({ children }: RenderComponent) => {
                   >
                     Explore
                   </MenuItem>
-                  <MenuItem onClick={() =>{ 
-                    // dispatch(logout())
-                  }}>Logout</MenuItem>
+                  <MenuItem
+                    onClick={()=> {
+                      signOut()
+                      navigate("/login")
+                     } }
+                  >
+                    Logout
+                  </MenuItem>
                 </Menu>
-                <div className="flex flex-col justify-start">
-                  {/* <h3 className="font-inter text-primaryTextColor font-bold">
+                {/* <div className="flex flex-col justify-start">
+                  <h3 className="font-inter text-primaryTextColor font-bold">
                     {userData && userData.user
                       ? nameExtractor(userData.user)
                       : ""}
                   </h3>
                   <h4 className="font-inter text-primaryTextColor text-sm font-[100] ">
                     {userData && userData.user ? userData.user : ""}
-                  </h4> */}
-                </div>
+                  </h4> 
+                </div> */}
               </div>
             </div>
           ) : (
@@ -184,7 +179,7 @@ const UserNav = ({ children }: RenderComponent) => {
             </div>
           )}
         </div>
-        <div className="flex justify-center w-full">
+        <div className="flex">
           {!isScreenSmall && <SideNav />}
           {children}
         </div>
@@ -203,10 +198,9 @@ const UserNav = ({ children }: RenderComponent) => {
               </div>
             </a>
             {
-         //   userData && userData.user ? (
-          //    <SideNav />
-          //  ) : 
-            (
+                userData ? (
+                 <SideNav />
+               ) :
               <div className="flex flex-col  space-y-4 ">
                 <Button variant="pneumaWhite" className=" w-full" href="/login">
                   Log In
@@ -215,7 +209,7 @@ const UserNav = ({ children }: RenderComponent) => {
                   Sign Up
                 </Button>
               </div>
-            )}
+            }
           </div>
         </Drawer>
       )}

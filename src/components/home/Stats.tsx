@@ -13,7 +13,7 @@ const Stats: React.FC<Stats> = (props) => {
   const { title, value } = props;
 
   return (
-      <div className="flex flex-col stats gap-2 p-4 w-[100px]">
+      <div className="flex flex-col stats gap-1 p-4 w-[100px] ">
         <CountUp
           start={0}
           end={value}
@@ -23,9 +23,9 @@ const Stats: React.FC<Stats> = (props) => {
           decimal=","
           prefix=""
           suffix="+"
-          className="sm:text-xl md:text-2xl lg:text-3xl"
+          className="sm:text-sm md:text-base lg:text-lg text-white"
       />
-        <span className="text-md md:text-lg lg:text-xl">{title}</span>
+        <span className="text-xs md:text-sm lg:text-sm text-fadeWhite">{title}</span>
       </div>
   );
 };

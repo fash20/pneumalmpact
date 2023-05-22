@@ -30,6 +30,10 @@
     font-family: nunito-sans;
     src: url( ./components/assets/fonts/Nunito_Sans/NunitoSans-Regular.ttf);
 }
+@font-face {
+    font-family: roboto;
+    src: url( ./components/assets/fonts/Roboto/Roboto-Medium.ttf);
+}
 
 
 @layer base{

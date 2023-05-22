@@ -5,10 +5,10 @@ import SettingSVG from "./SettingSVG";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Avatar, useMediaQuery } from "@mui/material";
 import { BrandButtonStyle, theme } from "../utils/UIThemes";
-import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
 import avatar from "../assets/images/user.png";
+import { useAuth } from "../store/auth/AuthProvider";
 
 const Settings = () => {
   const [selectedFile, setSelectedFile] = useState<any>();
@@ -21,9 +21,10 @@ const Settings = () => {
   //     console.log(URL.createObjectURL(event.target.files[0]));
   //   }
   // };
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+  // const { userData, loading } = useSelector(
+  //   (state: { user: any }) => state.user
+  // );
+  const {userData: {token}} = useAuth();
   const [course, setCourse] = useState({
     title: "",
     body: "",
@@ -39,11 +40,11 @@ const Settings = () => {
   const handleUpload = () => {
     axios
       .post(
-        "https://api.pneumaimpact.ng/v1/api/courses/",
+        "https://api.pneumaimpact.ng/v1/api//",
         {
           course,
         },
-        { headers: { Authorization: `Bearer ${userData.token}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((res) => {})
       .catch((err) => toast.error("unable to send verifcation code "));

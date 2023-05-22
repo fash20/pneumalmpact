@@ -1,4 +1,3 @@
-import { FilterIcon, TextDropdownButton } from "evergreen-ui";
 import React, { useEffect, useState } from "react";
 import { Avatar } from "@material-ui/core";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
@@ -9,18 +8,15 @@ import {
   LinearProgress,
   LinearProgressProps,
   Menu,
-  MenuItem,
   Typography,
 } from "@mui/material";
-import { course } from "../utils/dummydata";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Filter1Outlined, FilterSharp, Replay } from "@mui/icons-material";
+import { FilterSharp, Replay } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import checkTokenExp from "../utils/checkTokenExp";
 import ReactLoading from "react-loading";
+import { useAuth } from "../store/auth/AuthProvider";
 
 const Collection = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -28,9 +24,7 @@ const Collection = () => {
   const navigate = useNavigate();
   const [courseData, setCourseData] = useState<Array<ICourseProps>>([]);
   const [isLoading, setIsLoadng] = useState(true);
-  const { userData, loading } = useSelector(
-    (state: { user: any }) => state.user
-  );
+  const { userData : {token} } = useAuth();
   const [loadingProp, setLoadingProp] = useState({
     isloading: true,
     failed: false,
@@ -48,14 +42,14 @@ const Collection = () => {
 
   const getData = () => {
     axios
-      .get("https://api.pneumaimpact.ng/v1/api/courses", {
+      .get("https://api.pneumaimpact.ng/v1/api/courses/", {
         headers: {
-          Authorization: `Bearer ${userData.token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        setCourseData(res.data.courses);
+        setCourseData(res.data.docs);
         setLoadingProp({ failed: false, isloading: false });
       })
       .catch((err) => {
@@ -66,7 +60,7 @@ const Collection = () => {
 
   useEffect(() => {
     document.title = "Pneumalmpact - Explore";
-    if (!checkTokenExp(userData.token)) {
+    if (!checkTokenExp(token)) {
       navigate("/login");
     } else {
       getData();
@@ -131,7 +125,7 @@ const Collection = () => {
               },
             }}
           >
-            {course.map((option) => (
+            {/* {course.map((option) => (
               <MenuItem
                 key={option.title}
                 selected={option.title === "All"}
@@ -139,20 +133,10 @@ const Collection = () => {
               >
                 {option.title}
               </MenuItem>
-            ))}
+            ))} */}
           </Menu>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 items-center justify-center">
-          {/* {course.map((item, key) => (
-          <Course
-            title={item.title}
-            author={item.author}
-            key={key}
-            properties={item.properties}
-            image={item.image}
-          />
-        ))} */}
-
           {courseData.length === 0 ? (
             <div>No courses found</div>
           ) : (
@@ -162,10 +146,9 @@ const Collection = () => {
                 image={item.image}
                 id={item.id}
                 key={item.id}
-                // properties={item.properties}
               />
             ))
-          )}
+          )} 
         </div>
       </div>
       )
@@ -176,7 +159,7 @@ const Collection = () => {
 
 export default Collection;
 
-interface ICourseProps {
+export interface ICourseProps {
   title?: string;
   subtitle?: string;
   image?: string;
@@ -206,7 +189,6 @@ const Course = ({
       <div className="w-[287px] md:w-[250px] h-[300px] p-3 grid gap-2 border-[1px] border-grayMarginColor">
         <img
           className="w-[100%] h-[50px] object-cover "
-          crossOrigin="anonymous"
           src={image}
         />
         <div className="grid grid-cols-1 gap-4 font-inter text-PrimaryGray">

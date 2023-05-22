@@ -1,17 +1,21 @@
-import {  Heading, TextInputField } from "evergreen-ui";
+import { Heading, TextInputField } from "evergreen-ui";
 import React, { useState } from "react";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import countries from "i18n-iso-countries";
 import ReactFlagsSelect from "react-flags-select";
 import "../styles/General.css";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { BrandButtonStyle } from "../utils/UIThemes";
 
-
 const PersonalInfo = () => {
-  const [selectedCountry, setSelectedCountry] = useState("NG");
-
+  const [selectedCountry, setSelectedCountry] = useState("Nigeria");
   const selectCountryHandler = (value: string) => {
     setSelectedCountry(value);
   };
@@ -24,6 +28,47 @@ const PersonalInfo = () => {
       value: key,
     };
   });
+  const [personalInfo, setPersonalInfo] = useState({
+    firstname: "",
+    lastname: "",
+    country: "",
+    state: "",
+    countryCode: "",
+    telephone: "",
+  });
+
+  const onchange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    input: string
+  ) => {
+    switch (input) {
+      case "firstname":
+        setPersonalInfo({ ...personalInfo, firstname: event.target.value });
+        break;
+      case "lastname":
+        setPersonalInfo({ ...personalInfo, lastname: event.target.value });
+        break;
+      case "country":
+        setPersonalInfo({ ...personalInfo, country: selectedCountry });
+        break;
+      case "state":
+        setPersonalInfo({ ...personalInfo, state: event.target.value });
+        break;
+      case "countryCode":
+        setPersonalInfo({ ...personalInfo, countryCode: event.target.value });
+        break;
+      case "telephone":
+        setPersonalInfo({ ...personalInfo, telephone: event.target.value });
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelectedCountry(event.target.value);
+    setPersonalInfo({ ...personalInfo, country: event.target.value });
+  };
 
   return (
     <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
@@ -35,48 +80,60 @@ const PersonalInfo = () => {
         />
       </div>
       <div className="text-center">
-        <Heading size={800}>Personal Inofrmation</Heading>
+        <h3 className=" text-lg">Personal Inofrmation</h3>
       </div>
       <div className="grid grid-cols-1 gap-y-10">
         <div className=" grid grid-cols-1 space-y-5">
           <TextField
             label="First Name"
             placeholder={"First Name"}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onchange(event, "firstname")
+            }
           />
           <TextField
             label="Last Name"
             placeholder="LastName"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onchange(event, "lastname")
+            }
           />
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
             <div className="grid gap-2">
-              <Heading size={400}>Country</Heading>
-              <ReactFlagsSelect
-                className="slct-cntr"
-                searchable
-                showOptionLabel
-                countries={countryArr.map(({ label, value }) => value[0])}
-                selected={selectedCountry}
-                onSelect={function (countryCode: string): void {
-                  selectCountryHandler(countryCode)
-                
-                }}
-                
-              />
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={selectedCountry}
+                label="Country"
+                onChange={handleChange}
+              >
+                {countryArr.map(({ label, value }) => (
+                  <MenuItem value={value[1]}>{value[1]}</MenuItem>
+                ))}
+              </Select>
             </div>
-            <TextField
-              label="State"
-              placeholder={"State"}
+            <TextField label="State" placeholder={"State"}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onchange(event, "state")
+            }
+             />
+            <TextField label="Code" placeholder={"123"} 
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onchange(event, "countryCode")
+            }
             />
-            <TextField
-              label="Code"
-              placeholder={"123"}
-            />
-            <TextField
-              label="Phone Number"
-              placeholder={"Phone"}
-            />
+            <TextField label="Phone Number" placeholder={"Phone"} 
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              onchange(event, "telephone")
+            }
+             />
           </div>
-          <Button variant="pneumaBlue" style={BrandButtonStyle}>Next</Button>
+          <Button variant="pneumaBlue" style={BrandButtonStyle} onClick={()=> {
+            alert(JSON.stringify(personalInfo  ))
+            
+          }}>
+            Next
+          </Button>
         </div>
       </div>
     </div>
