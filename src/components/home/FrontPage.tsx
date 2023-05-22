@@ -30,7 +30,7 @@ const FrontPage = () => {
           <Button variant="noBg" color="primary" style={homeButtonStyle} href='/register'>
             Get Started
           </Button>
-          <Button variant="pneumaRed" style={homeButtonStyle}>
+          <Button variant="pneumaRed" style={homeButtonStyle} href="/">
             Become an Investor
           </Button>
         </div>

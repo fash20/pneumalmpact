@@ -1,5 +1,6 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar } from "@mui/material"
 import { ArrowLeftIcon, ArrowRightIcon, IconButton } from "evergreen-ui";
+
 import React, {useState} from "react";
 import '../styles/animations.css'
 import image1 from '../assets/images/testimonials/image1.png'
@@ -82,8 +83,8 @@ const OurReview = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center ">
-      <div className="grid gap-y-16">
+    <div className="relative flex flex-col justify-center items-center ">
+      <div className="grid">
         <div className="text-center">
           <span className="step-title-blue">What our </span>
           <span className="step-title-red">Students </span>
@@ -95,7 +96,7 @@ const OurReview = () => {
           <StudentReview3 />
           
         </div>
-        <div className="flex space-x-3 justify-center ">
+        <div className=" flex space-x-3 justify-center  ">
           <IconButton icon={ArrowLeftIcon} onClick={handleDecrement} />
           <IconButton icon={ArrowRightIcon} onClick={handleIncrement} />
         </div>
@@ -132,7 +133,7 @@ const StudentReview = ({testimonial, count}:TestimonialProp) => {
         }
       </div>
       <div className="flex flex-col items-center justify-center gap-y-5 mt-[5px]">
-        <Avatar src={testimonial.img} style={{ height: 100, width: 100 }} />
+        <img src={testimonial.img} style={{ height: 100, width: 100, borderRadius:'50%' }} />
         <span className="font-zcool fnt25 h-[20px]">{testimonial.author}</span>
         <span className="font-inter">{testimonial.field}</span>
         <p id='fade-in' className="font-zcool text-md h-[220px] mb:h-[200px] md:h-[160px] lg:h-[100px] ">

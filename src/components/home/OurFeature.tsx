@@ -136,7 +136,7 @@ const Step: React.FC<Step> = (props) => {
   return (
     <div
       id={id}
-      className="flex flex-col gap-y-5 justify-center items-center lg:items-start lg:max-w-4xl md:justify-start md:mt-20"
+      className="flex flex-col space-y-4 justify-center items-center lg:items-start lg:max-w-4xl md:justify-start md:mt-20"
     >
       <div className="flex sm:justify-center lg:justify-center">{children}</div>
       <p className="step-detail text-center md:text-left font-roboto">{detail}</p>

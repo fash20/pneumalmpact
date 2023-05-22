@@ -5,7 +5,7 @@ import iphone from '../assets/images/iphone.png'
 
 const Phone = () => {
   return (
-    <div className='p-20 flex flex-col space-y-20'>
+    <div className='p-5 md:p-10 xl:p-20 flex flex-col space-y-20'>
         <div className="grid  grid-col-1 space-y-4 lg:grid-cols-2 lg:space-y-0 mt-3 mb-2 ">
             <div className=' font-nuSans text-3xl  max-w-[350px]  tracking-wider  '>
                 <span className="step-title-blue">

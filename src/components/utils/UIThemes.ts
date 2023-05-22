@@ -1,6 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { amber, blue, red } from "@material-ui/core/colors";
-import inter from "../assets/fonts/Inter/static/Inter-Regular.ttf";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
@@ -102,6 +100,10 @@ export const BrandButtonStyle = {
 };
 export const homeButtonStyle = {
   height: 57,
+  borderRadius: 8,
+};
+export const navButtonStyle = {
+  height: 48,
   borderRadius: 8,
 };
 export const TabButtonStyle = {

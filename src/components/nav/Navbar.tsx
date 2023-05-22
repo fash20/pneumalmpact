@@ -8,10 +8,10 @@ import {
   Fade,
 } from "@mui/material";
 import { Dehaze } from "@material-ui/icons";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-import { BrandButtonStyle } from "../utils/UIThemes";
+import { navButtonStyle } from "../utils/UIThemes";
 import { useScreenSize } from "../utils/useScreenSize";
 import avatar from "../assets/images/user.png";
 import { nameExtractor, wordShortner } from "../utils/utilityfunctions";
@@ -19,7 +19,6 @@ import { useAuth } from "../store/auth/AuthProvider";
 import { signOut } from "../store/auth/AuthHelper";
 
 const Navbar = () => {
-  // const selector = useSelector((state: { user: any }) => state.user);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorEl1, setAnchorEl1] = React.useState<null | HTMLElement>(null);
   const [screenSize, isScreenSmall] = useScreenSize();
@@ -175,16 +174,16 @@ const Navbar = () => {
             <div className="flex justify-center gap-4 space-x-4 w-full">
               <Button
                 variant="pneumaWhite"
-                style={BrandButtonStyle}
-                className=" shadow-md sm:w-fit lg:w-[120px]"
+                style={navButtonStyle}
+                className=" shadow-lg h-10 sm:w-fit lg:w-[120px]"
                 href="/login"
               >
                 Log In
               </Button>
               <Button
                 variant="pneumaBlue"
-                style={BrandButtonStyle}
-                className="shadow-md bg-white  sm:w-fit lg:w-[120px]"
+                style={navButtonStyle}
+                className=" shadow-lg bg-white h-10  sm:w-fit lg:w-[120px]"
                 href="/signup"
               >
                 Sign Up
