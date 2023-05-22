@@ -152,17 +152,21 @@ export const Router = () => {
       <Route
         path="/course/id/:id"
         element={
+          <ProtectedRoute>
           <UserNav>
             <Course />
           </UserNav>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/library"
         element={
+          <ProtectedRoute>
           <UserNav>
             <Collection />
           </UserNav>
+          </ProtectedRoute>
         }
       />
       <Route
@@ -190,7 +194,7 @@ export const Router = () => {
         element={
           <ProtectedRoute>
             <UserNav>
-              <AdminDashboard />\
+              <AdminDashboard />
             </UserNav>
           </ProtectedRoute>
         }
