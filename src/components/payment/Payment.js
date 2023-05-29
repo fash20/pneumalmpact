@@ -1,8 +1,8 @@
-import { Button, Heading, TextInputField } from "evergreen-ui";
 import React, { useState } from "react";
 import logo from "../assets/images/pneumaImpact-logo.svg";
 import { PaystackButton } from "react-paystack";
 import toast from "react-hot-toast";
+import { TextField } from "@mui/material";
 
 
 
@@ -37,29 +37,25 @@ const Payment = () => {
         />
       </div>
       <div className="text-center">
-        <Heading size={800}>Payment Details</Heading>
+        <h1 size={800}>Payment Details</h1>
       </div>
       <div className="grid grid-cols-1 gap-y-10">
         <div className="grid grid-cols-1 gap-x-4">
-          <TextInputField
-            isInvalid={false}
-            inputHeight={50}
+          <TextField
             label="Name"
             placeholder={"Card Name"}
             onChange={(e) =>
               setName(e.target.value)
             }
           />
-          <TextInputField
-            inputHeight={50}
+          <TextField
             label="Email"
             placeholder="Email"
             onChange={(e) =>
               setEmail(e.target.value)
             }
           />
-          <TextInputField
-            inputHeight={50}
+          <TextField
             label="Phone"
             placeholder="Phone number"
             onChange={(e) =>

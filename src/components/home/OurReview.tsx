@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material"
-import { ArrowLeftIcon, ArrowRightIcon, IconButton } from "evergreen-ui";
+// import { ArrowLeftIcon, ArrowRightIcon, IconButton } from "@mui/icons-material"
 
 import React, {useState} from "react";
 import '../styles/animations.css'
@@ -8,7 +8,7 @@ import image2 from '../assets/images/testimonials/image2.jpeg'
 import image3 from '../assets/images/testimonials/image3.jpeg'
 import image4 from '../assets/images/testimonials/image4.jpg'
 import image5 from '../assets/images/testimonials/image5.jpg'
-import image6 from '../assets/images/testimonials/image6.png'
+import image6 from '../assets/images/testimonials/image6.jpg'
 import image7 from '../assets/images/testimonials/image7.png'
 
 const Testimonials= [
@@ -97,8 +97,8 @@ const OurReview = () => {
           
         </div>
         <div className=" flex space-x-3 justify-center  ">
-          <IconButton icon={ArrowLeftIcon} onClick={handleDecrement} />
-          <IconButton icon={ArrowRightIcon} onClick={handleIncrement} />
+          {/* <IconButton icon={ArrowLeftIcon} onClick={handleDecrement} />
+          <IconButton icon={ArrowRightIcon} onClick={handleIncrement} /> */}
         </div>
       </div>
     </div>

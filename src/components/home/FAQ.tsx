@@ -1,4 +1,5 @@
-import { IconButton, PlusIcon } from "evergreen-ui";
+import { IconButton } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import React, { useState } from "react";
 
 const FAQ = () => {
@@ -94,10 +95,11 @@ const Questions = ({ question, answer }: IQuestionProps) => {
       </div>
       <div className="flex-none pl-5">
         <IconButton
-          icon={PlusIcon}
           size="large"
           onClick={() => setShowDetails(!showDetails)}
-        />
+        >
+          <Add />
+        </IconButton>
       </div>
     </div>
   );

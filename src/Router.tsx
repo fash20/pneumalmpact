@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import AddCourse from "./components/admin/AddCourse";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import AdditionalInfo from "./components/authentication/AdditionalInfo";
 import AuthContainer from "./components/authentication/AuthContainer";
@@ -224,18 +223,6 @@ export const Router = () => {
           <>
             <AboutNav />
             <About />
-          </>
-        }
-      />
-      <Route
-        path="/admin/addcourse"
-        element={
-          <>
-            <ProtectedRoute>
-              <UserNav>
-                <AddCourse />
-              </UserNav>
-            </ProtectedRoute>
           </>
         }
       />

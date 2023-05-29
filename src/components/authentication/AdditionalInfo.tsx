@@ -1,9 +1,15 @@
-import { Button,  Heading} from "evergreen-ui";
 import React from "react";
 import logo from "../assets/images/pneumaImpact-logo.svg";
-import Select from "react-dropdown-select";
+import { Link } from "react-router-dom";
+import { Button, FormControl, Menu, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 const AdditionalInfo = () => {
+
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value);
+  };
   return (
     <div className="grid grid-cols-1 mx-10 my-10 gap-y-14 ">
       <div className="flex justify-center">
@@ -14,7 +20,7 @@ const AdditionalInfo = () => {
         />
       </div>
       <div className="text-center">
-        <Heading size={800}>Area Of Business</Heading>
+        <h1 >Area Of Business</h1>
       </div>
       <div className="grid grid-cols-1 gap-y-10">
         <div className="grid gap-10 grid-cols-1 ">
@@ -26,23 +32,29 @@ const AdditionalInfo = () => {
               items={[]}
               style={{ width: "100%", height: 50 }}
             /> */}
-            <Select
-              values={[]}
-              options={[]}
-              labelField="Chose one"
-              onChange={function (value: ("Pilot" | "Business Man")[]): void {
-                throw new Error("Function not implemented.");
-              }}
-              style={{ width: "100%", height: 50, borderRadius:'10px' }}
-            />
+                  <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <Select
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
           </div>
 
-          <Button appearance="primary">Next</Button>
+          <Button >Next</Button>
         </div>
-        <div className="flex flex-row justify-between">
-          <Heading>Create an Account</Heading>
-          <Heading>Forget Password?</Heading>
-        </div>
+        {/* <div className="flex flex-row justify-between">
+          <Link t >Create an Account</Link>
+          <Link>Forget Password?</Link>
+        </div> */}
       </div>
     </div>
   );

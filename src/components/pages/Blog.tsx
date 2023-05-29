@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { Tag } from "../user/Explore";
 import blogPost from "../assets/images/blogpost.svg";
 import Avatar from "@mui/material/Avatar";
-import avatar from "../assets/images/avatar.svg";
 import Pagination from "@mui/material/Pagination";
 import { theme } from "../utils/UIThemes";
 import {
@@ -251,7 +250,7 @@ const AuthourCard = () => {
   return (
     <div className="flex space-x-3 items-center py-5">
       <div>
-        <Avatar sx={{ width: 70, height: 70 }} src={avatar} />
+        <Avatar sx={{ width: 70, height: 70 }} />
       </div>
       <div className="flex flex-col space-y-2 ">
         <span className="font-bold text-md">Jenny kia</span>

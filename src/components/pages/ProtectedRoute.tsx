@@ -27,7 +27,7 @@ const ProtectedRoute = ({children}:RenderComponent) => {
     <div className='justify-center items-center'>
       
       {
-       userData === null? <Navigate to={'/login'} />  : children
+       userData === null? <Navigate to={'/login'} /> : children
       }
     </div>
   )
