@@ -1,7 +1,6 @@
 import { Button, useMediaQuery } from "@mui/material";
 import React, { ReactNode, useEffect, } from "react";
 import { homeButtonStyle, theme } from "../utils/UIThemes";
-import Training from "./animatedsvgs/Training";
 import ProgramSVG from "./homeSVGs/ProgramSVG";
 import MentorshipSVG from "./homeSVGs/MentorshipSVG";
 import FundingSVG from "./homeSVGs/FundingSVG";

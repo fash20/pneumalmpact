@@ -1,13 +1,10 @@
-import { Avatar } from "@mui/material"
-// import { ArrowLeftIcon, ArrowRightIcon, IconButton } from "@mui/icons-material"
 
+// import { ArrowLeftIcon, ArrowRightIcon, IconButton } from "@mui/icons-material"
 import React, {useState} from "react";
 import '../styles/animations.css'
 import image1 from '../assets/images/testimonials/image1.png'
 import image2 from '../assets/images/testimonials/image2.jpeg'
 import image3 from '../assets/images/testimonials/image3.jpeg'
-import image4 from '../assets/images/testimonials/image4.jpg'
-import image5 from '../assets/images/testimonials/image5.jpg'
 import image6 from '../assets/images/testimonials/image6.jpg'
 import image7 from '../assets/images/testimonials/image7.png'
 

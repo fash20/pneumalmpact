@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "../styles/General.css";
 import CountUp from "react-countup";
-import { useSpring, to, animated } from "react-spring";
-import { config } from "process";
+
 
 interface Stats {
   title?: string;
